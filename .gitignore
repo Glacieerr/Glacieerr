@@ -1,0 +1,11 @@
+# generated every night by .github/workflows/daily.yml and published to the output branch
+out/
+node_modules/
+storewright/
+.vercel/
+# approved screenshots for pages/tests/visual.mjs: compared on the Mac that drew them, not committed (7 MB)
+pages/tests/baseline/
+# the author's phone numbers for scripts/fact_check.py: kept on the Mac, never committed
+data/private.json
+# the built page: CI and Glacieerr.github.io build it from the sources (python3 pages/build.py)
+pages/dist/

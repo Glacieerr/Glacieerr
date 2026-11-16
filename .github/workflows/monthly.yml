@@ -1,0 +1,45 @@
+# Once a month: check every outside link, and keep the scheduled workflows switched on.
+#   links      (idea #168) scripts/link_check.py follows every link in the README, HOW-IT-WORKS.md
+#              and the interactive page; a broken one opens an issue (LinkedIn, which turns
+#              automated visitors away, is listed as a reminder, never as a failure)
+#   keepalive  (idea #124) GitHub switches off a public repository's scheduled workflows after
+#              60 days without activity; scripts/keepalive.py asks the API to enable them again
+# Run it by hand from the Actions tab with "dry run" ticked to see what it would do.
+# On your own machine:  python3 scripts/link_check.py --dry-run ; python3 scripts/keepalive.py --dry-run
+name: Monthly checks
+
+on:
+  schedule:
+    - cron: "41 6 1 * *"        # the 1st of every month, 01:41 in New York in winter
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Dry run: print instead of opening issues or enabling workflows"
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+  issues: write                  # the link check's issue
+  actions: write                 # keepalive: enable the scheduled workflows
+
+jobs:
+  links:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+      - name: Check every outside link
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 scripts/link_check.py --issue ${{ inputs.dry_run && '--dry-run' || '' }}
+
+  keepalive:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v7
+      - name: Keep the scheduled workflows on
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 scripts/keepalive.py --workflows daily.yml,monthly.yml ${{ inputs.dry_run && '--dry-run' || '' }}

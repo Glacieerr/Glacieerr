@@ -1,0 +1,11 @@
+{
+  "private": true,
+  "type": "module",
+  "description": "Smoke test of the interactive page in Chromium, Firefox and WebKit (idea #178). Installed by .github/workflows/xbrowser.yml only.",
+  "scripts": {
+    "test": "playwright test --config playwright.config.mjs"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.63.0"
+  }
+}

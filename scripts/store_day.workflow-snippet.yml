@@ -1,0 +1,43 @@
+# Steps for the daily "simulated store" widget in the profile README.
+# Paste them under `steps:` of a job in the profile repo's workflow, after the step that
+# checks out the profile repo itself (it holds scripts/store_day.mjs). Nothing here pushes;
+# committing out/ is up to later steps of that job (add out/ only, not the storewright/ checkout).
+# Suggested trigger: schedule cron '17 5 * * *' (05:17 UTC, just after midnight in New York).
+#
+# npm ci, measured on 2026-11-12 against storewright 1554726 with npm 10.9 and 11.16:
+#   plain `npm ci`:   458 packages, 108 MB download, 373 MB node_modules, about 4 s locally
+#   filtered (below): 160 packages,  24 MB download, 103 MB node_modules, about 2 s locally
+# The simulator only needs zod and the root devDependency tsx, hence the workspace filter.
+# Do not add --omit=optional (esbuild's platform binary is an optional dependency, so tsx
+# fails) or --omit=dev (tsx is a devDependency). No package in the lockfile downloads
+# Playwright browsers during install; the environment variable below is only a guard.
+
+- name: Check out Storewright (default branch)
+  uses: actions/checkout@v7
+  with:
+    repository: Glacieerr/storewright
+    path: storewright
+    persist-credentials: false
+
+- name: Set up Node 22
+  uses: actions/setup-node@v7
+  with:
+    node-version: 22
+    cache: npm
+    cache-dependency-path: storewright/package-lock.json
+
+- name: Install the simulator's dependencies only
+  working-directory: storewright
+  env:
+    PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: '1'
+  run: npm ci --ignore-scripts --no-audit --no-fund -w @storewright/sim-cli --include-workspace-root
+
+- name: Simulate today's store day
+  id: store_day
+  run: |
+    day=$(TZ=America/New_York date +%F)
+    file="out/store-day-$day.json"
+    mkdir -p out
+    node scripts/store_day.mjs --repo storewright --date "$day" > "$RUNNER_TEMP/store-day.json"
+    mv "$RUNNER_TEMP/store-day.json" "$file"
+    echo "file=$file" >> "$GITHUB_OUTPUT"

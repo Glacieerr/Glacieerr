@@ -1,0 +1,6 @@
+{
+  "private": true,
+  "type": "module",
+  "description": "GitHub profile README for Glacieerr: lock-screen banner, widgets and the live clock function",
+  "engines": { "node": ">=20" }
+}

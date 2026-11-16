@@ -1,0 +1,172 @@
+# The interactive page's checks on every change to it (idea #125): build pages/dist/index.html,
+# then run all of pages/tests/test.mjs in headless Chrome on Linux (one retry, because headless
+# Chrome on a CI machine now and then stumbles). Publishing is not done here: the
+# Glacieerr.github.io repository builds the page from this repository's main branch, runs the
+# same checks and publishes it with GitHub Pages only when they pass, so no token is needed
+# (R3.3, decided 2026-11-15). Its workflow collects the files with scripts/collect_site.sh.
+# Before the browser, three quick checks (R3.3 batch 6): every stated fact against data/facts.json
+# (idea #183; a mismatch fails the run), the clock and the sky at the DST changes, a leap day and
+# the turn of the year (idea #177), and the English copy against docs/copy-style.md (idea #184;
+# shown, not failing, until the copy it reports is fixed).
+# R3.3 batch 6, part B: the page checks include the page itself at the edges of time (part 8,
+# pages/tests/time-edges.mjs, idea #177); beside them the main views are photographed in dark and
+# light at desktop and phone width (idea #179, a job of its own) and kept as an artifact. The strict
+# comparison with the approved pictures in pages/tests/baseline/ runs on a Mac, where they were drawn:
+# fonts are the system's own, so Linux would differ everywhere. A third job runs Lighthouse (idea
+# #180), as a phone and as a desktop, and puts the four scores in the run's summary. Neither of the
+# two blocks publishing.
+# On your own machine:  node scripts/pages_tests.mjs        (or --no-build, or --dry-run)
+#                       bash scripts/collect_site.sh --dry-run     (what Glacieerr.github.io publishes)
+#                       python3 scripts/fact_check.py ; node scripts/time_tests.mjs ; python3 scripts/copy_check.py
+#                       node pages/tests/cdp.mjs pages/tests/visual.mjs    (the screenshots against the baselines)
+#                       node pages/tests/cdp.mjs pages/tests/perf.mjs      (first paint, largest paint, shifts, long tasks, bytes)
+name: Interactive page
+
+on:
+  push:
+    branches: [main]
+    paths: ["pages/**", "live/**", "data/**", "assets/src/**", "scripts/pages_tests.mjs", "scripts/chrome-ci.sh",
+            "scripts/collect_site.sh", ".github/workflows/pages.yml", "README.md", "HOW-IT-WORKS.md",
+            "scripts/fact_check.py", "scripts/copy_check.py", "scripts/time_tests.mjs", "scripts/sky_day.mjs",
+            "scripts/festivals.py", "docs/copy-style.md", "scripts/lighthouse_summary.mjs", "tests-xbrowser/serve.mjs"]
+  pull_request:
+    paths: ["pages/**", "live/**", "data/**", "assets/src/**", "scripts/pages_tests.mjs", "scripts/chrome-ci.sh",
+            ".github/workflows/pages.yml", "README.md", "HOW-IT-WORKS.md", "scripts/fact_check.py",
+            "scripts/copy_check.py", "scripts/time_tests.mjs", "scripts/sky_day.mjs", "scripts/festivals.py",
+            "docs/copy-style.md", "scripts/lighthouse_summary.mjs", "tests-xbrowser/serve.mjs"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    # 40, not 30, since batch 6: a run of the checks takes about 11 minutes on a Mac and maybe
+    # half as long again here, and a failed run is tried once more
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Set up Node 22
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+
+      - name: "Facts: every date, version, count and name matches data/facts.json (idea #183)"
+        run: python3 scripts/fact_check.py --repo-only --self-test
+
+      - name: "Time edge cases: DST changes, a leap day, the turn of the year (idea #177)"
+        run: node scripts/time_tests.mjs
+
+      - name: "English copy against docs/copy-style.md (idea #184; reported, not failing yet)"
+        continue-on-error: true
+        run: python3 scripts/copy_check.py --repo-only
+
+      - name: Fonts for the Chinese copy (the page shows both languages)
+        continue-on-error: true
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq fonts-noto-cjk
+
+      - name: Build the page and run every check (headless Chrome, one retry)
+        env:
+          CHROME: ${{ github.workspace }}/scripts/chrome-ci.sh
+          CHROME_PROFILE_ROOT: ${{ runner.temp }}
+          WATCHDOG: "900000"
+        run: node scripts/pages_tests.mjs
+
+
+  screenshots:
+    # Idea #179: the main views (lock screen, home, Sky, Calendar, About this site, #brief, the
+    # first #present slide, Assets) in dark and light at desktop and phone width, at one frozen
+    # moment, kept for 14 days to look at. The strict comparison with pages/tests/baseline/ runs
+    # on a Mac (node pages/tests/cdp.mjs pages/tests/visual.mjs), where the baselines were drawn;
+    # Linux has other fonts. It never blocks publishing.
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Set up Node 22
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+
+      - name: Fonts for the Chinese copy
+        continue-on-error: true
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq fonts-noto-cjk
+
+      - name: Build the page
+        run: python3 pages/build.py
+
+      - name: Photograph the main views
+        env:
+          CHROME: ${{ github.workspace }}/scripts/chrome-ci.sh
+          CHROME_PROFILE_ROOT: ${{ runner.temp }}
+          MODE: shots
+          OUT: ${{ runner.temp }}/screenshots
+        run: node pages/tests/cdp.mjs pages/tests/visual.mjs
+
+      - name: Keep the screenshots
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: screenshots
+          path: ${{ runner.temp }}/screenshots/
+          if-no-files-found: ignore
+          retention-days: 14
+
+  lighthouse:
+    # Idea #180: Lighthouse 12 (installed here only, a fixed version) on the built page served as
+    # GitHub Pages serves it (gzip, tests-xbrowser/serve.mjs): as a phone (its default: slow 4G and
+    # a CPU four times slower) and as a desktop. scripts/lighthouse_summary.mjs writes the scores,
+    # the timings behind performance and every audit that did not pass to the run's summary, and
+    # flags a score under 90 there; the reports are kept for 14 days. Lighthouse's performance
+    # numbers move from run to run on shared machines, so this job reports and never fails the run.
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Set up Node 22
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+
+      - name: Build the page
+        run: python3 pages/build.py
+
+      - name: Serve it on 127.0.0.1:4180, gzipped as on GitHub Pages
+        run: |
+          node tests-xbrowser/serve.mjs > "${{ runner.temp }}/serve.log" 2>&1 &
+          for i in $(seq 1 30); do curl -sf http://127.0.0.1:4180/ > /dev/null && break; sleep 1; done
+
+      - name: Lighthouse as a phone and as a desktop
+        env:
+          CHROME_PATH: /usr/bin/google-chrome
+        run: |
+          mkdir -p lighthouse
+          for form in mobile desktop; do
+            preset=""; [ "$form" = desktop ] && preset="--preset=desktop"
+            npx --yes lighthouse@12.6.0 "http://127.0.0.1:4180/?lang=en" $preset --quiet \
+              --only-categories=performance,accessibility,best-practices,seo \
+              --chrome-flags="--headless=new --no-sandbox" \
+              --output=json --output=html --output-path="lighthouse/$form"
+          done
+
+      - name: The scores (in this run's summary)
+        run: node scripts/lighthouse_summary.mjs lighthouse/mobile.report.json lighthouse/desktop.report.json
+
+      - name: Keep the reports
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: lighthouse
+          path: lighthouse/
+          if-no-files-found: ignore
+          retention-days: 14

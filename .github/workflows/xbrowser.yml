@@ -1,0 +1,82 @@
+# The interactive page in other browsers (idea #178): a short smoke test of the built page
+# (tests-xbrowser/smoke.spec.mjs) in Chromium, Firefox and WebKit (Safari's engine), on Linux,
+# macOS and Windows. The full checks (pages/tests/test.mjs) stay in pages.yml on headless Chrome;
+# this one looks for what differs between browsers: the clock's time zone, the Chinese text and
+# the browser's Chinese calendar, the date field, the moving planets and reduced motion, the photos
+# (WebP since R3.3 batch 6, idea #180), script errors and requests off the page. Screenshots of the lock screen in English and Chinese and of
+# the Sky app are kept for 14 days as an artifact, to look at the Chinese fonts (Windows and
+# macOS use their own). Playwright is installed here only; the repository has no dependencies.
+# On your own machine (it downloads the three browsers):
+#   python3 pages/build.py
+#   cd tests-xbrowser && npm install --no-package-lock && npx playwright install chromium firefox webkit && npx playwright test
+name: Other browsers
+
+on:
+  push:
+    branches: [main]
+    paths: ["pages/**", "live/**", "data/**", "assets/src/**", "tests-xbrowser/**", ".github/workflows/xbrowser.yml"]
+  pull_request:
+    paths: ["pages/**", "live/**", "data/**", "assets/src/**", "tests-xbrowser/**", ".github/workflows/xbrowser.yml"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: xbrowser-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  smoke:
+    name: smoke (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, macos-15, windows-2025]
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - name: Keep LF line endings on Windows (the page is built from the files as git has them)
+        if: runner.os == 'Windows'
+        run: git config --global core.autocrlf false
+
+      - uses: actions/checkout@v7
+
+      - name: Set up Node 22
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+
+      - name: Chinese fonts on Linux (macOS and Windows have their own)
+        if: runner.os == 'Linux'
+        continue-on-error: true
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq fonts-noto-cjk
+
+      - name: Build the page
+        env:
+          PYTHONUTF8: "1"
+        run: |
+          if python3 -c "import sys" >/dev/null 2>&1; then py=python3; else py=python; fi
+          "$py" pages/build.py
+
+      - name: Install Playwright and its three browsers (in CI only)
+        working-directory: tests-xbrowser
+        run: |
+          npm install --no-package-lock --no-audit --no-fund
+          npx playwright install --with-deps chromium firefox webkit
+
+      - name: Smoke test in Chromium, Firefox and WebKit
+        working-directory: tests-xbrowser
+        run: npx playwright test --config playwright.config.mjs
+
+      - name: Keep the screenshots and the report
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: xbrowser-${{ matrix.os }}
+          path: tests-xbrowser/results/
+          if-no-files-found: ignore
+          retention-days: 14

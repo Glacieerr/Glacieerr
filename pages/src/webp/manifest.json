@@ -1,0 +1,78 @@
+{
+  "note": "Written by pages/build.py --webp (idea #180): each photo re-encoded by headless Chrome's canvas encoder. A build uses a WebP only while its source's SHA-256 matches.",
+  "quality": 0.85,
+  "images": {
+    "sn-s1": {
+      "source": "assets/src/silnest-s1.jpg",
+      "sha256": "57b8d32cd5e7340aa2fa379e9248316a7d6899b2bf16a171f1030f8bf713c256",
+      "width": 222,
+      "height": 480,
+      "jpeg_bytes": 25819,
+      "webp_bytes": 12120
+    },
+    "sn-s6": {
+      "source": "assets/src/silnest-s6.jpg",
+      "sha256": "2900d82a0ccfaf65b22be222a2a0894ac741b549155333405bdabe6a59755fdf",
+      "width": 222,
+      "height": 480,
+      "jpeg_bytes": 22151,
+      "webp_bytes": 10076
+    },
+    "sw-world": {
+      "source": "assets/src/storewright-world-620.jpg",
+      "sha256": "8e3286d4a982a1401bc7f1909895c8c01d3f3eef3c6ac3aa1ca877432734cbeb",
+      "width": 620,
+      "height": 429,
+      "jpeg_bytes": 75043,
+      "webp_bytes": 49646
+    },
+    "sw-demo": {
+      "source": "assets/src/storewright-showcase.jpg",
+      "sha256": "da3ad05d460f44393cbe146d1a8ae681320e9df52a28863dd1cfffedae3f6538",
+      "width": 960,
+      "height": 600,
+      "jpeg_bytes": 179002,
+      "webp_bytes": 87136
+    },
+    "site-home": {
+      "source": "assets/src/site-home.jpg",
+      "sha256": "cacd00bd8e7b16225bc980ebb13d01a907113bfd3e063dce12a87c9e18e54a39",
+      "width": 960,
+      "height": 666,
+      "jpeg_bytes": 69949,
+      "webp_bytes": 28010
+    },
+    "dr-phone": {
+      "source": "pages/src/drafts/phone.jpg",
+      "sha256": "b2434a8923f7768eeeacc261c6baa0f36bb329759f955af0d4d920670b03007c",
+      "width": 320,
+      "height": 200,
+      "jpeg_bytes": 8488,
+      "webp_bytes": 7910
+    },
+    "dr-dusk": {
+      "source": "pages/src/drafts/dusk.jpg",
+      "sha256": "71eec7572746d34ca1140c7a14d09e4d590b05f8aa7079d28851202e3cda22c4",
+      "width": 320,
+      "height": 200,
+      "jpeg_bytes": 11320,
+      "webp_bytes": 9954
+    },
+    "dr-avatar": {
+      "source": "pages/src/drafts/avatar.jpg",
+      "sha256": "5608d381a6a26456787745cad3131cd3f7719907749fa1cb9d8a284e80f1fca2",
+      "width": 320,
+      "height": 200,
+      "jpeg_bytes": 7525,
+      "webp_bytes": 6160
+    },
+    "dr-sky": {
+      "source": "pages/src/drafts/sky.jpg",
+      "sha256": "8e5c807996af186a34ee6f5402a521db08642a91e1e0fd9887a64886d8743a4f",
+      "width": 320,
+      "height": 200,
+      "jpeg_bytes": 5534,
+      "webp_bytes": 4544
+    }
+  }
+}

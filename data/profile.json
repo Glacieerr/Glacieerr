@@ -1,0 +1,361 @@
+{
+  "_note": "Single source of truth for every fact shown on the profile. Only verified facts go here.",
+  "name": "Canyuan Ye",
+  "name_zh": "叶璨源",
+  "city": "Albany, NY",
+  "timezone": "America/New_York",
+  "lanes": [
+    "Software",
+    "Creative tech",
+    "Product"
+  ],
+  "subline": "Built AI-native with Claude, ChatGPT & more. Proven by tests.",
+  "links": {
+    "site": "https://yecanyuan.com",
+    "linkedin": "https://www.linkedin.com/in/canyuanye",
+    "linkedin_short": "in/canyuanye",
+    "email": "canyuanye@gmail.com",
+    "pages": "https://glacieerr.github.io/"
+  },
+  "silnest": {
+    "title": "SilNest",
+    "title_zh": "声藏",
+    "sub": "Offline music player",
+    "app_id": "6796483224",
+    "store_url": "https://apps.apple.com/app/id6796483224",
+    "version": "1.0",
+    "released": "2026-09-08"
+  },
+  "storewright": {
+    "tests": "800+",
+    "release": "v1.0 final",
+    "month": "Nov 2026",
+    "repo": "https://github.com/Glacieerr/storewright",
+    "demo": "https://glacieerr.github.io/storewright"
+  },
+  "assistant": {
+    "score": 76.3,
+    "baseline": 42.5,
+    "set": "80-question held-out set",
+    "name": "Duty assistant",
+    "part": "Storewright part 3 (StoreX Chain)"
+  },
+  "site": {
+    "domain": "yecanyuan.com",
+    "since": "Apr 2026"
+  },
+  "vocal": {
+    "status": "First track finished",
+    "next": "Workflow in progress"
+  },
+  "early_work": {
+    "label": "Early work",
+    "url": "https://github.com/Glacieerr?tab=repositories"
+  },
+  "_drafts": "R3.3 content added 2026-11-14 from 事实清单.md; the user confirmed every draft (uses, faq, roles, skills_map, topics and the booking reply) on 2026-11-15, so 'pending' is empty. A key listed in 'pending' is a draft the user still has to confirm; pages and README show it only in previews until then.",
+  "pending": [],
+  "milestones": [
+    {
+      "date": "2026-11",
+      "en": "Storewright complete: v1.0 final, 800+ tests",
+      "zh": "Storewright 完成：1.0 定稿，800 多个自动化测试",
+      "url": "https://github.com/Glacieerr/storewright",
+      "source": "事实清单 4.2 (last commit 2026-11-09; tests counted 2026-11-13)"
+    },
+    {
+      "date": "2026-09-08",
+      "en": "SilNest 1.0 released on the App Store",
+      "zh": "声藏 SilNest 1.0 在 App Store 上架",
+      "url": "https://apps.apple.com/app/id6796483224",
+      "source": "App Store listing, release date 2026-09-08"
+    },
+    {
+      "date": "2026-04",
+      "en": "yecanyuan.com launched on my own Git-backed CMS",
+      "zh": "yecanyuan.com 上线，用的是我自己做的基于 Git 的内容管理系统",
+      "url": "https://yecanyuan.com",
+      "source": "portfolio repo, first commit 2026-04-20"
+    }
+  ],
+  "timeline": [
+    {
+      "project": "silnest",
+      "from": "2026-03"
+    },
+    {
+      "project": "site",
+      "from": "2026-04"
+    },
+    {
+      "project": "vocal",
+      "from": "2026-08"
+    },
+    {
+      "project": "storewright",
+      "from": "2026-10",
+      "to": "2026-11"
+    }
+  ],
+  "roles": {
+    "storewright": {
+      "en": "Scope, acceptance criteria, trade-offs and sign-off: me. Almost all code and tests: Claude Code.",
+      "zh": "范围、验收标准、设计取舍和验收：我；几乎全部代码和测试：Claude Code。",
+      "source": "Storewright README, 'How I work with AI'"
+    },
+    "silnest": {
+      "en": "Product, design and the iPhone and iPad app, through to the App Store release.",
+      "zh": "产品、设计和 iPhone、iPad 版应用，一直到在 App Store 上架。",
+      "source": "The user's statement of 2026-11-15: the code is mainly my own"
+    },
+    "site": {
+      "en": "I built my own Git-backed CMS so my content stays under my control.",
+      "zh": "自己做了基于 Git 的内容管理系统，把内容掌握在自己手里。",
+      "source": "The user's statement of 2026-11-15: the code is mainly my own"
+    },
+    "vocal": {
+      "en": "A personal, local studio: voice separation, voice cloning and singing conversion on my own hardware.",
+      "zh": "个人的本地创作工作台：人声分离、音色克隆和演唱转换，都在自己的电脑上跑。",
+      "source": "事实清单 4.3"
+    }
+  },
+  "faq": [
+    {
+      "q_en": "If AI writes the code, what do you do?",
+      "a_en": "I decide what to build and how we'll know it works. Claude Code writes most of the code; I review every change and accept it through tests and walkthroughs.",
+      "q_zh": "AI 写代码，那你做什么？",
+      "a_zh": "做什么、怎样判断它真的可行，由我来决定。大部分代码由 Claude Code 编写；每一处改动我都会亲自审查，并通过测试和实际走查来验收。",
+      "source": "How I work app (confirmed wording)"
+    },
+    {
+      "q_en": "How do you know an AI feature really works?",
+      "a_en": "By testing it on questions it never saw while it was being tuned. In Storewright's regional supply-chain part, the duty assistant got 76.3% of an 80-question held-out set fully correct, against 42.5% for keyword rules.",
+      "q_zh": "怎么知道 AI 做的功能真的管用？",
+      "a_zh": "用它在调整时从没见过的题来测。Storewright 区域供应链部分的值班助手，在 80 道盲测题上四项全对 76.3%，只用关键词规则是 42.5%。",
+      "source": "事实清单 4.2 (StoreX-Chain/docs/benchmark.en.md, set 4)"
+    },
+    {
+      "q_en": "Which AI tools do you use?",
+      "a_en": "Claude Code, Codex, Gemini, DeepSeek and Grok for planning and building; also GitHub Copilot, and Suno for music.",
+      "q_zh": "你用哪些 AI 工具？",
+      "a_zh": "用 Claude Code、Codex、Gemini、DeepSeek 和 Grok 规划和开发；也用 GitHub Copilot，用 Suno 做音乐。",
+      "source": "事实清单 6"
+    }
+  ],
+  "uses": {
+    "note": "From 事实清单 5 and 6, with the editors added (Xcode, Android Studio, VS Code, Cursor); confirmed by the user on 2026-11-15. The page shows Android Studio too (the user's call, 2026-11-15): the one way it names Android",
+    "groups": [
+      {
+        "key": "ai",
+        "en": "AI",
+        "zh": "AI",
+        "items": [
+          "Claude Code",
+          "Codex",
+          "Gemini",
+          "DeepSeek",
+          "Grok",
+          "GitHub Copilot",
+          "Suno"
+        ]
+      },
+      {
+        "key": "build",
+        "en": "Building",
+        "zh": "开发",
+        "items": [
+          "TypeScript",
+          "React",
+          "three.js",
+          "Node.js",
+          "Fastify",
+          "PostgreSQL",
+          "Vite",
+          "Playwright",
+          "Docker",
+          "Swift",
+          "SwiftUI",
+          "Kotlin",
+          "Python",
+          "Vercel Functions",
+          "GitHub Actions",
+          "Xcode",
+          "Android Studio",
+          "VS Code",
+          "Cursor"
+        ]
+      },
+      {
+        "key": "voice",
+        "en": "Voice",
+        "zh": "声音",
+        "items": [
+          "MDX-Net",
+          "GPT-SoVITS",
+          "SVC"
+        ]
+      },
+      {
+        "key": "creative",
+        "en": "Creative",
+        "zh": "创意",
+        "items": [
+          "Blender",
+          "Photoshop",
+          "Illustrator",
+          "CapCut",
+          "Procreate"
+        ]
+      },
+      {
+        "key": "hardware",
+        "en": "Hardware",
+        "zh": "硬件",
+        "items": [
+          "M1 MacBook Air",
+          "RTX 3050 laptop GPU"
+        ]
+      }
+    ]
+  },
+  "skills_map": [
+    {
+      "lane": "software",
+      "skill": "TypeScript",
+      "projects": [
+        "storewright"
+      ]
+    },
+    {
+      "lane": "software",
+      "skill": "JavaScript",
+      "projects": [
+        "site",
+        "storewright"
+      ]
+    },
+    {
+      "lane": "software",
+      "skill": "Swift / SwiftUI",
+      "projects": [
+        "silnest"
+      ]
+    },
+    {
+      "lane": "software",
+      "skill": "Kotlin",
+      "projects": [
+        "silnest"
+      ]
+    },
+    {
+      "lane": "software",
+      "skill": "Python",
+      "projects": [
+        "vocal"
+      ]
+    },
+    {
+      "lane": "software",
+      "skill": "SQL / PostgreSQL",
+      "projects": [
+        "storewright"
+      ]
+    },
+    {
+      "lane": "software",
+      "skill": "React, three.js",
+      "projects": [
+        "storewright"
+      ]
+    },
+    {
+      "lane": "software",
+      "skill": "Playwright, Docker",
+      "projects": [
+        "storewright"
+      ]
+    },
+    {
+      "lane": "software",
+      "skill": "Vercel Functions",
+      "projects": [
+        "site"
+      ]
+    },
+    {
+      "lane": "product",
+      "skill": "Requirements and acceptance criteria",
+      "projects": [
+        "storewright"
+      ]
+    },
+    {
+      "lane": "product",
+      "skill": "Decision records",
+      "projects": [
+        "storewright"
+      ]
+    },
+    {
+      "lane": "product",
+      "skill": "Walkthrough testing",
+      "projects": [
+        "storewright"
+      ]
+    },
+    {
+      "lane": "product",
+      "skill": "Simulation evaluation",
+      "projects": [
+        "storewright"
+      ]
+    },
+    {
+      "lane": "creative",
+      "skill": "GPT-SoVITS, SVC, MDX-Net",
+      "projects": [
+        "vocal"
+      ]
+    },
+    {
+      "lane": "creative",
+      "skill": "App design",
+      "projects": [
+        "silnest"
+      ]
+    }
+  ],
+  "topics": [
+    {
+      "en": "Offline-first mobile apps",
+      "zh": "离线优先的手机 App",
+      "project": "silnest"
+    },
+    {
+      "en": "Store simulation",
+      "zh": "门店仿真",
+      "project": "storewright"
+    },
+    {
+      "en": "Turning ideas into tested products with AI tools",
+      "zh": "用 AI 工具把想法做成能测的成品",
+      "project": "how"
+    },
+    {
+      "en": "Local AI voice and singing",
+      "zh": "本地 AI 声音创作",
+      "project": "vocal"
+    }
+  ],
+  "booking": {
+    "url": "",
+    "reply_en": "I usually reply within two or three working days.",
+    "reply_zh": "一般 2 到 3 个工作日内回复。",
+    "note": "The button stays hidden until url is set (the user creates the booking page)."
+  },
+  "testimonials": {
+    "form_url": "",
+    "items": [],
+    "note": "Only submissions the person agreed to publish and the user approved; never edited except typos with the author's OK."
+  }
+}

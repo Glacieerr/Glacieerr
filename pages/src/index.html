@@ -1,0 +1,349 @@
+<!doctype html>
+{{SOURCE_NOTE}}
+<html lang="en" class="no-js">
+<head>
+<meta charset="utf-8">
+{{CSP}}
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>{{TITLE}}</title>
+<meta name="description" content="{{DESCRIPTION}}">
+<link rel="canonical" href="{{CANONICAL}}">
+{{SHARE_META}}
+<script type="application/ld+json">{{JSONLD}}</script>
+<meta name="theme-color" content="{{THEME_COLOR}}">
+<meta name="color-scheme" content="dark light">
+<link rel="icon" href="{{FAVICON}}">
+<script>{{BOOT}}</script>
+<style>
+{{STYLE}}
+{{PLANETS_CSS}}
+</style>
+</head>
+<body data-view="lock">
+{{SPRITE}}
+
+<div class="wall" id="wall" aria-hidden="true">
+  <div class="wall-move" id="wallMove"><i class="glow g-a"></i><i class="glow g-b"></i><i class="glow g-c"></i></div>
+  <div class="wall-dots"></div>
+</div>
+
+<div class="edge edge-top" id="edgeTop" aria-hidden="true"></div>
+<div class="edge edge-bottom" id="edgeBottom" aria-hidden="true"></div>
+
+<header class="topbar" id="topbar">
+  <div class="tb-l">
+    <button type="button" class="ghost lock-btn" id="lockBtn" hidden data-i18n-aria="lockAria" aria-label="Lock: back to the lock screen">
+      <svg width="15" height="15" focusable="false" aria-hidden="true"><use href="#u-lock"/></svg><span class="tb-lbl" data-i18n="lock">Lock</span>
+    </button>
+    <p class="pill status" id="status">
+      <i class="live" aria-hidden="true"></i>
+      <span class="pl-long" data-i18n="city">{{CITY}}</span><span class="pl-short" data-i18n="cityShort">Albany</span>
+      <span class="pl-sep" aria-hidden="true">·</span>
+      <span class="pl-zone pl-long" data-i18n="tz">Eastern Time</span><span class="pl-zone pl-short" data-i18n="tzShort">ET</span>
+      <span class="pl-time" id="sbTime"></span>
+    </p>
+  </div>
+  <div class="tb-r" role="group" aria-label="Page controls" data-i18n-aria="controls">
+    <button type="button" class="ghost tb-btn" id="searchBtn" aria-haspopup="dialog" aria-keyshortcuts="Meta+K Control+K /" aria-label="Search" data-i18n-aria="searchOpen">
+      <svg width="15" height="15" aria-hidden="true" focusable="false"><use href="#u-search"/></svg><span class="tb-lbl" data-i18n="searchOpen">Search</span><kbd class="kbd" id="kbdHint" aria-hidden="true">⌘K</kbd>
+    </button>
+    <button type="button" class="ghost tb-btn" id="ncGrab" aria-haspopup="dialog" aria-keyshortcuts="N" aria-label="Today" data-i18n-aria="ncOpen">
+      <svg width="15" height="15" aria-hidden="true" focusable="false"><use href="#u-today"/></svg><span class="tb-lbl" data-i18n="ncOpen">Today</span>
+    </button>
+    <button type="button" class="ghost tb-btn" id="ccGrab" aria-haspopup="dialog" aria-keyshortcuts="C" aria-label="Quick settings" data-i18n-aria="ccOpen">
+      <svg width="15" height="15" aria-hidden="true" focusable="false"><use href="#u-sliders"/></svg><span class="tb-lbl" data-i18n="ccOpen">Quick settings</span>
+    </button>
+    <div class="seg lang-seg" role="group" aria-label="Language" data-i18n-aria="langLabel">
+      <button type="button" data-lang="en" lang="en" aria-pressed="true">EN</button>
+      <button type="button" data-lang="zh" lang="zh-CN" aria-pressed="false">中文</button>
+    </div>
+  </div>
+</header>
+
+<main class="screens">
+
+  <section class="screen lock" id="lock" aria-label="Lock screen">
+    <div class="lock-fg" id="lockFg">
+      <div class="lock-scroll" id="lockInner">
+        <div class="lock-grid">
+          <div class="clock">
+            <p class="date"><span id="date">&nbsp;</span><span class="fest" id="fest" hidden></span></p>
+            <p class="lunar" id="lunar" lang="zh-CN" hidden></p>
+            <p class="time"><span class="time-face" aria-hidden="true"><span class="hm" id="hm">--:--</span><span class="ts"><span class="sec" id="sec">--</span><span class="ap" id="ap"></span></span></span><span class="sr-only" id="timeSr"></span></p>
+            <p class="greet" id="greet" hidden></p>
+            <h1 class="name" id="lockTitle">{{NAME}} <span class="zh" lang="zh-CN">{{NAME_ZH}}</span></h1>
+            <p class="subline" data-i18n="subline">{{SUBLINE}}</p>
+          </div>
+          <div class="orbit-wrap"><div class="orbit" id="orbit">{{ORBIT}}<ul class="lanes" aria-label="What I work on" data-i18n-aria="lanesLabel">{{LANES}}</ul><div class="pl-btns" id="plBtns" role="group" aria-label="Planets: each one opens an app" data-i18n-aria="planets.label"></div><div class="pl-card" id="plCard" role="tooltip" hidden></div></div></div>
+          <section class="notes" id="notes" aria-label="Updates" data-i18n-aria="notesLabel"><ul class="note-list" id="noteList"></ul></section>
+          <section class="widgets" id="widgets" aria-roledescription="carousel" aria-label="Widgets" data-i18n-aria="widgets">
+            <div class="track" id="track"></div>
+            <div class="dots" id="dots" role="group" aria-label="Widget pages" data-i18n-aria="dots"></div>
+          </section>
+        </div>
+      </div>
+      <div class="lock-bottom">
+        <button type="button" class="unlock" id="unlock" aria-label="Unlock the rest: apps, how I work, links" data-i18n-aria="unlockAria" aria-keyshortcuts="Enter Space">
+          <span class="knob" aria-hidden="true"><svg width="16" height="16" focusable="false"><use href="#u-chev"/></svg></span>
+          <span class="ul-txt" aria-hidden="true"><b data-i18n="unlock">Unlock the rest</b><small class="unlock-sub" data-i18n="unlockSub">apps · how I work · links</small></span>
+          <kbd class="kbd ul-kbd" aria-hidden="true">↵</kbd>
+        </button>
+        <a class="brief-link" id="briefLink" href="#brief" aria-label="Quick view: everything on one page, in plain text" data-i18n-aria="briefLinkAria"><span data-i18n="briefLink">Quick view</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="screen home" id="home" aria-label="Home screen" inert>
+    <div class="home-scroll" id="homeScroll">
+      <div class="home-page" id="homePage">
+        <article class="about card">
+          <p class="about-kicker"><span data-i18n="city">{{CITY}}</span><span aria-hidden="true"> · </span><span id="homeTime">&nbsp;</span></p>
+          <h2 id="homeTitle" tabindex="-1">{{NAME}} <span class="zh" lang="zh-CN">{{NAME_ZH}}</span></h2>
+          <p class="about-hello" data-i18n="hello">{{HELLO}}</p>
+          <ul class="chips" aria-label="What I work on" data-i18n-aria="lanesLabel">{{LANES}}</ul>
+          <nav class="quick" aria-label="Links" data-i18n-aria="links">
+            <a class="btn primary" href="{{LINKEDIN}}" target="_blank" rel="noopener noreferrer">LinkedIn<span class="sr-only" data-i18n="newTab"> (opens in a new tab)</span><svg class="ext" width="14" height="14" aria-hidden="true" focusable="false"><use href="#u-ext"/></svg></a>
+            <a class="btn" href="{{SITE}}" target="_blank" rel="noopener noreferrer">{{SITE_DOMAIN}}<span class="sr-only" data-i18n="newTab"> (opens in a new tab)</span><svg class="ext" width="14" height="14" aria-hidden="true" focusable="false"><use href="#u-ext"/></svg></a>
+            <a class="btn" href="mailto:{{EMAIL}}">{{EMAIL}}</a>
+          </nav>
+        </article>
+        <button type="button" class="tonight-w card" id="tonightW" aria-haspopup="dialog"></button>
+        <section class="apps" aria-labelledby="appsHead"><h3 class="sec-label" id="appsHead" data-i18n="apps">Apps</h3><ul class="grid" id="grid"></ul></section>
+        <nav class="site-nav" aria-labelledby="siteHead"><h3 class="sec-label" id="siteHead" data-i18n="siteNav.head">This site</h3><ul class="site-links" id="siteLinks"></ul></nav>
+      </div>
+    </div>
+    <nav class="dock" aria-label="Pinned apps" data-i18n-aria="dock"><ul id="dockList"></ul></nav>
+  </section>
+
+</main>
+
+<div class="app-layer" id="appLayer" hidden>
+  <section class="app-view" id="appView" role="dialog" aria-modal="true" aria-labelledby="appTitle">
+    <header class="navbar">
+      <div class="nav-in">
+        <button type="button" class="ghost nav-back" id="appBack" aria-label="Back to Home" data-i18n-aria="backHome"><svg width="15" height="15" aria-hidden="true" focusable="false"><use href="#u-left"/></svg><span data-i18n="home">Home</span></button>
+        <span class="nav-sep" aria-hidden="true">/</span>
+        <h2 class="nav-title" id="appTitle" tabindex="-1"></h2>
+      </div>
+    </header>
+    <div class="app-body" id="appBody"></div>
+  </section>
+</div>
+
+<div class="folder-layer" id="folderLayer" hidden>
+  <div class="folder-scrim" id="folderScrim"></div>
+  <section class="folder card" id="folder" role="dialog" aria-modal="true" aria-labelledby="folderTitle">
+    <div class="folder-head">
+      <span class="ico ico-sm folder-ico" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><use href="#g-early"/></svg></span>
+      <h2 class="folder-title" id="folderTitle" tabindex="-1" data-i18n="folder.title">Early work</h2>
+    </div>
+    <ul class="folder-grid" id="folderGrid"></ul>
+    <div class="folder-detail" id="folderDetail" aria-live="polite"></div>
+    <p class="folder-hint" data-i18n="folder.hint"></p>
+  </section>
+</div>
+
+<div class="spot" id="spot" hidden>
+  <div class="spot-scrim" id="spotScrim"></div>
+  <section class="spot-panel" id="spotPanel" role="dialog" aria-modal="true" aria-label="Search" data-i18n-aria="spot.label">
+    <div class="spot-bar">
+      <label class="spot-field"><svg width="17" height="17" aria-hidden="true" focusable="false"><use href="#u-search"/></svg><input id="spotInput" type="search" enterkeyhint="search" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Search apps, skills and facts" data-i18n-aria="spot.field" placeholder="Search" data-i18n-ph="spot.placeholder" aria-controls="spotList" aria-describedby="spotCount"></label>
+      <button type="button" class="spot-cancel" id="spotCancel"><span class="sc-txt" data-i18n="spot.cancel">Cancel</span><kbd class="kbd sc-kbd" aria-hidden="true">esc</kbd></button>
+    </div>
+    <p class="sr-only" id="spotCount" aria-live="polite"></p>
+    <div class="spot-list" id="spotList"></div>
+    <p class="spot-foot" aria-hidden="true"><span class="sf-hint" data-i18n="spot.hint">Type &gt; for commands, ? for shortcuts</span><span><kbd class="kbd">↑</kbd><kbd class="kbd">↓</kbd> <span data-i18n="spot.hintMove">move</span></span><span><kbd class="kbd">↵</kbd> <span data-i18n="spot.hintOpen">open</span></span><span><kbd class="kbd">esc</kbd> <span data-i18n="spot.hintClose">close</span></span></p>
+  </section>
+</div>
+
+<div class="sheet-layer" id="sheetLayer" hidden>
+  <div class="sheet-scrim" id="sheetScrim"></div>
+  <section class="sheet card" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle" aria-describedby="sheetDesc">
+    <div class="grab" aria-hidden="true"></div>
+    <div class="sheet-head">
+      <span class="sheet-icon" id="sheetIcon"></span>
+      <div class="sheet-titles">
+        <p class="kicker" id="sheetKicker"></p>
+        <h2 id="sheetTitle" tabindex="-1"></h2>
+      </div>
+      <button type="button" class="btn sheet-close" id="sheetClose" data-i18n="done">Done</button>
+    </div>
+    <p class="sheet-desc" id="sheetDesc"></p>
+    <dl class="stats" id="sheetStats"></dl>
+    <p class="sheet-foot" id="sheetFoot"></p>
+    <div class="sheet-links" id="sheetLinks"></div>
+    <p class="sheet-note" id="sheetNote"></p>
+    <button type="button" class="btn primary sheet-open" id="sheetOpen"></button>
+  </section>
+</div>
+
+<div class="nc" id="nc" hidden>
+  <div class="nc-scrim" id="ncScrim"></div>
+  <section class="nc-panel card" id="ncPanel" role="dialog" aria-modal="true" aria-labelledby="ncTitle">
+    <h2 class="sr-only" id="ncTitle" data-i18n="nc.label">Today</h2>
+    <div class="nc-head">
+      <div class="seg nc-tabs" role="tablist" aria-label="Views" data-i18n-aria="nc.tabs">
+        <button type="button" role="tab" id="ncTabToday" aria-controls="ncToday" aria-selected="true" data-i18n="nc.today">Today</button>
+        <button type="button" role="tab" id="ncTabAll" aria-controls="ncAll" aria-selected="false" tabindex="-1" data-i18n="nc.all">All updates</button>
+      </div>
+    </div>
+    <div class="nc-scroll" id="ncScroll">
+      <div class="nc-pane" id="ncToday" role="tabpanel" aria-labelledby="ncTabToday">
+        <p class="nc-date" id="ncDate" tabindex="-1"></p>
+        <p class="nc-summary" id="ncSummary"></p>
+        <p class="nc-season" id="ncSeason" hidden></p>
+        <div class="nc-widgets" id="ncWidgets" role="group" aria-label="Widgets" data-i18n-aria="nc.widgets"></div>
+      </div>
+      <div class="nc-pane" id="ncAll" role="tabpanel" aria-labelledby="ncTabAll" hidden>
+        <ul class="nc-notes" id="ncNotes"></ul>
+      </div>
+    </div>
+    <button type="button" class="nc-close" id="ncClose" aria-label="Close Today" data-i18n-aria="nc.close"><i></i></button>
+  </section>
+</div>
+
+<div class="cc" id="cc" hidden>
+  <div class="cc-scrim" id="ccScrim"></div>
+  <section class="cc-panel card" id="ccPanel" role="dialog" aria-modal="true" aria-labelledby="ccTitle">
+    <div class="cc-head">
+      <h2 class="cc-title" id="ccTitle" data-i18n="cc.label">Quick settings</h2>
+      <button type="button" class="cc-close" id="ccClose" aria-label="Close Quick settings" data-i18n-aria="cc.close"><i></i><svg width="16" height="16" aria-hidden="true" focusable="false"><use href="#u-close"/></svg></button>
+    </div>
+    <div class="cc-in">
+      <div class="qs-row">
+        <p class="qs-l" id="ccApHead" data-i18n="cc.appearance">Appearance</p>
+        <div class="seg seg-ic" id="ccAppearance" role="radiogroup" aria-labelledby="ccApHead">
+          <button type="button" role="radio" data-appearance="auto" aria-checked="false"><svg width="14" height="14" aria-hidden="true" focusable="false"><use href="#u-auto"/></svg><span data-i18n="cc.auto">Auto</span></button>
+          <button type="button" role="radio" data-appearance="dark" aria-checked="false"><svg width="14" height="14" aria-hidden="true" focusable="false"><use href="#u-moon"/></svg><span data-i18n="cc.dark">Dark</span></button>
+          <button type="button" role="radio" data-appearance="light" aria-checked="false"><svg width="14" height="14" aria-hidden="true" focusable="false"><use href="#u-sun"/></svg><span data-i18n="cc.light">Light</span></button>
+        </div>
+      </div>
+      <div class="qs-row">
+        <p class="qs-l" data-i18n="cc.language">Language</p>
+        <button type="button" class="seg seg-toggle" id="ccLang" aria-pressed="false" aria-label="Chinese (中文)" data-i18n-aria="cc.langAria"><span class="sg-off" lang="en">EN</span><span class="sg-on" lang="zh-CN">中文</span></button>
+      </div>
+      <div class="qs-row">
+        <p class="qs-l" id="ccWeightHead" data-i18n="cc.weight">Clock</p>
+        <div class="seg" id="ccWeight" role="radiogroup" aria-labelledby="ccWeightHead">
+          <button type="button" role="radio" data-weight="bold" aria-checked="true"><span data-i18n="cc.bold">Bold</span></button>
+          <button type="button" role="radio" data-weight="thin" aria-checked="false"><span data-i18n="cc.thin">Thin</span></button>
+        </div>
+      </div>
+      <button type="button" class="qs-row qs-switch" id="ccMotion" aria-pressed="false"><span class="qs-l" data-i18n="cc.motion">Reduce motion</span><span class="switch" aria-hidden="true"><i></i></span></button>
+      <button type="button" class="qs-row qs-switch" id="ccParallax" aria-pressed="true"><span class="qs-l" data-i18n="cc.parallax">Parallax</span><span class="switch" aria-hidden="true"><i></i></span></button>
+      <button type="button" class="qs-row qs-switch" id="ccStandby" aria-pressed="false" aria-describedby="ccStandbyNote"><span class="qs-l" data-i18n="cc.standby">Standby after a minute</span><span class="switch" aria-hidden="true"><i></i></span></button>
+      <p class="qs-note" id="ccStandbyNote" data-i18n="cc.standbyNote">A big clock and the planets after a minute without input; move the mouse or press a key to come back. Never on its own with reduced motion.</p>
+      <button type="button" class="qs-row qs-switch qs-sound" id="ccSound" aria-pressed="false" aria-describedby="ccSoundNote"><span class="qs-l" data-i18n="cc.sound">Planet sounds</span><span class="switch" aria-hidden="true"><i></i></span></button>
+      <p class="qs-note" id="ccSoundNote" data-i18n="cc.soundNote">A soft note as each planet passes in front of the avatar. Off whenever motion is reduced.</p>
+      <div class="qs-row">
+        <p class="qs-l" data-i18n="cc.tt">Time travel</p>
+        <button type="button" class="btn qs-btn" id="ccTt" aria-keyshortcuts="T"><svg width="14" height="14" aria-hidden="true" focusable="false"><use href="#u-clock"/></svg><span data-i18n="cc.ttOpen">Open</span></button>
+      </div>
+      <p class="qs-head" id="ccLinksHead" data-i18n="cc.links">Links</p>
+      <nav class="cc-links" aria-labelledby="ccLinksHead">
+        <a href="{{LINKEDIN}}" target="_blank" rel="noopener noreferrer" data-icon="card"><span class="rl" data-i18n="cc.linkedin">LinkedIn</span><span class="sr-only" data-i18n="newTab"> (opens in a new tab)</span></a>
+        <a href="mailto:{{EMAIL}}" data-icon="mail"><span class="rl" data-i18n="cc.email">Email</span></a>
+        <a href="{{GITHUB}}" target="_blank" rel="noopener noreferrer" data-icon="branch"><span class="rl" data-i18n="cc.github">GitHub</span><span class="sr-only" data-i18n="newTab"> (opens in a new tab)</span></a>
+        <a href="{{SITE}}" target="_blank" rel="noopener noreferrer" data-icon="globe"><span class="rl" data-i18n="cc.site">Website</span><span class="sr-only" data-i18n="newTab"> (opens in a new tab)</span></a>
+      </nav>
+    </div>
+  </section>
+</div>
+
+<p class="tt-badge" id="ttBadge" role="status" hidden><i aria-hidden="true"></i><span id="ttBadgeTxt"></span></p>
+<section class="tt card" id="tt" aria-labelledby="ttTitle" hidden>
+  <div class="tt-head">
+    <h2 class="tt-title" id="ttTitle"><svg width="15" height="15" aria-hidden="true" focusable="false"><use href="#u-clock"/></svg><span data-i18n="tt.label">Time travel</span></h2>
+    <div class="seg" id="ttScale" role="radiogroup" aria-label="Scale" data-i18n-aria="tt.scale">
+      <button type="button" role="radio" data-scale="day" aria-checked="true"><span data-i18n="tt.day">Today</span></button>
+      <button type="button" role="radio" data-scale="dates" aria-checked="false"><span data-i18n="tt.dates">Dates</span></button>
+    </div>
+    <button type="button" class="btn tt-now" id="ttNow" data-i18n="tt.now">Back to now</button>
+    <button type="button" class="tt-close" id="ttClose" aria-label="Close time travel" data-i18n-aria="tt.close"><svg width="16" height="16" aria-hidden="true" focusable="false"><use href="#u-close"/></svg></button>
+  </div>
+  <div class="tt-track">
+    <input type="range" class="tt-range" id="ttRange" min="0" max="1439" step="1" value="0" aria-label="Time of day in Albany" aria-keyshortcuts="ArrowLeft ArrowRight PageUp PageDown Home End">
+    <div class="tt-ticks" id="ttTicks" aria-hidden="true"></div>
+  </div>
+  <p class="tt-hint" data-i18n="tt.hint">Let go and it comes back to now.</p>
+</section>
+
+<div class="keys" id="keys" hidden>
+  <div class="keys-scrim" id="keysScrim"></div>
+  <section class="keys-panel card" id="keysPanel" role="dialog" aria-modal="true" aria-labelledby="keysTitle">
+    <div class="keys-head">
+      <h2 class="keys-title" id="keysTitle" tabindex="-1" data-i18n="keys.title">Keyboard shortcuts</h2>
+      <button type="button" class="btn keys-close" id="keysClose" data-i18n="keys.close">Close</button>
+    </div>
+    <dl class="keys-list" id="keysList"></dl>
+  </section>
+</div>
+
+<div class="ab" id="ab" hidden>
+  <div class="ab-scrim" id="abScrim"></div>
+  <section class="ab-panel card" id="abPanel" role="dialog" aria-modal="true" aria-labelledby="abTitle">
+    <div class="ab-head">
+      <h2 class="ab-title" id="abTitle" tabindex="-1" data-i18n="about.title">About this site</h2>
+      <button type="button" class="btn ab-close" id="abClose" data-i18n="about.close">Close</button>
+    </div>
+    <div class="ab-body" id="abBody"></div>
+  </section>
+</div>
+
+<div class="standby" id="standby" role="dialog" aria-modal="true" aria-labelledby="stbTitle" aria-describedby="stbHint" tabindex="-1" hidden>
+  <h2 class="sr-only" id="stbTitle" data-i18n="standby.label">Standby</h2>
+  <div class="stb-in">
+    <p class="stb-date" id="stbDate"></p>
+    <p class="stb-time" aria-hidden="true"><span class="hm" id="stbHm"></span><span class="stb-ap" id="stbAp"></span></p>
+    <p class="sr-only" id="stbSr"></p>
+    <p class="stb-where" data-i18n="cityTz">Albany, NY · Eastern Time</p>
+    <div class="orbit stb-orbit" id="stbOrbit" aria-hidden="true"></div>
+  </div>
+  <p class="stb-hint" id="stbHint" data-i18n="standby.hint">Move the mouse or press a key to come back</p>
+</div>
+
+<div class="tour" id="tour" role="dialog" aria-modal="false" aria-labelledby="tourTitle" aria-describedby="tourText" hidden>
+  <i class="tour-arrow" id="tourArrow" aria-hidden="true"></i>
+  <p class="tour-step" id="tourStep"></p>
+  <h2 class="tour-title" id="tourTitle"></h2>
+  <p class="tour-text" id="tourText"></p>
+  <div class="tour-btns"><button type="button" class="btn tour-skip" id="tourSkip"></button><button type="button" class="btn primary tour-next" id="tourNext"></button></div>
+</div>
+<p class="sr-only" id="tourLive" aria-live="polite"></p>
+<p class="preview-badge" id="previewBadge" hidden></p>
+
+<section class="brief" id="brief" aria-labelledby="briefName" hidden></section>
+
+<section class="present" id="present" aria-label="Present mode" data-i18n-aria="present.label" hidden>
+  <div class="pr-deck" id="prDeck" tabindex="-1"></div>
+  <div class="pr-bar">
+    <div class="seg pr-lang" role="group" aria-label="Language" data-i18n-aria="present.langAria">
+      <button type="button" data-lang="en" lang="en" aria-pressed="true">EN</button>
+      <button type="button" data-lang="zh" lang="zh-CN" aria-pressed="false">中文</button>
+    </div>
+    <p class="pr-hint" data-i18n="present.hint" aria-hidden="true">← → to move · Esc to leave</p>
+    <button type="button" class="ghost pr-btn" id="prPrev" aria-label="Previous slide" data-i18n-aria="present.prev"><svg width="16" height="16" aria-hidden="true" focusable="false"><use href="#u-prev"/></svg></button>
+    <p class="pr-num" id="prNum" aria-hidden="true"></p>
+    <button type="button" class="ghost pr-btn" id="prNext" aria-label="Next slide" data-i18n-aria="present.next"><svg width="16" height="16" aria-hidden="true" focusable="false"><use href="#u-chev"/></svg></button>
+    <button type="button" class="ghost pr-btn" id="prExit" aria-label="Leave present mode" data-i18n-aria="present.exit"><svg width="16" height="16" aria-hidden="true" focusable="false"><use href="#u-close"/></svg></button>
+  </div>
+  <p class="sr-only" id="prLive" aria-live="polite"></p>
+</section>
+
+<noscript>
+  <div class="nojs">
+    <p>The clock, apps and widgets need JavaScript. The links:</p>
+    <ul>{{NOSCRIPT_LINKS}}</ul>
+  </div>
+</noscript>
+
+<script type="application/json" id="data">{{DATA}}</script>
+<script>
+{{SCRIPT}}
+</script>
+<style>
+{{PHOTOS_CSS}}
+</style>
+{{SW_SIM}}
+</body>
+</html>

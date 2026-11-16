@@ -1,0 +1,130 @@
+# Rebuilds the README widgets every night and publishes them to the `output` branch.
+# The README links to https://raw.githubusercontent.com/Glacieerr/Glacieerr/output/<file>.svg
+# Bot commits go to `output` only, are authored by github-actions[bot] and never count
+# toward the contribution graph.
+#
+# Before publishing, scripts/self_check.py (idea #123) checks that every image the README uses is
+# there and a real SVG (if not, nothing is published and yesterday's images stay up), fetches the
+# published ones, and after two bad nights in a row opens an issue. It also warns 50 days after
+# the last commit, before GitHub's 60-day rule switches the schedule off (idea #124; the monthly
+# workflow re-enables it too).
+#
+# Dry run on your own machine (nothing is pushed, no issue is opened):
+#   python3 scripts/fetch_data.py && node scripts/sky_day.mjs
+#   node scripts/project_numbers.mjs --repo ../storewright --dry-run
+#   python3 scripts/lockscreen.py all --out out --pages dark,light
+#   python3 scripts/self_check.py --out out --online --dry-run
+name: Daily widgets
+
+on:
+  schedule:
+    - cron: "17 5 * * *"        # 00:17 in New York in winter, 01:17 in summer
+  workflow_dispatch:             # "Run workflow" button in the Actions tab
+  push:
+    branches: [main]
+    paths: ["scripts/**", "live/astro.mjs", "live/sky-data.mjs", "data/profile.json", "assets/**", "README.md",
+            ".github/workflows/daily.yml"]
+
+permissions:
+  contents: write                # push the output branch
+  issues: write                  # the self-check's issue
+
+concurrency:
+  group: daily-widgets
+  cancel-in-progress: true
+
+jobs:
+  widgets:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out the profile repo
+        uses: actions/checkout@v7
+
+      # ---- the simulated store day (optional: on failure the widget keeps the last day)
+      - name: Check out Storewright (default branch, full history for the project numbers)
+        id: sw
+        continue-on-error: true
+        uses: actions/checkout@v7
+        with:
+          repository: Glacieerr/storewright
+          path: storewright
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Set up Node 22
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: ${{ steps.sw.outcome == 'success' && 'npm' || '' }}
+          cache-dependency-path: storewright/package-lock.json
+
+      - name: Install the simulator's dependencies only
+        id: deps
+        if: steps.sw.outcome == 'success'
+        continue-on-error: true
+        working-directory: storewright
+        env:
+          PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: "1"
+        run: npm ci --ignore-scripts --no-audit --no-fund -w @storewright/sim-cli --include-workspace-root
+
+      - name: Simulate today's store day
+        if: steps.deps.outcome == 'success'
+        run: |
+          day=$(TZ=America/New_York date +%F)
+          if node scripts/store_day.mjs --repo storewright --date "$day" > "$RUNNER_TEMP/day.json"; then
+            mv "$RUNNER_TEMP/day.json" data/store-day.json
+          else
+            echo "::warning::simulation failed; keeping the last simulated day"
+          fi
+
+      # ---- Storewright's numbers for the project pages (idea #158): commits, tests, dates, releases
+      - name: Count Storewright's commits and tests
+        if: steps.sw.outcome == 'success'
+        run: node scripts/project_numbers.mjs --repo storewright || echo "::warning::project numbers failed; keeping the last file"
+
+      # ---- SilNest on the App Store: version, dates and the latest release notes (ideas #21, #171)
+      - name: Look up SilNest on the App Store
+        run: python3 scripts/fetch_data.py
+
+      # ---- tonight's sky over Albany, where the planets are, the Sun's altitude (offline, live/astro.mjs)
+      - name: Work out tonight's sky
+        run: |
+          if ! node scripts/sky_day.mjs; then
+            echo "::warning::sky_day.mjs failed; keeping the last data/sky-day.json"
+          fi
+
+      # the next 12 months of sky events as calendar files (#141), same as the page's download button
+      - name: Write the sky events calendar
+        run: |
+          if ! node scripts/sky_ics.mjs; then
+            echo "::warning::sky_ics.mjs failed; the output branch keeps the last calendar files"
+          fi
+
+      # ---- render, check, publish
+      # banners (below, right, portrait), widgets, unlock pill, app tiles, milestone cards, skill
+      # map, timeline, contact badges and the small print with tonight's date, for dark and light pages
+      - name: Render the widgets
+        run: |
+          python3 scripts/lockscreen.py all --out out --pages dark,light
+          cp data/project-numbers.json data/silnest-store.json data/sky-day.json out/ 2>/dev/null || true
+
+      - name: "Self-check the README's images (idea #123)"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: >
+          python3 scripts/self_check.py --out out --online --issue
+          --state-in "https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/output/self-check.json"
+          --state-out out/self-check.json
+
+      - name: Publish to the output branch
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          cd out
+          git init -q -b output
+          git add -A
+          git -c user.name="github-actions[bot]" \
+              -c user.email="41898282+github-actions[bot]@users.noreply.github.com" \
+              commit -q -m "Widgets for $(TZ=America/New_York date +%F)"
+          git push -q -f "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" output

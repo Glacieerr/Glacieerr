@@ -1,0 +1,524 @@
+{
+  "_note": "Canonical facts for scripts/fact_check.py (idea #183), copied from 事实清单.md, the only source of truth. Change 事实清单.md first, then this file. Run locally, fact_check.py also checks that every value under 'facts' still appears in 事实清单.md and that 'banned' matches its banned block. 'rules' says how each fact is looked for in the text; keep the rules loose enough that they only catch real mismatches.",
+  "source": "事实清单.md (2026-11-13)",
+  "facts": {
+    "name_en": "Canyuan Ye",
+    "name_zh": "叶璨源",
+    "city": "Albany, NY",
+    "email": "canyuanye@gmail.com",
+    "site": "yecanyuan.com",
+    "github": "github.com/Glacieerr",
+    "linkedin": "linkedin.com/in/canyuanye",
+    "school": "University at Albany, SUNY",
+    "degree": "B.S. Computer Science",
+    "minor": "Minor in Informatics",
+    "graduated": "Dec 2024",
+    "walmart_title": "Digital Personal Shopper",
+    "walmart_start": "Apr 2025",
+    "walmart_started": "2025-04-29",
+    "silnest_name": "SilNest",
+    "silnest_name_zh": "声藏",
+    "silnest_app_id": "6796483224",
+    "silnest_store_url": "https://apps.apple.com/app/id6796483224",
+    "silnest_version": "1.0",
+    "silnest_released": "2026-09-08",
+    "silnest_min_ios": "17.0",
+    "silnest_dates": "Mar 2026 - Present",
+    "storewright_dates": "Oct 2026 - Nov 2026",
+    "storewright_first_commit": "2026-10-19",
+    "storewright_last_commit": "2026-11-09",
+    "storewright_tests": "800+",
+    "storewright_test_declarations": "820",
+    "storewright_demo": "glacieerr.github.io/storewright",
+    "storewright_repo": "github.com/Glacieerr/storewright",
+    "storewright_e2e_runs": "83",
+    "storewright_decision_records": "27",
+    "storewright_design_documents": "16",
+    "storewright_customer_wait": "−15%",
+    "assistant_label": "Duty assistant (regional supply-chain part)",
+    "assistant_label_zh": "区域供应链部分的值班助手",
+    "assistant_score": "76.3%",
+    "assistant_baseline": "42.5%",
+    "assistant_score_of": "61/80",
+    "assistant_baseline_of": "34/80",
+    "assistant_all": "77.2%",
+    "assistant_all_baseline": "48.4%",
+    "assistant_all_of": "247/320",
+    "assistant_all_baseline_of": "155/320",
+    "vocal_dates": "Aug 2026 - Present",
+    "vocal_gpu": "RTX 3050",
+    "site_dates": "Apr 2026 - Present"
+  },
+  "rules": {
+    "subjects": {
+      "_note": "Who a date or a version belongs to. A date or version is checked against the subject mentioned nearest to it (same line first, then the lines above in the same block, the heading, or the JSON keys and title); with no subject in sight it is not checked. Months are YYYY-MM; 'present' is an open end.",
+      "silnest": {
+        "mention": "SilNest|声藏",
+        "keys": [
+          "silnest",
+          "sn"
+        ],
+        "ranges": [
+          [
+            "2026-03",
+            "present"
+          ]
+        ],
+        "months": [
+          "2026-03",
+          "2026-09"
+        ],
+        "days": [
+          "2026-09-08",
+          "2026-09-09"
+        ],
+        "versions": [
+          "1.0"
+        ]
+      },
+      "storewright": {
+        "mention": "Storewright|StoreX|Duty-Desk",
+        "keys": [
+          "storewright",
+          "store-day",
+          "accuracy",
+          "assistant"
+        ],
+        "ranges": [
+          [
+            "2026-10",
+            "2026-11"
+          ]
+        ],
+        "months": [
+          "2026-10",
+          "2026-11"
+        ],
+        "versions": [
+          "1.0",
+          "1.0.0",
+          "0.2.0",
+          "0.1.0"
+        ]
+      },
+      "vocal": {
+        "mention": "AI Vocal",
+        "keys": [
+          "vocal"
+        ],
+        "ranges": [
+          [
+            "2026-08",
+            "present"
+          ]
+        ],
+        "months": [
+          "2026-08"
+        ]
+      },
+      "site": {
+        "mention": "Portfolio Site|作品集网站|Git-backed CMS|基于 Git 的内容管理系统|yecanyuan\\.com",
+        "keys": [
+          "site"
+        ],
+        "ranges": [
+          [
+            "2026-04",
+            "present"
+          ]
+        ],
+        "months": [
+          "2026-04"
+        ]
+      },
+      "walmart": {
+        "mention": "Walmart|沃尔玛|Digital Personal Shopper",
+        "keys": [
+          "walmart"
+        ],
+        "ranges": [
+          [
+            "2025-04",
+            "present"
+          ]
+        ],
+        "months": [
+          "2025-04"
+        ],
+        "days": [
+          "2025-04-29"
+        ]
+      },
+      "education": {
+        "mention": "University at Albany|SUNY|B\\.S\\. Computer Science|理学学士|奥尔巴尼分校|CS graduate",
+        "keys": [
+          "education",
+          "early"
+        ],
+        "ranges": [],
+        "months": [
+          "2024-12"
+        ]
+      }
+    },
+    "graduation_year": {
+      "_note": "'CS graduate (2024)', '2024 年毕业', 'University at Albany (2024)'",
+      "patterns": [
+        "(?:graduate|University at Albany|Computer Science)\\s*\\((\\d{4})\\)",
+        "(\\d{4})\\s*年毕业"
+      ],
+      "allowed": [
+        "2024"
+      ]
+    },
+    "counts": [
+      {
+        "id": "tests",
+        "fact": "Storewright: 800+ automated tests (事实清单 4.2)",
+        "patterns": [
+          "(\\d[\\d,]*)\\s*\\+\\s*(?:automated\\s+|unit\\s+(?:and\\s+property\\s+)?)?tests",
+          "(\\d[\\d,]*)\\s*(?:\\+|多)\\s*(?:个|项)?\\s*(?:自动化|单元)?测试"
+        ],
+        "allowed": [
+          "800"
+        ]
+      },
+      {
+        "id": "e2e",
+        "fact": "Storewright: 83 end-to-end runs across browsers",
+        "patterns": [
+          "(\\d+)\\s+(?:multi-browser\\s+|cross-browser\\s+)?end-to-end",
+          "(\\d+)\\s*(?:个|次)(?:多浏览器)?端到端"
+        ],
+        "allowed": [
+          "83"
+        ]
+      },
+      {
+        "id": "decision-records",
+        "fact": "Storewright: 27 decision records",
+        "patterns": [
+          "(\\d+)\\s+decision records",
+          "(\\d+)\\s*(?:份|条)决策记录"
+        ],
+        "allowed": [
+          "27"
+        ]
+      },
+      {
+        "id": "design-documents",
+        "fact": "Storewright: 16 design documents",
+        "patterns": [
+          "(\\d+)\\s+design documents",
+          "(\\d+)\\s*份设计文档"
+        ],
+        "allowed": [
+          "16"
+        ]
+      },
+      {
+        "id": "question-sets",
+        "fact": "Duty-Desk Bench: a held-out set of 80 questions, 320 in all",
+        "patterns": [
+          "(\\d+)-question",
+          "(\\d+)\\s*道(?:从未用于调整的)?盲测题",
+          "(\\d+)\\s+(?:blind|held-out)\\s+questions"
+        ],
+        "allowed": [
+          "80",
+          "320"
+        ]
+      },
+      {
+        "id": "of-80",
+        "fact": "Held-out set: 61/80 for the duty assistant, 34/80 for keyword rules",
+        "patterns": [
+          "(?<![\\d.])(\\d+)\\s*/\\s*80(?!\\d)",
+          "(?<![\\d.])(\\d+)\\s+of\\s+80(?!\\d)"
+        ],
+        "allowed": [
+          "61",
+          "34"
+        ]
+      },
+      {
+        "id": "of-320",
+        "fact": "All 320 questions: 247/320 for the duty assistant, 155/320 for keyword rules",
+        "patterns": [
+          "(?<![\\d.])(\\d+)\\s*/\\s*320(?!\\d)",
+          "(?<![\\d.])(\\d+)\\s+of\\s+320(?!\\d)"
+        ],
+        "allowed": [
+          "247",
+          "155"
+        ]
+      },
+      {
+        "id": "customer-wait",
+        "fact": "Storewright simulation: customer wait −15%",
+        "patterns": [
+          "customer wait[^\\d\\n]{0,30}?(\\d+(?:\\.\\d+)?)\\s*%",
+          "顾客等待[^\\d\\n]{0,10}?(\\d+(?:\\.\\d+)?)\\s*%"
+        ],
+        "allowed": [
+          "15"
+        ]
+      },
+      {
+        "id": "min-ios",
+        "fact": "SilNest: iOS 17.0 or later",
+        "patterns": [
+          "(?:iOS|iPadOS)\\s+(\\d+(?:\\.\\d+)?)\\s*(?:or later|or newer|\\+|及?以上|或更高)"
+        ],
+        "allowed": [
+          "17.0",
+          "17"
+        ]
+      },
+      {
+        "id": "app-id",
+        "fact": "SilNest's App Store id",
+        "on": "raw",
+        "patterns": [
+          "apps\\.apple\\.com/(?:[a-z]{2}/)?app/(?:[\\w-]+/)?id(\\d+)"
+        ],
+        "allowed": [
+          "6796483224"
+        ]
+      },
+      {
+        "id": "cities",
+        "fact": "The Sky app's cities: as many as live/sky-data.mjs lists",
+        "patterns": [
+          "(\\d+)\\s+cities",
+          "(\\d+)\\s*个城市"
+        ],
+        "derived": "cities"
+      }
+    ],
+    "assistant": {
+      "_note": "事实清单 4.2, 写法规则: the benchmark numbers belong to the duty assistant of part 3, StoreX Chain (the regional supply chain), never to the store's AI. Wherever one of them appears, the same sentence, table or card says whose they are, and nothing there calls it the store's AI.",
+      "numbers": "(?<![\\d.])(?:76\\.3|42\\.5|77\\.2|48\\.4)\\s*%|(?<![\\d.])(?:61|34)\\s*(?:/|of)\\s*80(?!\\d)|(?<![\\d.])(?:247|155)\\s*(?:/|of)\\s*320(?!\\d)",
+      "label": "duty assistant|duty-assistant|值班助手|Duty-Desk|值班台",
+      "part": "StoreX Chain|supply[- ]chain|供应链|part 3|第三部分",
+      "wrong": "store assistant|(?<!per-)store AI|门店 ?AI|门店的 ?AI|门店助手|in-store AI",
+      "percent_context": "duty assistant|值班助手|Duty-Desk|held-out|盲测",
+      "percent_allowed": [
+        "76.3",
+        "42.5",
+        "77.2",
+        "48.4",
+        "100"
+      ]
+    },
+    "names": [
+      {
+        "right": "SilNest",
+        "wrong": [
+          "\\bSilnest\\b",
+          "\\bSILNest\\b",
+          "\\bSil Nest\\b",
+          "\\bsilNest\\b"
+        ]
+      },
+      {
+        "right": "Storewright",
+        "wrong": [
+          "\\bStoreWright\\b",
+          "\\bStore Wright\\b",
+          "\\bStorewrite\\b",
+          "\\bStoreright\\b"
+        ]
+      },
+      {
+        "right": "StoreX Chain",
+        "wrong": [
+          "\\bStorex Chain\\b",
+          "\\bStoreX chain\\b",
+          "\\bStoreXChain\\b",
+          "\\bStoreX-Chain\\b(?![/\\w.-])"
+        ]
+      },
+      {
+        "right": "University at Albany, SUNY",
+        "wrong": [
+          "University of Albany",
+          "Albany University",
+          "SUNY at Albany"
+        ]
+      },
+      {
+        "right": "Digital Personal Shopper",
+        "wrong": [
+          "Personal Digital Shopper",
+          "Digital Personal Shoper"
+        ]
+      },
+      {
+        "right": "叶璨源",
+        "wrong": [
+          "叶灿源",
+          "叶粲源",
+          "叶璨原"
+        ]
+      },
+      {
+        "right": "Canyuan Ye",
+        "wrong": [
+          "\\bCanyuan Yeh\\b",
+          "\\bCan Yuan Ye\\b",
+          "\\bCayuan Ye\\b"
+        ]
+      },
+      {
+        "right": "Glacieerr",
+        "wrong": [
+          "(?i)github\\.com/(?!glacieerr\\b)glac\\w+",
+          "(?i)\\b(?!glacieerr\\b)glacie+r+\\.github\\.io"
+        ]
+      },
+      {
+        "right": "canyuanye@gmail.com",
+        "wrong": [
+          "(?i)(?<![\\w.+-])(?!canyuanye@gmail\\.com\\b)[\\w.+-]*canyuan[\\w.+-]*@[\\w-]+(?:\\.[\\w-]+)+"
+        ]
+      },
+      {
+        "right": "linkedin.com/in/canyuanye",
+        "wrong": [
+          "(?i)linkedin\\.com/in/(?!canyuanye\\b)[\\w-]+"
+        ]
+      },
+      {
+        "right": "yecanyuan.com",
+        "wrong": [
+          "(?i)\\byecanyuan\\.(?!com\\b)[a-z]{2,}\\b",
+          "(?i)\\bye-canyuan\\.com\\b"
+        ]
+      }
+    ],
+    "phones": {
+      "_note": "The two numbers in 事实清单 1; no phone number at all in a public file (the README, the pages, the R3.3 deliverables). The allowed numbers live in data/private.json (gitignored, on the author's Mac only); a public file may contain no phone number at all.",
+      "patterns": [
+        "(?<![\\w])(?:\\+1[\\s.-]?)?\\(\\d{3}\\)\\s*\\d{3}[\\s.-]\\d{4}(?!\\d)",
+        "(?<![\\w])\\+1[\\s.-]?\\d{3}[\\s.-]\\d{3}[\\s.-]\\d{4}(?!\\d)",
+        "(?<![\\w])\\d{3}-\\d{3}-\\d{4}(?!\\d)",
+        "(?<![\\w\\d])1[3-9]\\d[\\s-]\\d{4}[\\s-]\\d{4}(?!\\d)"
+      ]
+    },
+    "derived": {
+      "cities": {
+        "file": "live/sky-data.mjs",
+        "after": "export const CITIES = [",
+        "row": "^\\s*\\['[\\w-]+',"
+      }
+    }
+  },
+  "banned": [
+    {
+      "note": "沃尔玛：没有依据，或已经不符合事实",
+      "scope": "all",
+      "phrases": [
+        "~97%",
+        "97%",
+        "100 items",
+        "items/hour",
+        "件 / 小时",
+        "件/小时",
+        "promotion",
+        "晋升",
+        "Development Program",
+        "Team Lead program",
+        "Acting Team Lead",
+        "on assigned shifts",
+        "按排班",
+        "Fulfillment Associate",
+        "数字履约专员"
+      ]
+    },
+    {
+      "note": "旧的项目日期",
+      "scope": "all",
+      "phrases": [
+        "Jan 2026",
+        "2026.01",
+        "Sep 2025",
+        "2025.09",
+        "Nov 2025",
+        "2025.11"
+      ]
+    },
+    {
+      "note": "AI Vocal 的旧定位；没有发布，不能写“已发布”",
+      "scope": "all",
+      "phrases": [
+        "for Creators",
+        "面向创作者",
+        "面向自媒体创作者",
+        "one-stop",
+        "一站式",
+        "workstation",
+        "工作站",
+        "published on",
+        "已发布在"
+      ]
+    },
+    {
+      "note": "规划中的项目（不再提）",
+      "scope": "all",
+      "phrases": [
+        "pipeline",
+        "3D simulation game"
+      ]
+    },
+    {
+      "note": "没有核实的数字",
+      "scope": "all",
+      "phrases": [
+        "5,000",
+        "5000",
+        "8 GB",
+        "8GB",
+        "VRAM",
+        "显存",
+        "DeepSeek Harness"
+      ]
+    },
+    {
+      "note": "评测数字属于 StoreX Chain 的值班助手，不能写成门店的 AI",
+      "scope": "resume",
+      "_scope_note": "As phrases, banned in the resumes and the LinkedIn draft (as check.py does). Elsewhere 'per-store AI' is a real part-1 feature, so the 'assistant' rule checks these words only next to the benchmark numbers.",
+      "phrases": [
+        "store assistant",
+        "store AI",
+        "门店 AI",
+        "门店的 AI",
+        "门店助手"
+      ]
+    },
+    {
+      "note": "Storewright：属实，但移出简历",
+      "scope": "resume",
+      "_scope_note": "True, and moved to the README and interview material: banned in the resumes and the LinkedIn draft only.",
+      "phrases": [
+        "83 cross-browser",
+        "83 个",
+        "221",
+        "18 stuck",
+        "18 处",
+        "25 simplif",
+        "25 项",
+        "11-19%",
+        "11–19%",
+        "4.9%",
+        "2.41%",
+        "0.69%",
+        "0.09 s",
+        "0.09 秒",
+        "15 ms",
+        "15 毫秒",
+        "1.86%"
+      ]
+    }
+  ]
+}

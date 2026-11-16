@@ -1,0 +1,3467 @@
+{
+  "en": {
+    "city": "{{city}}",
+    "cityShort": "Albany",
+    "tz": "Eastern Time",
+    "tzShort": "ET",
+    "cityTz": "{{city}} · Eastern Time",
+    "subline": "{{subline}}",
+    "hello": "Hi, I'm Canyuan. I build software, creative tech and products: AI-native, and proven by tests.",
+    "lanes": [
+      "{{lanes.0}}",
+      "{{lanes.1}}",
+      "{{lanes.2}}"
+    ],
+    "lanesLabel": "What I work on",
+    "am": "AM",
+    "pm": "PM",
+    "langLabel": "Language",
+    "lockLabel": "Lock screen",
+    "homeLabel": "Home screen",
+    "notesLabel": "Updates",
+    "noteAria": "{title}, {when}. {body} Opens {app}.",
+    "widgets": "Widgets",
+    "roleCarousel": "carousel",
+    "roleSlide": "page",
+    "slide": "{n} of {total}",
+    "dots": "Widget pages",
+    "dot": "Widget page {n} of {total}",
+    "unlock": "Unlock the rest",
+    "unlockAria": "Unlock the rest: apps, how I work, links",
+    "unlockSub": "apps · how I work · links",
+    "lock": "Lock",
+    "lockAria": "Lock: back to the lock screen",
+    "apps": "Apps",
+    "dock": "Pinned apps",
+    "links": "Links",
+    "close": "Close",
+    "done": "Done",
+    "home": "Home",
+    "backHome": "Back to Home",
+    "openApp": "Open {name}",
+    "newTab": " (opens in a new tab)",
+    "ncOpen": "Today",
+    "ccOpen": "Quick settings",
+    "searchOpen": "Search",
+    "homePage": "Home",
+    "appNames": {
+      "silnest": "SilNest",
+      "storewright": "Storewright",
+      "site": "Portfolio",
+      "vocal": "AI Vocal",
+      "how": "How I work",
+      "contact": "Contact",
+      "clock": "Clock",
+      "calendar": "Calendar",
+      "early": "Early work",
+      "sky": "Sky",
+      "design": "Design",
+      "assets": "Assets",
+      "uses": "Uses",
+      "guestbook": "Guestbook"
+    },
+    "linkKinds": {
+      "appstore": "App Store",
+      "demo": "Live demo",
+      "repo": "Repo",
+      "site": "Visit the site",
+      "linkedin": "LinkedIn",
+      "email": "Email",
+      "github": "GitHub"
+    },
+    "w": {
+      "silnest": {
+        "title": "{{silnest.title}}",
+        "titleZh": "{{silnest.title_zh}}",
+        "sub": "{{silnest.sub}}",
+        "line": "Your music, offline.",
+        "store": "App Store · v{{sn.version}}",
+        "privacy": "Data Not Collected"
+      },
+      "storewright": {
+        "title": "Storewright",
+        "release": "{{storewright.release}} · {{storewright.month}}",
+        "desc": "A grocery store digital twin that runs in your browser.",
+        "unit": "tests passing",
+        "demo": "Live demo"
+      },
+      "store-day": {
+        "title": "Store day",
+        "tag": "sim",
+        "synthetic": "synthetic data"
+      },
+      "accuracy": {
+        "title": "Duty assistant",
+        "ai": "AI",
+        "rules": "keyword rules",
+        "part": "Part 3, StoreX Chain",
+        "set": "held-out {{assistant.set|count}}-question set"
+      },
+      "site": {
+        "title": "Portfolio",
+        "line": "My own Git-backed CMS"
+      },
+      "vocal": {
+        "title": "AI Vocal",
+        "status": "{{vocal.status}}",
+        "next": "{{vocal.next}}"
+      },
+      "contact": {
+        "title": "Contact",
+        "city": "{{city}}",
+        "tz": "Eastern Time",
+        "lines": [
+          "{{links.linkedin_short}}",
+          "{{site.domain}}"
+        ]
+      }
+    },
+    "alts": {
+      "silnest": "SilNest (声藏): offline music player, live on the App Store, version {{sn.version}}. No account needed, data not collected.",
+      "storewright": "Storewright: a grocery store digital twin that runs in the browser. {{storewright.tests}} tests passing. {{storewright.release}}, {{storewright.month}}. Live demo.",
+      "store-day": "Simulated store day, {date} (synthetic data from Storewright's open-source simulator): {rows}.",
+      "accuracy": "Duty assistant (part 3, StoreX Chain): {{assistant.score}}% vs {{assistant.baseline}}% for keyword rules on a held-out {{assistant.set|count}}-question set.",
+      "site": "{{site.domain}}: my portfolio on a Git-backed CMS I built. Online since {{site.since}}. Hosts SilNest support and privacy pages.",
+      "vocal": "AI Vocal, a personal local voice and singing studio: {{vocal.status|lower}}, {{vocal.next|lower}}.",
+      "contact": "{{city}}, Eastern Time. LinkedIn {{links.linkedin_short}}, {{site.domain}}, {{links.email}}."
+    },
+    "day": {
+      "labels": {
+        "Orders fulfilled": "orders fulfilled",
+        "Items picked": "items picked",
+        "Avg pickup wait": "avg pickup wait",
+        "Ready on time": "ready on time",
+        "Pickers walked": "pickers walked"
+      },
+      "units": {
+        "orders": "orders",
+        "items": "items",
+        "min": "min",
+        "%": "%",
+        "km": "km"
+      },
+      "note": "{orders} orders fulfilled, {ontime}% ready on time. Synthetic data.",
+      "title": "Store day (sim)"
+    },
+    "nc": {
+      "label": "Today",
+      "close": "Close Today",
+      "tabs": "Views",
+      "today": "Today",
+      "all": "All updates",
+      "time": "It's {time} in Albany.",
+      "day": "Storewright's simulated store fulfilled {n} orders {when}.",
+      "whenToday": "today",
+      "whenYesterday": "yesterday",
+      "whenOn": "on {date}",
+      "sn": "SilNest {version} has been on the App Store since {date}.",
+      "widgets": "Widgets"
+    },
+    "cc": {
+      "label": "Quick settings",
+      "close": "Close Quick settings",
+      "appearance": "Appearance",
+      "auto": "Auto",
+      "dark": "Dark",
+      "light": "Light",
+      "language": "Language",
+      "lang": "中文",
+      "langAria": "Chinese (中文)",
+      "weight": "Clock",
+      "bold": "Bold",
+      "thin": "Thin",
+      "motion": "Reduce motion",
+      "parallax": "Parallax",
+      "links": "Links",
+      "linkedin": "LinkedIn",
+      "email": "Email",
+      "github": "GitHub",
+      "site": "Website",
+      "tt": "Time travel",
+      "ttOpen": "Open",
+      "sound": "Planet sounds",
+      "soundNote": "A soft note as each planet passes in front of the avatar. Off whenever motion is reduced.",
+      "standby": "Standby after a minute",
+      "standbyNote": "A big clock and the planets after a minute without input; move the mouse or press a key to come back. Never on its own with reduced motion."
+    },
+    "spot": {
+      "label": "Search",
+      "field": "Search apps, skills and facts",
+      "placeholder": "Search apps, projects, skills and facts",
+      "cancel": "Cancel",
+      "apps": "Apps",
+      "skills": "Skills",
+      "facts": [
+        {
+          "text": "SilNest {{sn.version}} on the App Store since {{sn.released|date_short}}",
+          "app": "silnest"
+        },
+        {
+          "text": "Storewright {{storewright.release}}, {{storewright.month}}",
+          "app": "storewright"
+        },
+        {
+          "text": "Storewright: {{storewright.tests}} tests passing",
+          "app": "storewright"
+        },
+        {
+          "text": "Duty assistant (part 3, StoreX Chain): {{assistant.score}}% vs {{assistant.baseline}}% for keyword rules on a held-out {{assistant.set|count}}-question set",
+          "app": "storewright"
+        },
+        {
+          "text": "{{site.domain}} online since {{site.since}}",
+          "app": "site"
+        },
+        {
+          "text": "AI Vocal: first full track finished",
+          "app": "vocal"
+        },
+        {
+          "text": "Based in {{city}} (Eastern Time)",
+          "app": "contact"
+        },
+        {
+          "text": "Email: {{links.email}}",
+          "app": "contact"
+        }
+      ],
+      "early": "Early work",
+      "none": "No results for \"{q}\"",
+      "count": "{n} results",
+      "one": "1 result",
+      "skill": "Skill",
+      "dayFact": "Simulated store day ({date}): {n} orders fulfilled",
+      "keys": {
+        "silnest": "声藏 music player offline app store lyrics swift",
+        "storewright": "digital twin grocery store simulator demo tests assistant typescript react three.js",
+        "site": "portfolio yecanyuan.com cms website git",
+        "vocal": "voice singing studio mdx-net gpt-sovits svc rtx macbook",
+        "how": "process claude code tests review walkthroughs ai-native",
+        "contact": "email linkedin albany vcard phone say hi",
+        "clock": "time albany world clock eastern",
+        "calendar": "date today milestones",
+        "early": "coursework course projects github java basic cpu memory webdev speedtest",
+        "sky": "sky stars planets moon tonight constellations astronomy city sunset 星空 星星 行星 月亮 今晚 星座",
+        "design": "design system rules colors color type fonts spacing cards buttons icons motion contrast",
+        "assets": "assets press kit icons screenshots descriptions wallpaper wallpapers download png",
+        "uses": "uses tools setup ai editors hardware software",
+        "guestbook": "guestbook notes comments message leave a note giscus"
+      },
+      "factsHead": "Facts",
+      "hintMove": "move",
+      "hintOpen": "open",
+      "hintClose": "close",
+      "hint": "Type > for commands, ? for shortcuts",
+      "cmdHead": "Commands",
+      "skyHead": "In the sky tonight"
+    },
+    "folder": {
+      "title": "Early work",
+      "hint": "Choose a project to read about it, choose it again to open it on GitHub.",
+      "open": "Open on GitHub"
+    },
+    "app": {
+      "silnest": {
+        "title": "{{silnest.title_zh}} · {{silnest.title}}",
+        "nav": "SilNest",
+        "sub": "{{silnest.sub}}",
+        "get": "View in App Store",
+        "shotsHead": "Screenshots",
+        "shots": [
+          "SilNest's player, captioned \"Your music, always here\": large library, fully offline, no account needed.",
+          "SilNest's lyrics view, captioned \"Lyrics missing? AI fills them in\": recognized on the device, line by line."
+        ],
+        "descHead": "Description",
+        "desc": "An offline music player I built. Your music, offline.",
+        "desc2": "Importing music and editing lyrics never change the original audio files.",
+        "infoHead": "Information",
+        "info": [
+          [
+            "Version",
+            "{{sn.version}}"
+          ],
+          [
+            "Released",
+            "{{sn.released|date_short}}"
+          ],
+          [
+            "Compatibility",
+            "iOS {{sn.min_os}} or later",
+            "?sn.min_os"
+          ],
+          [
+            "Price",
+            "{{sn.price_en}}",
+            "?sn.price_en"
+          ],
+          [
+            "Privacy",
+            "Data Not Collected"
+          ]
+        ],
+        "foot": "Support and privacy pages are on {{site.domain}}.",
+        "notesHead": "What's new",
+        "notesSub": "Version {version} · {date}",
+        "notesWait": "Preview: release notes appear here when the App Store lists some. Version {version} has none."
+      },
+      "storewright": {
+        "title": "Storewright",
+        "sub": "A grocery store digital twin that runs in your browser.",
+        "demo": "Open live demo",
+        "repo": "View repo",
+        "shot": "Storewright's demo: the console, the store's digital twin and two associate phones.",
+        "statusHead": "Status",
+        "status": [
+          [
+            "Status",
+            "Complete ({{storewright.month}})"
+          ],
+          [
+            "Release",
+            "{{storewright.release}}"
+          ],
+          [
+            "Tests",
+            "{{storewright.tests}} passing"
+          ]
+        ],
+        "threeHead": "Three things to look at",
+        "three": [
+          "Create an order in the console, then follow it through picking, staging and handoff on the two associate phones.",
+          "Watch the order appear in the store's digital twin, which can also replay the past and forecast the next 3 hours.",
+          "Run a full-day simulation."
+        ],
+        "evalHead": "Duty assistant eval",
+        "eval": [
+          [
+            "Duty assistant (part 3, StoreX Chain)",
+            "{{assistant.score}}%"
+          ],
+          [
+            "Keyword rules",
+            "{{assistant.baseline}}%"
+          ],
+          [
+            "Held-out set",
+            "{{assistant.set|count}} questions"
+          ]
+        ],
+        "evalFoot": "Duty assistant (part 3, StoreX Chain): {{assistant.score}}% vs {{assistant.baseline}}% for keyword rules on a held-out {{assistant.set|count}}-question set.",
+        "dayHead": "Simulated store day · {date}",
+        "dayFoot": "Synthetic data from Storewright's open-source simulator. None of it comes from a real store.",
+        "linksHead": "Links"
+      },
+      "site": {
+        "title": "{{site.domain}}",
+        "nav": "Portfolio",
+        "sub": "Portfolio · My own CMS",
+        "visit": "Visit {{site.domain}}",
+        "shot": "The home page of {{site.domain}}.",
+        "desc": "My portfolio, on a Git-backed CMS I built to own my content. It also hosts SilNest's support and privacy pages.",
+        "infoHead": "Information",
+        "info": [
+          [
+            "Online since",
+            "{{site.since}}"
+          ],
+          [
+            "Also hosts",
+            "SilNest support and privacy pages"
+          ]
+        ]
+      },
+      "vocal": {
+        "title": "AI Vocal",
+        "sub": "A personal, local voice and singing studio.",
+        "statusHead": "Status",
+        "status": [
+          [
+            "Progress",
+            "First full track finished"
+          ],
+          [
+            "Next",
+            "{{vocal.next}}"
+          ]
+        ],
+        "pipeHead": "Workflow",
+        "pipe": [
+          [
+            "Vocal separation",
+            "MDX-Net"
+          ],
+          [
+            "Voice cloning",
+            "GPT-SoVITS"
+          ],
+          [
+            "Singing conversion",
+            "SVC"
+          ]
+        ],
+        "hwHead": "Hardware",
+        "hw": [
+          "RTX 3050 laptop GPU",
+          "M1 MacBook Air"
+        ],
+        "note": "No public link yet."
+      },
+      "how": {
+        "title": "How I work",
+        "quote": "I decide what to build and how we'll know it works. Claude Code writes most of the code; I review every change and accept it through tests and walkthroughs.",
+        "loopHead": "The loop",
+        "loop": [
+          "I decide what to build",
+          "and how we'll know it works.",
+          "Claude Code writes most of the code.",
+          "I review every change",
+          "and accept it through tests and walkthroughs."
+        ],
+        "foot": "{{subline}}",
+        "faqHead": "FAQ",
+        "faqNote": "Questions people ask me, answered by me.",
+        "faqQ": "Question",
+        "faqA": "Answer",
+        "changeHead": "One real change, step by step",
+        "changeIntro": "Storewright, October 2026. Each step links to something you can check in the public repository.",
+        "steps": [
+          {
+            "k": "The bar",
+            "when": "2026-10-24",
+            "text": "Before the four batches of AI features, I set the bar: I would check them myself in the simulator, and the digital twin and the staff and manager devices all had to work.",
+            "link": "Decision record 0021",
+            "href": "{{storewright.repo}}/blob/main/docs/decisions/0021-store-ai-batch1.md"
+          },
+          {
+            "k": "What I found",
+            "when": "2026-10-24",
+            "text": "Checking the last batch that evening, I found that the camera on the two demo phones could not be closed once opened. I asked for every phone function to be fixed properly, not just that one.",
+            "link": "Decision record 0024, section 14",
+            "href": "{{storewright.repo}}/blob/main/docs/decisions/0024-store-ai-batch4.md#14-收尾走查发现的问题与修复"
+          },
+          {
+            "k": "What Claude Code did",
+            "when": "2026-10-24",
+            "text": "Claude Code clicked through every role and screen on both phones and fixed 13 problems. The camera had three causes: a global :active style, a camera that starts asynchronously and a frame without camera permission.",
+            "link": "The table of fixes",
+            "href": "{{storewright.repo}}/blob/main/docs/decisions/0024-store-ai-batch4.md#14-收尾走查发现的问题与修复"
+          },
+          {
+            "k": "The test",
+            "when": "2026-10-24",
+            "text": "It added an end-to-end test that clicks through both demo phones, the camera included.",
+            "link": "e2e/phones.demo.spec.ts",
+            "href": "{{storewright.repo}}/blob/main/e2e/phones.demo.spec.ts"
+          },
+          {
+            "k": "Committed",
+            "when": "2026-10-28",
+            "text": "It went in with the commit for phases 9 to 19.",
+            "link": "Commit 6ced164",
+            "href": "{{storewright.repo}}/commit/6ced164"
+          }
+        ],
+        "skillsHead": "Skill map",
+        "skillsNote": "One constellation per lane. Each star is a skill; the more of my projects used it, the brighter it shines.",
+        "skillsOne": "1 project",
+        "skillsMany": "{n} projects",
+        "skillsBright": "Brighter star: used in more of my projects",
+        "skillNames": {
+          "Requirements and acceptance criteria": "Requirements and acceptance criteria",
+          "Decision records": "Decision records",
+          "Walkthrough testing": "Walkthrough testing",
+          "Simulation evaluation": "Simulation evaluation",
+          "App design": "App design"
+        },
+        "projectNames": {
+          "silnest": "SilNest",
+          "storewright": "Storewright",
+          "site": "yecanyuan.com",
+          "vocal": "AI Vocal"
+        },
+        "tlHead": "Timeline",
+        "tlToday": "today",
+        "tlAria": "Timeline of my projects: {items}.",
+        "tlFrom": "{name} from {from}",
+        "tlFromTo": "{name} from {from} to {to}"
+      },
+      "contact": {
+        "title": "Contact",
+        "card": "{{city}} · Eastern Time",
+        "add": "Add to Contacts",
+        "file": "Canyuan-Ye.vcf",
+        "rows": {
+          "email": "email",
+          "linkedin": "LinkedIn",
+          "site": "website",
+          "city": "location",
+          "time": "local time",
+          "you": "your time"
+        },
+        "say": "Say hi",
+        "youVal": "{time}, {rel}",
+        "qrHead": "Scan to open this page",
+        "qrAria": "QR code for {url}",
+        "qrNote": "Only the address is in the code.",
+        "share": "Share",
+        "copy": "Copy link",
+        "copied": "Link copied.",
+        "copyFail": "Copy this link:",
+        "bookHead": "Talk to me",
+        "book": "Book a time",
+        "bookWait": "Preview: the booking link is not set yet (booking.url in profile.json).",
+        "draft": "Preview: a draft you still have to confirm.",
+        "tHead": "Testimonials",
+        "tInvite": "Used SilNest, or worked with me? You're welcome to leave a few words.",
+        "tLeave": "Leave a testimonial",
+        "tNote": "The form asks whether I may show your words here; nothing appears until I approve it.",
+        "tWait": "Preview: the form link is not set yet (testimonials.form_url in profile.json).",
+        "tEmpty": "Preview: no approved testimonials yet. Approved ones appear here with the name and relation.",
+        "roles": {
+          "visitor": "visitor",
+          "client": "client",
+          "viewer": "viewer",
+          "collaborator": "collaborator"
+        },
+        "askHead": "Ask me about",
+        "resumeHead": "Resume",
+        "resumes": {
+          "en": "English (generalist)",
+          "product": "English (product and delivery)",
+          "zh": "中文"
+        },
+        "resumeSize": "PDF · {kb} KB",
+        "resumeNote": "One page each. The public copies leave out my phone number; email me instead."
+      },
+      "clock": {
+        "title": "World Clock",
+        "head": "Cities",
+        "albany": "Albany",
+        "region": "{{city}} · Eastern Time",
+        "you": "Your time",
+        "today": "Today",
+        "yesterday": "Yesterday",
+        "tomorrow": "Tomorrow",
+        "same": "same time as Albany",
+        "ahead": "{h} hr ahead of Albany",
+        "behind": "{h} hr behind Albany",
+        "trueScale": "True scale",
+        "trueNote": "Rings at today's real distances from the Sun. Light takes {nep} to reach Neptune and {earth} to reach Earth.",
+        "evenNote": "The rings are evenly spaced so all eight planets fit.",
+        "inner": "Mercury to Mars, drawn {x}× larger",
+        "mapHead": "Day and night now",
+        "mapAria": "World map of day and night now, with the land outlined. The Sun is overhead at {where}. {state}",
+        "states": {
+          "day": "In Albany it is day.",
+          "night": "In Albany it is night.",
+          "dawn": "In Albany it is dawn.",
+          "dusk": "In Albany it is dusk."
+        },
+        "mapLabel": {
+          "day": "day",
+          "night": "night",
+          "dawn": "dawn",
+          "dusk": "dusk"
+        },
+        "mapFoot": "The dots are the {n} cities of the Sky app; the shading is night and the three stages of twilight. Land outlines: Natural Earth (public domain)."
+      },
+      "calendar": {
+        "title": "Calendar",
+        "today": "Today",
+        "milestones": "Milestones",
+        "none": "Nothing on this day.",
+        "prev": "Previous month",
+        "next": "Next month",
+        "week": [
+          "S",
+          "M",
+          "T",
+          "W",
+          "T",
+          "F",
+          "S"
+        ],
+        "items": [
+          {
+            "when": "{{site.since|ym}}",
+            "text": "{{site.domain}} goes online",
+            "app": "site"
+          },
+          {
+            "when": "{{sn.released}}",
+            "text": "SilNest {{sn.version}} on the App Store",
+            "app": "silnest"
+          },
+          {
+            "when": "{{storewright.month|ym}}",
+            "text": "Storewright {{storewright.release}}",
+            "app": "storewright"
+          },
+          {
+            "when": "{{day.date}}",
+            "text": "Simulated store day (synthetic)",
+            "app": "storewright"
+          }
+        ],
+        "phases": [
+          "New Moon",
+          "First quarter",
+          "Full Moon",
+          "Last quarter"
+        ],
+        "phaseShort": [
+          "New",
+          "1st qtr",
+          "Full",
+          "Last qtr"
+        ],
+        "moonHead": "The Moon this month",
+        "moonItem": "{date}, {phase}, {time}",
+        "moonFoot": "Phases by J. Meeus's Astronomical Algorithms, in Albany time; each day shows the Moon at noon.",
+        "lunar": "Chinese calendar"
+      },
+      "sky": {
+        "title": "Sky",
+        "nav": "Sky",
+        "sub": "Where you stand, and what is above you tonight.",
+        "search": "Search a city, or type lat, lon",
+        "searchAria": "City or coordinates",
+        "results": "Places",
+        "noResults": "No place matches. Try another spelling, or type lat, lon.",
+        "geo": "Use my location",
+        "geoNote": "Asks your browser once. The location stays in this browser.",
+        "geoBusy": "Asking the browser…",
+        "geoFail": "The browser did not share a location.",
+        "here": "My location",
+        "point": "A point on the map",
+        "zone": "Times in {zone}",
+        "now": "Now",
+        "tonight": "Tonight",
+        "when": "When",
+        "slider": "Time tonight",
+        "date": "Date",
+        "red": "Night vision (red)",
+        "names": "Constellation names",
+        "chart": "The sky over {place} at {time}",
+        "hint": "Hover or focus a planet, a bright star or the Moon to see where it is. Arrow keys move between them.",
+        "tonightHead": "Tonight",
+        "sun": "Sun",
+        "sunsetRise": "Sunset {set} · Sunrise {rise}",
+        "polarNight": "Polar night: the Sun does not rise.",
+        "midnightSun": "Midnight sun: the Sun does not set.",
+        "dark": "Dark sky",
+        "span": "{from} to {to}",
+        "twilight": "No full darkness: the sky stays in twilight.",
+        "darkNone": "No dark sky tonight; it stays light.",
+        "darkAll": "Dark all day.",
+        "moon": "Moon",
+        "moonLine": "{phase} · {pct}% lit",
+        "rises": "rises {time}",
+        "sets": "sets {time}",
+        "moonUp": "up all night",
+        "moonDown": "below the horizon all night",
+        "next": "Next full Moon {full} · next new Moon {new}",
+        "planets": "Planets",
+        "evening": "Evening",
+        "morning": "Before dawn",
+        "night": "Most of the night",
+        "notUp": "Too low or in daylight tonight",
+        "best": "best at {time}, {dir}, {alt}° up",
+        "mag": "mag {mag}",
+        "binoculars": "binoculars",
+        "telescope": "telescope",
+        "follow": "Follows time travel",
+        "thatNight": "The night of {date}",
+        "notUpThen": "Too low or in daylight that night",
+        "darkNoneThen": "No dark sky that night; it stays light.",
+        "dateRange": "Dates run from 1900 to 2050, the years the planet tables are good for.",
+        "guessed": "Picked for your time zone ({zone}). Search above for another place.",
+        "albanyBtn": "Show Albany instead",
+        "save": "Save as image",
+        "copy": "Copy link",
+        "copied": "Link copied. It opens this place, date and time.",
+        "copyFail": "Copy this link:",
+        "saved": "Saved {file}.",
+        "saveFail": "This browser could not make the image.",
+        "imageTitle": "The sky over {place}",
+        "trails": "Star trails (the last 3 hours)",
+        "more": "More options",
+        "grid": "Altitude and azimuth grid",
+        "facing": "Facing",
+        "facingShort": [
+          "N",
+          "E",
+          "S",
+          "W"
+        ],
+        "facingLong": [
+          "Facing north",
+          "Facing east",
+          "Facing south",
+          "Facing west"
+        ],
+        "facingNote": "The direction you face goes at the bottom of the chart.",
+        "faint": "Faintest stars",
+        "skies": [
+          "City",
+          "Suburbs",
+          "Dark sky"
+        ],
+        "faintNote": "{n} stars in this chart are up and bright enough to see. It draws {total} of the brightest; a truly dark sky shows a few thousand.",
+        "ly": "About {ly} light years away.",
+        "lyRange": "About {lo} to {hi} light years away (hard to measure).",
+        "left": "The light you see now left it around {year}.",
+        "leftRange": "The light you see now left it between about {from} and {to}.",
+        "leftRangeBC": "The light you see now left it between about {from} BC and AD {to}.",
+        "cnWithName": "Chinese name {name}. {story}",
+        "scope": "Telescope view, computed by formula",
+        "scopeN": "N",
+        "scopeE": "E",
+        "moonNames": [
+          "Io",
+          "Europa",
+          "Ganymede",
+          "Callisto"
+        ],
+        "inFront": "{moon} (in front of Jupiter)",
+        "behind": "{moon} (behind Jupiter)",
+        "eastWest": "East to west: {list}.",
+        "rings": "Rings tilted {b}° toward us; we see their {face} side.",
+        "faces": [
+          "north",
+          "south"
+        ],
+        "edgeOn": "The rings are almost edge-on.",
+        "phase": "{pct}% lit, {d}″ across.",
+        "dayHead": "Daylight",
+        "dayLen": "{date}: {len} of daylight",
+        "dayAll": "{date}: the Sun does not set",
+        "dayNone": "{date}: the Sun does not rise",
+        "longer": "{d} longer than {than}",
+        "shorter": "{d} shorter than {than}",
+        "sameAs": "About the same as {than}",
+        "thanYesterday": "yesterday",
+        "thanBefore": "the day before",
+        "shortest": "Shortest: {date} ({len})",
+        "longest": "Longest: {date} ({len})",
+        "polarFrom": "No sunrise from {date}",
+        "sunFrom": "No sunset from {date}",
+        "monthTicks": [
+          "Jan",
+          "Apr",
+          "Jul",
+          "Oct"
+        ],
+        "hourTick": "{h} h",
+        "curveAria": "Hours of daylight through {year} in {place}, with {date} marked",
+        "seasonsN": [
+          "Spring equinox",
+          "Summer solstice",
+          "Autumn equinox",
+          "Winter solstice"
+        ],
+        "seasonsS": [
+          "Autumn equinox",
+          "Winter solstice",
+          "Spring equinox",
+          "Summer solstice"
+        ],
+        "seasonIn": "{event} in {n} days · {date}",
+        "seasonTomorrow": "{event} tomorrow · {date}",
+        "seasonToday": "{event} today",
+        "afterSolstice": "{trend} · {text}",
+        "longerNow": "Days are getting longer",
+        "shorterNow": "Days are getting shorter",
+        "southern": "{text} (southern hemisphere)",
+        "plEvening": "after dark, {pos}",
+        "plNight": "most of the night, {pos}",
+        "plMorning": "before dawn, {pos}",
+        "plRises": "rises {time}, {pos}",
+        "plHigh": "highest at {time} in the {dir}",
+        "plBest": "best at {time} in the {dir}",
+        "plSun": "too close to the Sun to see",
+        "plLow": "too low after dark",
+        "plDown": "below the horizon all night",
+        "plNoDark": "no dark sky tonight",
+        "withTool": "{text} ({tool})",
+        "meteors": "Meteors",
+        "metBest": "{name}: peak around {date}. The radiant is best about {time}, {where}.",
+        "metDown": "{name}: peak around {date}. The radiant stays below the horizon tonight.",
+        "metMoon": " The Moon is {pct}% lit and up then, so the faint ones will be lost.",
+        "high": "high in the {dir}",
+        "low": "low in the {dir}",
+        "inDir": "in the {dir}",
+        "radiant": "{name} radiant",
+        "radiantInfo": "{name}: peak around {date}, ZHR about {zhr}.",
+        "showersHead": "Meteor showers",
+        "activeTag": "Active",
+        "peakOn": "Peak around {date}",
+        "peakWas": "Peak was around {date}",
+        "showerSub": "ZHR about {zhr} · radiant in {where}",
+        "showersFoot": "ZHR is the hourly rate under a dark sky with the radiant overhead; you will see fewer. Peak dates are the International Meteor Organization's maxima (UTC) and can shift by a day.",
+        "eclipsesHead": "Eclipses",
+        "solarPart": "Seen as a partial eclipse from {region}.",
+        "solarPath": {
+          "total": "Totality along a path across {path}.",
+          "annular": "The ring shows along a path across {path}.",
+          "hybrid": "Total or annular along a path across {path}."
+        },
+        "lunarAll": "Seen from {place}: all of it, with the Moon up.",
+        "lunarPart": "Seen from {place} from {from} to {to}; the Moon is below the horizon for the rest.",
+        "lunarNone": "Not seen from {place}: the Moon is below the horizon.",
+        "lunarTotal": " Totality {from} to {to}.",
+        "lunarMax": " Greatest at {time}.",
+        "lunarFaint": " A penumbral eclipse only dims the Moon slightly.",
+        "lunarGraze": " It barely touches the penumbra: nothing to see.",
+        "eclipsesFoot": "Times in {zone}. From NASA's eclipse catalogs (F. Espenak). Whether a place sees a solar eclipse is not worked out here; the list runs to 2035.",
+        "eclipsesNone": "No eclipses after 2035 are listed.",
+        "nextHead": "Next 30 days",
+        "nextMoon": "The Moon and {planet}, about {sep}° apart",
+        "nextPair": "{a} and {b}, about {sep}° apart",
+        "nextOpp": "{planet} at opposition",
+        "nextOppSub": "Opposite the Sun: up all night and at its brightest",
+        "nextClosest": "closest about {time}, {where}",
+        "nextBest": "best about {time}, {where}",
+        "nextShower": "{name} peak (around this date)",
+        "nextNone": "Nothing close in the next 30 days: no bright planet comes within 5° of the Moon or of another planet in a dark sky.",
+        "nextFoot": "Worked out for {place} in its own time, as seen from there (the Moon shifts a little with where you stand).",
+        "window": "{from} to {to}",
+        "ics": "Download a year of sky events (.ics)",
+        "icsSaved": "Saved {file}: {n} events for the next 12 months. Times are in UTC; your calendar shows them in your own time zone.",
+        "icsFail": "This browser could not make the file.",
+        "aim": "Point at the sky",
+        "aimHint": "Hold the phone up, screen toward you: the chart turns with it. Phone compasses differ, so use it as a rough guide.",
+        "aimOn": "Following the phone's compass.",
+        "aimNone": "No compass reading came from this device.",
+        "aimDenied": "Motion access was not allowed.",
+        "gameHead": "Star game",
+        "gameIntro": "Join the stars into their figure: pick one star, then another it connects to. 30 seconds a round.",
+        "gamePlay": "Play",
+        "gameNext": "Next figure",
+        "gameHint": "Hint",
+        "gameBoard": "The stars of a figure. Arrow keys move between them; Enter picks one.",
+        "gameStar": "Star {n} of {total}",
+        "gamePicked": "Star {n} of {total}, picked",
+        "gameStart": "{total} lines to find. 30 seconds.",
+        "gameStatus": "{n} of {total} lines · {s} s left",
+        "gameHit": "Line {n} of {total}.",
+        "gameMiss": "Those two are not joined in this figure.",
+        "gameWin": "Done in {s} s: {name}.",
+        "gameBest": "Your best for this figure: {s} s.",
+        "gameLose": "Time is up: this is {name}.",
+        "gameHintSay": "Try the glowing star.",
+        "metLight": "{name}: peak around {date}, but the sky stays light tonight.",
+        "share": "Share"
+      },
+      "design": {
+        "title": "Design",
+        "nav": "Design",
+        "sub": "The rules behind this page, drawn with its own styles. Colors and sizes are read from its stylesheet as you look, so they always match.",
+        "colorHead": "Color",
+        "colorWhy": "Near-black, not black, so the glows have room to fade. Light mode is its own white design, not the dark one turned inside out.",
+        "swatches": {
+          "bg": "Page",
+          "bg2": "Card",
+          "fg": "Text",
+          "fg2": "Secondary text",
+          "fg3": "Small print",
+          "indigo": "Indigo: actions",
+          "violet": "Violet: glows",
+          "teal": "Teal: live and done"
+        },
+        "contrast": "{ratio}:1 on the page",
+        "contrastNote": "Body text needs 4.5:1 and large text 3:1, in both modes; the tests measure it on every change.",
+        "typeHead": "Type",
+        "typeWhy": "System fonts only: nothing to download, and Chinese uses the system's own fonts. Figures are tabular, so the clock does not jitter.",
+        "typeSamples": [
+          "Clock",
+          "Title",
+          "Body text reads at 15 px.",
+          "Small print, 12 px"
+        ],
+        "shapeHead": "Shape",
+        "shapeWhy": "Cards have 16 px corners, pills are fully round and app tiles round a quarter of their size. Pills are for things you press, cards for things you read.",
+        "shapes": [
+          "Card, 16 px",
+          "Pill",
+          "Tile, 25%"
+        ],
+        "cardHead": "Cards",
+        "cardWhy": "A 1 px gradient edge and a faint glow at the top left instead of heavy shadows; in dark mode there are no shadows at all.",
+        "cardSample": "A card",
+        "cardText": "Gradient edge, faint glow, 16 px corners.",
+        "buttonHead": "Buttons",
+        "buttonWhy": "One indigo primary action per card; everything else is a quiet outline.",
+        "primary": "Primary",
+        "secondary": "Secondary",
+        "iconHead": "Icons",
+        "iconWhy": "Line drawings on a 24 px grid with a 1.6 px stroke, indigo to teal: the same family as the README's app tiles.",
+        "motionHead": "Motion",
+        "motionWhy": "Apps grow from where you tapped, from 96% to full size with a fade, in 200 ms. Motion shows where things come from; only the planets keep moving.",
+        "play": "Play",
+        "curve": "The easing curve, cubic-bezier(.2, .8, .2, 1): quick to start, gentle to land.",
+        "reduced": "With reduced motion nothing slides or turns: the planets stand still and panels simply fade."
+      },
+      "uses": {
+        "title": "Uses",
+        "nav": "Uses",
+        "sub": "The tools I use for my projects, by kind.",
+        "draft": "Preview: a draft list you still have to confirm (\"uses\" is in profile.json's pending list)."
+      },
+      "assets": {
+        "title": "Assets",
+        "nav": "Assets",
+        "sub": "Icons, screenshots and descriptions of my work, ready to download, and wallpapers drawn in your browser.",
+        "icon": "Icon",
+        "shots": "Screenshots",
+        "oneLine": "One line",
+        "long": "Longer",
+        "copy": "Copy",
+        "copied": "Copied.",
+        "copyFail": "This browser would not copy it; select the text instead.",
+        "download": "Download",
+        "saved": "Saved {file}.",
+        "saveFail": "This browser could not make the file.",
+        "px": "{w} × {h} px",
+        "swIcon": "The tile from this page, drawn as a {n} px PNG",
+        "links": "Links",
+        "wpHead": "Wallpapers",
+        "wpSub": "Drawn in your browser at the size you pick; nothing comes from anywhere else.",
+        "todayHead": "Today's sky",
+        "todaySub": "The eight planets where they really are today and the Moon beside Earth: a different picture every day.",
+        "middle": "In the middle",
+        "sun": "Sun",
+        "avatar": "Avatar",
+        "size": "Size",
+        "palettesHead": "Project colors",
+        "palettesSub": "Each project's own colors: this page's indigo, violet and teal; SilNest's near-black and warm beige; Storewright's off-white with green, blue and orange.",
+        "project": "Project",
+        "projects": {
+          "dusk": "This page",
+          "silnest": "SilNest",
+          "storewright": "Storewright"
+        },
+        "device": "Device",
+        "devices": {
+          "desktop": "Desktop",
+          "phone": "Phone",
+          "tablet": "Tablet"
+        },
+        "dims": "{w} × {h}",
+        "previewAlt": "Preview: {what}, {w} × {h}",
+        "swWorld": "Storewright's 3D view: the store, its parking lot and the town around it."
+      }
+    },
+    "controls": "Page controls",
+    "planets": {
+      "label": "Planets: each one opens an app",
+      "names": {
+        "mercury": "Mercury",
+        "venus": "Venus",
+        "earth": "Earth",
+        "mars": "Mars",
+        "jupiter": "Jupiter",
+        "saturn": "Saturn",
+        "uranus": "Uranus",
+        "neptune": "Neptune",
+        "moon": "Moon"
+      },
+      "aria": "{planet}: {app}",
+      "open": "Enter to open",
+      "moon": "Moon: {phase} · {pct}% lit",
+      "tonight": "Tonight in {city}: {text}",
+      "closest": "Closest planet today: {planet}, {au} au away; its light takes about {time} to reach us.",
+      "spin": "At {city}'s latitude Earth's turning carries you east at about {kmh} km/h ({mph} mph); around the Sun, Earth moves at about {orbit} km/h today.",
+      "drag": "Drag Earth along its ring to travel in time, or press ← →",
+      "dragBack": "Let go and it comes back to now"
+    },
+    "tt": {
+      "label": "Time travel",
+      "badge": "Time travel · {time}",
+      "scale": "Scale",
+      "day": "Today",
+      "dates": "Dates",
+      "now": "Back to now",
+      "close": "Close time travel",
+      "sliderDay": "Time of day in Albany",
+      "sliderDates": "Date",
+      "ticksDay": [
+        "12 AM",
+        "6 AM",
+        "12 PM",
+        "6 PM",
+        "11:59 PM"
+      ],
+      "ticksDates": [
+        "1 year ago",
+        "Today",
+        "In 1 year"
+      ],
+      "hint": "Let go and it comes back to now.",
+      "storeBy": "items picked by {time}"
+    },
+    "keys": {
+      "title": "Keyboard shortcuts",
+      "close": "Close",
+      "rows": [
+        [
+          "⌘K · Ctrl K",
+          "Search, or type > for commands"
+        ],
+        [
+          "/",
+          "Search"
+        ],
+        [
+          "?",
+          "This list"
+        ],
+        [
+          "I",
+          "About this site"
+        ],
+        [
+          "N",
+          "Today"
+        ],
+        [
+          "C",
+          "Quick settings"
+        ],
+        [
+          "T",
+          "Time travel"
+        ],
+        [
+          "Esc",
+          "Close, go back, or lock"
+        ],
+        [
+          "Enter · Space",
+          "Unlock (on the lock screen)"
+        ],
+        [
+          "← →",
+          "Page the widgets; move the time travel slider"
+        ],
+        [
+          "Home · End",
+          "First or last widget; the ends of the time travel slider"
+        ],
+        [
+          "Page Up · Page Down",
+          "Time travel by an hour or a month; Page Down also unlocks"
+        ],
+        [
+          "↑ ↓",
+          "Move through search results and command lists"
+        ],
+        [
+          "Tab",
+          "The planets, inner to outer, then the Moon; Enter opens their app"
+        ],
+        [
+          "← → (on Earth)",
+          "Step a day through time; drag Earth around its ring for a year"
+        ],
+        [
+          "← → · Space",
+          "Turn the slides in present mode (⌘K, then >present)"
+        ]
+      ]
+    },
+    "cmd": {
+      "open": "Open {name}",
+      "dark": "Dark mode",
+      "light": "Light mode",
+      "auto": "Appearance: match the system",
+      "en": "English",
+      "zh": "中文",
+      "tt": "Time travel",
+      "ttNow": "Back to now",
+      "sky": "Sky over {city}",
+      "motionOn": "Reduce motion: on",
+      "motionOff": "Reduce motion: off",
+      "source": "View source on GitHub",
+      "gb": "Guestbook",
+      "lock": "Lock screen",
+      "keys": "Keyboard shortcuts",
+      "none": "No command matches \"{q}\"",
+      "about": "About this site",
+      "standby": "Standby",
+      "wallpaper": "Today's wallpaper",
+      "tour": "Show the tour again",
+      "brief": "Quick view (one page)",
+      "present": "Present mode"
+    },
+    "gb": {
+      "head": "Guestbook",
+      "intro": "Leave a note with your GitHub account. The notes are kept in this site's GitHub Discussions.",
+      "wait": "The guestbook opens when the site goes live.",
+      "load": "Open the guestbook",
+      "note": "Opening it connects to giscus.app and GitHub.",
+      "loading": "Loading the guestbook…"
+    },
+    "tonightW": {
+      "title": "Tonight in {city}",
+      "aria": "Tonight in {city}: {summary} Opens Sky.",
+      "sunset": "Sunset {time}",
+      "none": "No bright planets up in the dark",
+      "polar": "Polar night",
+      "midnight": "Midnight sun"
+    },
+    "dur": {
+      "s": "{s} s",
+      "ms": "{m} min {s} s",
+      "hm": "{h} h {m} min"
+    },
+    "dirs": [
+      "north",
+      "northeast",
+      "east",
+      "southeast",
+      "south",
+      "southwest",
+      "west",
+      "northwest"
+    ],
+    "lunar": {
+      "months": [
+        "month 1",
+        "month 2",
+        "month 3",
+        "month 4",
+        "month 5",
+        "month 6",
+        "month 7",
+        "month 8",
+        "month 9",
+        "month 10",
+        "month 11",
+        "month 12"
+      ],
+      "days": [
+        "day 1",
+        "day 2",
+        "day 3",
+        "day 4",
+        "day 5",
+        "day 6",
+        "day 7",
+        "day 8",
+        "day 9",
+        "day 10",
+        "day 11",
+        "day 12",
+        "day 13",
+        "day 14",
+        "day 15",
+        "day 16",
+        "day 17",
+        "day 18",
+        "day 19",
+        "day 20",
+        "day 21",
+        "day 22",
+        "day 23",
+        "day 24",
+        "day 25",
+        "day 26",
+        "day 27",
+        "day 28",
+        "day 29",
+        "day 30"
+      ],
+      "leap": "leap {month}",
+      "date": "Chinese calendar: {month}, {day}",
+      "terms": [
+        "Vernal Equinox",
+        "Bright and Clear",
+        "Corn Rain",
+        "Summer Commences",
+        "Corn Forms",
+        "Corn on Ear",
+        "Summer Solstice",
+        "Moderate Heat",
+        "Great Heat",
+        "Autumn Commences",
+        "End of Heat",
+        "White Dew",
+        "Autumnal Equinox",
+        "Cold Dew",
+        "Frost",
+        "Winter Commences",
+        "Light Snow",
+        "Heavy Snow",
+        "Winter Solstice",
+        "Moderate Cold",
+        "Severe Cold",
+        "Spring Commences",
+        "Spring Showers",
+        "Insects Waken"
+      ],
+      "line": "{date} · {term}",
+      "next": "Next solar term: {term}, {date} (Beijing time, in {n} days)",
+      "nextTomorrow": "Next solar term: {term}, tomorrow, {date} (Beijing time)",
+      "nextToday": "Next solar term: {term}, today at {time} (Beijing time)"
+    },
+    "fest": {
+      "spring": "Happy Lunar New Year"
+    },
+    "dayEvents": {
+      "seasons": [
+        "March equinox",
+        "June solstice",
+        "September equinox",
+        "December solstice"
+      ],
+      "fest": {
+        "new-year": "New Year's Day",
+        "spring-festival": "Spring Festival",
+        "mid-autumn": "Mid-Autumn Festival"
+      }
+    },
+    "ics": {
+      "name": "Sky events, {from} to {to}",
+      "desc": "Full and new Moons, equinoxes and solstices, meteor shower peaks and eclipses, worked out offline on {site}. Times are in UTC; your calendar shows them in your own time zone.",
+      "full": "Full Moon",
+      "new": "New Moon",
+      "seasons": [
+        "March equinox",
+        "June solstice",
+        "September equinox",
+        "December solstice"
+      ],
+      "shower": "{name} peak (approx.)",
+      "showerDesc": "Up to about {zhr} meteors an hour under a dark sky (the International Meteor Organization's ZHR); the radiant is in {where}. The peak can come a day early or late.",
+      "solar": {
+        "total": "Total solar eclipse",
+        "annular": "Annular solar eclipse",
+        "hybrid": "Hybrid solar eclipse",
+        "partial": "Partial solar eclipse"
+      },
+      "solarDesc": "Seen as a partial eclipse from {region}.{path} Source: NASA (F. Espenak).",
+      "solarPath": " The central path crosses {path}.",
+      "lunar": {
+        "total": "Total lunar eclipse",
+        "partial": "Partial lunar eclipse",
+        "penumbral": "Penumbral lunar eclipse"
+      },
+      "lunarDesc": "Seen from anywhere the Moon is up. Source: NASA (F. Espenak).",
+      "lunarFaint": "A penumbral eclipse only dims the Moon slightly.",
+      "lunarGraze": "It barely touches the penumbra: nothing to see."
+    },
+    "greet": {
+      "night": "Hello",
+      "morning": "Good morning",
+      "afternoon": "Good afternoon",
+      "evening": "Good evening",
+      "you": "{greet} · it's {time} where you are, {rel}"
+    },
+    "siteNav": {
+      "head": "This site",
+      "about": "About this site"
+    },
+    "console": {
+      "greet": "Hello from Canyuan. This page is one file that loads nothing from the network until you open the guestbook. How it is built: {repo}",
+      "note": "Leave me a note: {key} → Guestbook"
+    },
+    "standby": {
+      "label": "Standby",
+      "hint": "Move the mouse or press a key to come back"
+    },
+    "tour": {
+      "step": "{n} of {total}",
+      "skip": "Skip",
+      "next": "Next",
+      "done": "Got it",
+      "steps": [
+        {
+          "title": "Unlock the rest",
+          "text": "Drag this to the right, click it or press Enter to open the apps."
+        },
+        {
+          "title": "The planets are buttons",
+          "text": "Each planet opens an app; point at one to see which. Drag Earth to travel in time."
+        },
+        {
+          "title": "Search everything",
+          "text": "{key} searches apps, projects, skills and facts. Type > for commands."
+        }
+      ],
+      "live": "Tip {n} of {total}: {title}. {text}"
+    },
+    "previewBadge": "Preview build: do not publish",
+    "about": {
+      "title": "About this site",
+      "close": "Close",
+      "intro": "One HTML file, built from a few data files, that works everything out in your browser. The numbers below come from the build and from the last full run of the tests.",
+      "numbersHead": "By the numbers",
+      "size": "Page size",
+      "sizeNote": "one file, pictures included",
+      "kb": "{n} KB",
+      "requests": "Network requests when it opens",
+      "requestsNote": "the guestbook connects only after you click it",
+      "checks": "Automated checks",
+      "checksNote": "all passed in headless Chrome, {date}",
+      "built": "Built",
+      "builtNote": "by pages/build.py",
+      "astroHead": "Checked against NASA JPL",
+      "astroIntro": "The planets, the Sun and the Moon are worked out here from published formulas, then compared with JPL Horizons, NASA's ephemeris service.",
+      "astroCols": [
+        "What",
+        "Largest difference",
+        "Allowed"
+      ],
+      "astroRows": {
+        "planets": "Planets' positions around the Sun (the other six)",
+        "jupiter": "Jupiter's position",
+        "saturn": "Saturn's position",
+        "sun": "The Sun's position",
+        "moon": "The Moon's position",
+        "altaz": "Height and direction in the sky: the Sun and planets",
+        "altazMoon": "Height and direction in the sky: the Moon",
+        "riseSet": "Rising and setting times",
+        "phases": "New and full Moon times"
+      },
+      "units": {
+        "deg": "{v}°",
+        "min": "{v} min",
+        "h": "{v} h"
+      },
+      "astroFoot": "Reference values fetched from JPL Horizons on {fetched}, for {dates} dates from {from} to {to}, with skies over Greenwich, Beijing and Sydney. {passed} of {n} checks within their limits; node scripts/check_astro.mjs runs them again.",
+      "privacyHead": "Privacy",
+      "privacy": [
+        "This site sets no cookies and counts no visitors.",
+        "Your settings (appearance, language, motion, parallax, the clock, the Sky's city, standby, the wallpaper's middle), the star game's best times and whether you have seen the tour stay in this browser's local storage.",
+        "\"Use my location\" asks your browser only when you click it; the place is used for the chart and not kept.",
+        "Sound and the phone's compass start only when you switch them on.",
+        "The guestbook connects to giscus.app and GitHub only after you click to open it.",
+        "A Content Security Policy makes the browser itself refuse anything else from the network."
+      ],
+      "a11yHead": "Accessibility",
+      "a11y": [
+        "Everything works from the keyboard: Tab goes through the planets and every control, and ? lists the shortcuts.",
+        "Reduced motion (your system's setting, or Quick settings) stops the planets and every animation.",
+        "Buttons, pictures and the clock have names a screen reader can read; panels keep focus inside and give it back when they close.",
+        "Text has a contrast of at least 4.5:1 in dark and light mode, and your system's increase-contrast setting makes lines and text stronger."
+      ],
+      "a11yFoot": "Checked automatically in headless Chrome on every change: focus rings, the tab order, reduced motion, names and contrast. If something does not work for you, please tell me: {email}.",
+      "draftsHead": "How the design got here",
+      "draftsIntro": "Design drafts, never released; each one led to the next.",
+      "drafts": {
+        "phone": {
+          "title": "A phone's lock screen",
+          "text": "Frosted glass and bright gradients. Replaced after comparing eight full-page looks."
+        },
+        "dusk": {
+          "title": "Dusk Tech",
+          "text": "Near-black with soft glows and a CY monogram. Three planets kept the time, so they barely moved."
+        },
+        "avatar": {
+          "title": "The avatar and eight planets",
+          "text": "My avatar became the sun, and every planet visibly turns."
+        },
+        "sky": {
+          "title": "A real sky",
+          "text": "The planets start where they really are, the Moon sits beside Earth, and the Sky app shows tonight over any city."
+        }
+      },
+      "draftAlt": "Design draft, {date}: {title}",
+      "moreHead": "More about this site",
+      "source": "View source on GitHub",
+      "creditsHead": "Credits",
+      "credits": [
+        "Land outlines: Natural Earth (public domain)"
+      ]
+    },
+    "briefLink": "Quick view",
+    "briefLinkAria": "Quick view: everything on one page, in plain text",
+    "brief": {
+      "label": "Quick view",
+      "fun": "Want the fun version?",
+      "back": "Back to the home page",
+      "print": "Print",
+      "printHint": "{key} prints it on one page.",
+      "projectsHead": "Three projects",
+      "projects": {
+        "storewright": "Storewright: a grocery store digital twin that runs in your browser. {{storewright.release}}, {{storewright.tests}} tests.",
+        "silnest": "SilNest: an offline music player I built, on the App Store since {{sn.released|date_en}}.",
+        "site": "{{site.domain}}: my portfolio, on a Git-backed CMS I built to own my content."
+      },
+      "demo": "Live demo",
+      "code": "Code",
+      "store": "App Store",
+      "visit": "Website",
+      "howHead": "How I work",
+      "contactHead": "Resume and contact",
+      "resume": "Resume (PDF)",
+      "rows": {
+        "email": "Email",
+        "linkedin": "LinkedIn",
+        "github": "GitHub",
+        "site": "Website",
+        "city": "Location"
+      },
+      "thisPage": "This page: {url}"
+    },
+    "present": {
+      "label": "Present mode",
+      "slide": "Slide {n} of {total}",
+      "slideNamed": "Slide {n} of {total}: {title}",
+      "prev": "Previous slide",
+      "next": "Next slide",
+      "exit": "Leave present mode",
+      "hint": "← → to move · Esc to leave",
+      "langAria": "Language"
+    },
+    "work": {
+      "roleHead": "Who did what",
+      "numbersHead": "By the numbers",
+      "span": "{from} to {to}",
+      "sw": {
+        "span": "First to last commit",
+        "commits": "Commits",
+        "tests": "Unit tests",
+        "files": "Test files",
+        "parts": {
+          "storewright": "Storewright",
+          "storex": "StoreX",
+          "storexChain": "StoreX Chain",
+          "libraries": "shared libraries"
+        },
+        "foot": "Counted in the repository (commit {head}, {date}): every it() and test() in its Vitest suites; end-to-end tests are not counted."
+      },
+      "sn": {
+        "started": "Started",
+        "released": "On the App Store",
+        "version": "Version",
+        "foot": "The version and the release date are the App Store's public listing; the start is my project date."
+      }
+    },
+    "game": {
+      "head": "Try it: a pick walk",
+      "intro": "Six items in Storewright's small store. Walk to each shelf and back to the cart, then compare your walk with Storewright's route.",
+      "how": "Tap a shelf or a spot on the floor to walk there, or use the arrow keys.",
+      "boardAria": "Store map. The cart is at the front on the right. The arrow keys walk from one stop to the next.",
+      "listHead": "Pick list",
+      "item": "{cat} · {where}",
+      "aisle": "aisle {n}, bay {b}",
+      "produce": "produce wall, bay {b}",
+      "backWall": "back wall, bay {b}",
+      "status": "{done} of {n} picked · {m} m walked",
+      "statusBack": "All picked: back to the cart · {m} m walked",
+      "picked": "Picked: {cat}.",
+      "result": "You walked {you} m. Storewright's route: {tsp} m.",
+      "route": "Storewright's route: {tsp} m.",
+      "same": "The same distance as Storewright's route.",
+      "better": "{d} m shorter than Storewright's route.",
+      "worse": "{d} m longer than Storewright's route.",
+      "sshape": "Aisle by aisle, the usual way: {s} m.",
+      "rule": "Storewright's rule: always the nearest shelf next, then 2-opt reverses any stretch that makes the walk shorter (routeTsp, the same code, run here).",
+      "show": "Show its route",
+      "hide": "Hide its route",
+      "again": "New list",
+      "cart": "Cart",
+      "yours": "Your walk",
+      "algo": "Storewright's route",
+      "foot": "The store, its shelves and the route rule come from Storewright's open-source code (commit {commit}); everything in it is synthetic."
+    },
+    "lab": {
+      "head": "What if…",
+      "intro": "Change the store day above and run it again, here in your browser, with Storewright's own simulation.",
+      "knobs": "The store day's settings",
+      "pickers": "Pickers on shift",
+      "pickersVal": "{n} at the busiest hours",
+      "pickersHint": "Now {n} at the busiest hours; every other picking hour gains or loses as many, never fewer than one.",
+      "volume": "Order volume",
+      "volumeVal": "{pct}% of a usual day, about {n} orders",
+      "volumeHint": "Now 100%: about {n} orders a day.",
+      "peak": "Peak hours",
+      "peakVal": "{x} times the usual share of orders",
+      "peakVal1": "the usual share of orders",
+      "peakHint": "Now ×1. The busiest hours, {hours}, get more or fewer of the day's orders; the day's expected total stays the same.",
+      "range": "{a} to {b}",
+      "and": " and ",
+      "run": "Rerun",
+      "running": "Running…",
+      "notRun": "Not run yet",
+      "ran": "Ran one simulated day in {s} seconds.",
+      "failed": "The simulation could not run in this browser.",
+      "tableCap": "The store day now and with your changes",
+      "now": "Now",
+      "yours": "With your changes",
+      "onTime": "On-time rate (ready on time)",
+      "wait": "Average pickup wait",
+      "announce": "With your changes: {onTime} ready on time, average pickup wait {wait}. Now: {nowOnTime} and {nowWait}.",
+      "small": "Synthetic data. Both columns use the same random seed, the day's date, and the results describe this model only, not a real store.",
+      "code": "The simulation is Storewright's own code (commit {commit}), under the AGPL-3.0 license.",
+      "source": "Its source ↗"
+    }
+  },
+  "zh": {
+    "city": "纽约州奥尔巴尼",
+    "cityShort": "奥尔巴尼",
+    "tz": "美东时间",
+    "tzShort": "美东",
+    "cityTz": "纽约州奥尔巴尼 · 美东时间",
+    "subline": "借助 Claude、ChatGPT 等工具，以 AI 原生方式构建，并用测试来验证。",
+    "hello": "我是叶璨源，一个通才型开发者：用 Claude、ChatGPT 等多种 AI 工具，把想法做成能用、能测的成品。",
+    "lanes": [
+      "软件",
+      "创意科技",
+      "产品"
+    ],
+    "lanesLabel": "我的方向",
+    "am": "上午",
+    "pm": "下午",
+    "langLabel": "语言",
+    "lockLabel": "锁屏",
+    "homeLabel": "主屏幕",
+    "notesLabel": "动态",
+    "noteAria": "{title}，{when}。{body}打开{app}。",
+    "widgets": "小组件",
+    "roleCarousel": "轮播",
+    "roleSlide": "页",
+    "slide": "第 {n} 页，共 {total} 页",
+    "dots": "小组件分页",
+    "dot": "小组件第 {n} 页，共 {total} 页",
+    "unlock": "解锁其余内容",
+    "unlockAria": "解锁其余内容：应用、工作方式和链接",
+    "unlockSub": "应用 · 工作方式 · 链接",
+    "lock": "锁定",
+    "lockAria": "锁定：返回锁屏",
+    "apps": "应用",
+    "dock": "常用应用",
+    "links": "链接",
+    "close": "关闭",
+    "done": "完成",
+    "home": "主屏幕",
+    "backHome": "返回主屏幕",
+    "openApp": "打开{name}",
+    "newTab": "（在新标签页中打开）",
+    "ncOpen": "今天",
+    "ccOpen": "快捷设置",
+    "searchOpen": "搜索",
+    "homePage": "主页",
+    "appNames": {
+      "silnest": "SilNest",
+      "storewright": "Storewright",
+      "site": "作品集",
+      "vocal": "AI Vocal",
+      "how": "工作方式",
+      "contact": "联系我",
+      "clock": "时钟",
+      "calendar": "日历",
+      "early": "早期作品",
+      "sky": "星空",
+      "design": "设计规范",
+      "assets": "素材",
+      "uses": "我用的工具",
+      "guestbook": "留言簿"
+    },
+    "linkKinds": {
+      "appstore": "App Store",
+      "demo": "在线演示",
+      "repo": "代码仓库",
+      "site": "访问网站",
+      "linkedin": "LinkedIn",
+      "email": "发邮件",
+      "github": "GitHub"
+    },
+    "w": {
+      "silnest": {
+        "title": "{{silnest.title}}",
+        "titleZh": "{{silnest.title_zh}}",
+        "sub": "离线音乐播放器",
+        "line": "你的音乐，不联网也能听。",
+        "store": "App Store · {{sn.version}} 版",
+        "privacy": "未收集数据"
+      },
+      "storewright": {
+        "title": "Storewright",
+        "release": "{{storewright.release}} · {{storewright.month|month_zh}}",
+        "desc": "在浏览器里运行的杂货门店数字孪生。",
+        "unit": "项测试通过",
+        "demo": "在线演示"
+      },
+      "store-day": {
+        "title": "门店一日",
+        "tag": "模拟",
+        "synthetic": "合成数据"
+      },
+      "accuracy": {
+        "title": "值班助手",
+        "ai": "AI",
+        "rules": "关键词规则",
+        "part": "第三部分 StoreX Chain",
+        "set": "留出的 {{assistant.set|count}} 道盲测题"
+      },
+      "site": {
+        "title": "作品集",
+        "line": "基于 Git 的自建 CMS"
+      },
+      "vocal": {
+        "title": "AI Vocal",
+        "status": "第一首作品已完成",
+        "next": "工作流程仍在完善中"
+      },
+      "contact": {
+        "title": "联系我",
+        "city": "纽约州奥尔巴尼",
+        "tz": "美东时间",
+        "lines": [
+          "{{links.linkedin_short}}",
+          "{{site.domain}}"
+        ]
+      }
+    },
+    "alts": {
+      "silnest": "SilNest（声藏）：离线音乐播放器，已在 App Store 上架，{{sn.version}} 版。无需账户，不收集数据。",
+      "storewright": "Storewright：在浏览器里运行的杂货门店数字孪生，{{storewright.tests}} 项测试通过，{{storewright.release}}，{{storewright.month|month_zh}}。可在线演示。",
+      "store-day": "模拟门店的一天，{date}（由 Storewright 开源模拟器生成的合成数据）：{rows}。",
+      "accuracy": "第三部分 StoreX Chain 的值班助手：留出的 {{assistant.set|count}} 道盲测题上 {{assistant.score}}%，关键词规则 {{assistant.baseline}}%。",
+      "site": "{{site.domain}}：我的作品集网站，运行在我自己搭建的基于 Git 的 CMS 上，{{site.since|month_zh}}上线，也放着 SilNest 的支持页和隐私政策页。",
+      "vocal": "AI Vocal：在本地运行的个人人声与歌唱工作室。第一首作品已完成，工作流程仍在完善中。",
+      "contact": "纽约州奥尔巴尼，美东时间。LinkedIn {{links.linkedin_short}}，{{site.domain}}，{{links.email}}。"
+    },
+    "day": {
+      "labels": {
+        "Orders fulfilled": "完成订单",
+        "Items picked": "拣货件数",
+        "Avg pickup wait": "平均取货等待",
+        "Ready on time": "按时备好率",
+        "Pickers walked": "拣货员步行"
+      },
+      "units": {
+        "orders": "单",
+        "items": "件",
+        "min": "分钟",
+        "%": "%",
+        "km": "公里"
+      },
+      "note": "完成 {orders} 个订单，按时备好率 {ontime}%。合成数据。",
+      "title": "模拟门店的一天"
+    },
+    "nc": {
+      "label": "今天",
+      "close": "关闭今天面板",
+      "tabs": "视图",
+      "today": "今天",
+      "all": "全部动态",
+      "time": "现在是奥尔巴尼时间{time}。",
+      "day": "Storewright 的模拟门店{when}完成了 {n} 个订单。",
+      "whenToday": "今天",
+      "whenYesterday": "昨天",
+      "whenOn": "在{date}",
+      "sn": "SilNest {version} 自{date}起已在 App Store 上架。",
+      "widgets": "小组件"
+    },
+    "cc": {
+      "label": "快捷设置",
+      "close": "关闭快捷设置",
+      "appearance": "外观",
+      "auto": "自动",
+      "dark": "深色",
+      "light": "浅色",
+      "language": "语言",
+      "lang": "中文",
+      "langAria": "中文",
+      "weight": "时钟字重",
+      "bold": "粗体",
+      "thin": "细体",
+      "motion": "减弱动态效果",
+      "parallax": "视差效果",
+      "links": "链接",
+      "linkedin": "LinkedIn",
+      "email": "邮件",
+      "github": "GitHub",
+      "site": "网站",
+      "tt": "时间旅行",
+      "ttOpen": "打开",
+      "sound": "行星八音盒",
+      "soundNote": "每颗行星从头像前经过时响一声轻柔的音。减弱动态效果时不发声。",
+      "standby": "一分钟无操作后待机",
+      "standbyNote": "一分钟没有操作就显示大时钟和行星；动一下鼠标或按任意键就回来。开着“减弱动态效果”时不会自己进入。"
+    },
+    "spot": {
+      "label": "搜索",
+      "field": "搜索应用、技能和事实",
+      "placeholder": "搜索应用、项目、技能和事实",
+      "cancel": "取消",
+      "apps": "应用",
+      "skills": "技能",
+      "facts": [
+        {
+          "text": "SilNest {{sn.version}} 自 {{sn.released|date_zh}}起在 App Store 上架",
+          "app": "silnest"
+        },
+        {
+          "text": "Storewright {{storewright.release}}，{{storewright.month|month_zh}}",
+          "app": "storewright"
+        },
+        {
+          "text": "Storewright：{{storewright.tests}} 项测试通过",
+          "app": "storewright"
+        },
+        {
+          "text": "第三部分 StoreX Chain 的值班助手：留出的 {{assistant.set|count}} 道盲测题上 {{assistant.score}}%，关键词规则 {{assistant.baseline}}%",
+          "app": "storewright"
+        },
+        {
+          "text": "{{site.domain}} 自{{site.since|month_zh}}上线",
+          "app": "site"
+        },
+        {
+          "text": "AI Vocal：第一首完整作品已完成",
+          "app": "vocal"
+        },
+        {
+          "text": "常驻纽约州奥尔巴尼（美东时间）",
+          "app": "contact"
+        },
+        {
+          "text": "邮箱：{{links.email}}",
+          "app": "contact"
+        }
+      ],
+      "early": "早期作品",
+      "none": "没有找到“{q}”",
+      "count": "{n} 个结果",
+      "one": "1 个结果",
+      "skill": "技能",
+      "dayFact": "模拟门店的一天（{date}）：完成 {n} 个订单",
+      "keys": {
+        "silnest": "声藏 音乐 播放器 离线 歌词 music player offline swift",
+        "storewright": "数字孪生 门店 模拟 演示 测试 助手 digital twin store simulator",
+        "site": "作品集 网站 portfolio yecanyuan.com cms",
+        "vocal": "人声 歌唱 声音 voice singing mdx-net gpt-sovits svc",
+        "how": "工作方式 流程 测试 审查 claude code",
+        "contact": "联系 邮件 邮箱 奥尔巴尼 email linkedin vcard",
+        "clock": "时钟 时间 奥尔巴尼 clock time",
+        "calendar": "日历 日期 今天 里程碑 calendar",
+        "early": "早期作品 课程 课程作业 github java basic cpu memory webdev speedtest",
+        "sky": "星空 星星 行星 月亮 今晚 星座 天文 城市 日落 sky stars planets moon tonight constellations",
+        "design": "设计 规范 颜色 字体 间距 卡片 按钮 图标 动效 对比度",
+        "assets": "素材 图标 截图 介绍 壁纸 下载",
+        "uses": "工具 用什么 硬件 软件 AI",
+        "guestbook": "留言簿 留言 评论 giscus"
+      },
+      "factsHead": "事实",
+      "hintMove": "选择",
+      "hintOpen": "打开",
+      "hintClose": "关闭",
+      "hint": "输入 > 使用命令，按 ? 查看快捷键",
+      "cmdHead": "命令",
+      "skyHead": "今晚的天空"
+    },
+    "folder": {
+      "title": "早期作品",
+      "hint": "选中一个项目查看介绍，再选一次即可在 GitHub 上打开。",
+      "open": "在 GitHub 上打开"
+    },
+    "app": {
+      "silnest": {
+        "title": "{{silnest.title_zh}} · {{silnest.title}}",
+        "nav": "SilNest",
+        "sub": "离线音乐播放器",
+        "get": "在 App Store 中查看",
+        "shotsHead": "截图",
+        "shots": [
+          "SilNest 播放界面截图，配文“你的音乐，随时在场”：大型曲库、完全离线、无需账户。",
+          "SilNest 歌词界面截图，配文“歌词缺席，AI 补齐”：在设备上识别，生成逐行歌词。"
+        ],
+        "descHead": "简介",
+        "desc": "我开发的离线音乐播放器：你的音乐，不联网也能听。",
+        "desc2": "导入音乐、编辑歌词都不会改动原始音频文件。",
+        "infoHead": "信息",
+        "info": [
+          [
+            "版本",
+            "{{sn.version}}"
+          ],
+          [
+            "发布日期",
+            "{{sn.released|date_zh}}"
+          ],
+          [
+            "兼容性",
+            "iOS {{sn.min_os}} 或更高版本",
+            "?sn.min_os"
+          ],
+          [
+            "价格",
+            "{{sn.price_zh}}",
+            "?sn.price_zh"
+          ],
+          [
+            "隐私",
+            "未收集数据"
+          ]
+        ],
+        "foot": "支持页和隐私政策页放在 {{site.domain}}。",
+        "notesHead": "更新说明",
+        "notesSub": "版本 {version} · {date}",
+        "notesWait": "预览：App Store 上有更新说明时会显示在这里。{version} 版没有。"
+      },
+      "storewright": {
+        "title": "Storewright",
+        "sub": "在浏览器里就能运行的杂货门店数字孪生。",
+        "demo": "打开在线演示",
+        "repo": "查看代码仓库",
+        "shot": "Storewright 演示：控制台、门店的数字孪生和两部店员手机。",
+        "statusHead": "状态",
+        "status": [
+          [
+            "状态",
+            "已完成（{{storewright.month|month_zh}}）"
+          ],
+          [
+            "版本",
+            "{{storewright.release}}"
+          ],
+          [
+            "测试",
+            "{{storewright.tests}} 项通过"
+          ]
+        ],
+        "threeHead": "值得一看的三件事",
+        "three": [
+          "在控制台创建一个订单，然后在两部店员手机上跟着它走完拣货、暂存和交接。",
+          "看订单出现在门店的数字孪生里；数字孪生还能回放过去、预测接下来 3 小时。",
+          "运行一整天的模拟。"
+        ],
+        "evalHead": "值班助手评测",
+        "eval": [
+          [
+            "第三部分 StoreX Chain 的值班助手",
+            "{{assistant.score}}%"
+          ],
+          [
+            "关键词规则",
+            "{{assistant.baseline}}%"
+          ],
+          [
+            "留出的盲测题",
+            "{{assistant.set|count}} 道"
+          ]
+        ],
+        "evalFoot": "第三部分 StoreX Chain 的值班助手：留出的 {{assistant.set|count}} 道盲测题上 {{assistant.score}}%，关键词规则 {{assistant.baseline}}%。",
+        "dayHead": "模拟门店的一天 · {date}",
+        "dayFoot": "由 Storewright 开源模拟器生成的合成数据，不来自任何真实门店。",
+        "linksHead": "链接"
+      },
+      "site": {
+        "title": "{{site.domain}}",
+        "nav": "作品集",
+        "sub": "作品集 · 自建 CMS",
+        "visit": "访问 {{site.domain}}",
+        "shot": "{{site.domain}} 的首页。",
+        "desc": "我的作品集网站，运行在我自己搭建的、基于 Git 的 CMS 上，内容由自己掌握。SilNest 的支持页和隐私政策页也放在这里。",
+        "infoHead": "信息",
+        "info": [
+          [
+            "上线时间",
+            "{{site.since|month_zh}}"
+          ],
+          [
+            "还放着",
+            "SilNest 的支持页和隐私政策页"
+          ]
+        ]
+      },
+      "vocal": {
+        "title": "AI Vocal",
+        "sub": "一个在本地运行的个人人声与歌唱工作室。",
+        "statusHead": "状态",
+        "status": [
+          [
+            "进展",
+            "第一首完整作品已完成"
+          ],
+          [
+            "下一步",
+            "工作流程仍在完善中"
+          ]
+        ],
+        "pipeHead": "流程",
+        "pipe": [
+          [
+            "人声分离",
+            "MDX-Net"
+          ],
+          [
+            "音色克隆",
+            "GPT-SoVITS"
+          ],
+          [
+            "演唱转换",
+            "SVC"
+          ]
+        ],
+        "hwHead": "硬件",
+        "hw": [
+          "RTX 3050 笔记本显卡",
+          "M1 MacBook Air"
+        ],
+        "note": "暂时还没有公开链接。"
+      },
+      "how": {
+        "title": "我的工作方式",
+        "quote": "做什么、怎样判断它真的可行，由我来决定。大部分代码由 Claude Code 编写；每一处改动我都会亲自审查，并通过测试和实际走查来验收。",
+        "loopHead": "循环",
+        "loop": [
+          "我决定做什么，",
+          "以及怎样判断它真的可行。",
+          "大部分代码由 Claude Code 编写。",
+          "每一处改动我都亲自审查，",
+          "并通过测试和实际走查来验收。"
+        ],
+        "foot": "借助 Claude、ChatGPT 等工具，以 AI 原生方式构建，并用测试来验证。",
+        "faqHead": "常见问题",
+        "faqNote": "别人常问我的问题，由我来回答。",
+        "faqQ": "问题",
+        "faqA": "回答",
+        "changeHead": "一次真实改动的全过程",
+        "changeIntro": "Storewright，2026 年 10 月。每一步都链接到公开仓库里能核对的内容。",
+        "steps": [
+          {
+            "k": "验收标准",
+            "when": "2026-10-24",
+            "text": "四批 AI 功能开工前，我先定了验收标准：做完后我亲自在模拟器里验证，数字孪生、员工和管理层的设备都要正常工作。",
+            "link": "决策记录 0021",
+            "href": "{{storewright.repo}}/blob/main/docs/decisions/0021-store-ai-batch1.md"
+          },
+          {
+            "k": "我发现的问题",
+            "when": "2026-10-24",
+            "text": "当晚验收最后一批时，我发现两部演示手机的摄像头打开后关不掉。我要求把手机上的所有功能彻底修一遍，而不只是修这一个。",
+            "link": "决策记录 0024 第 14 节",
+            "href": "{{storewright.repo}}/blob/main/docs/decisions/0024-store-ai-batch4.md#14-收尾走查发现的问题与修复"
+          },
+          {
+            "k": "Claude Code 做了什么",
+            "when": "2026-10-24",
+            "text": "Claude Code 用真实点击把两部手机的每个岗位、每个页面都走了一遍，修了 13 个问题。摄像头的问题有三个原因：全局的 :active 样式、摄像头异步打开、iframe 没有摄像头权限。",
+            "link": "修复清单",
+            "href": "{{storewright.repo}}/blob/main/docs/decisions/0024-store-ai-batch4.md#14-收尾走查发现的问题与修复"
+          },
+          {
+            "k": "测试",
+            "when": "2026-10-24",
+            "text": "它新增了一个端到端测试，用真实点击走完两部演示手机，摄像头也在其中。",
+            "link": "e2e/phones.demo.spec.ts",
+            "href": "{{storewright.repo}}/blob/main/e2e/phones.demo.spec.ts"
+          },
+          {
+            "k": "提交",
+            "when": "2026-10-28",
+            "text": "和第 9 到 19 阶段的改动一起提交。",
+            "link": "提交 6ced164",
+            "href": "{{storewright.repo}}/commit/6ced164"
+          }
+        ],
+        "skillsHead": "技能星图",
+        "skillsNote": "每个方向一个星座。每颗星是一项技能，用在我越多的项目里，就越亮。",
+        "skillsOne": "1 个项目",
+        "skillsMany": "{n} 个项目",
+        "skillsBright": "越亮：用在越多的项目里",
+        "skillNames": {
+          "Requirements and acceptance criteria": "需求和验收标准",
+          "Decision records": "决策记录",
+          "Walkthrough testing": "走查测试",
+          "Simulation evaluation": "仿真评估",
+          "App design": "App 设计"
+        },
+        "projectNames": {
+          "silnest": "声藏",
+          "storewright": "Storewright",
+          "site": "yecanyuan.com",
+          "vocal": "AI Vocal"
+        },
+        "tlHead": "时间线",
+        "tlToday": "今天",
+        "tlAria": "我的项目时间线：{items}。",
+        "tlFrom": "{name}，{from}起",
+        "tlFromTo": "{name}，{from}至{to}"
+      },
+      "contact": {
+        "title": "联系我",
+        "card": "纽约州奥尔巴尼 · 美东时间",
+        "add": "添加到通讯录",
+        "file": "Canyuan-Ye.vcf",
+        "rows": {
+          "email": "邮件",
+          "linkedin": "LinkedIn",
+          "site": "网站",
+          "city": "所在地",
+          "time": "当地时间",
+          "you": "你的时间"
+        },
+        "say": "打个招呼",
+        "youVal": "{time}，{rel}",
+        "qrHead": "扫码打开这个页面",
+        "qrAria": "{url} 的二维码",
+        "qrNote": "二维码里只有网址。",
+        "share": "分享",
+        "copy": "复制链接",
+        "copied": "链接已复制。",
+        "copyFail": "请复制这个链接：",
+        "bookHead": "约个时间聊聊",
+        "book": "预约时间",
+        "bookWait": "预览：预约链接还没设置（profile.json 里的 booking.url）。",
+        "draft": "预览：这是草稿，还需要你确认。",
+        "tHead": "评语",
+        "tInvite": "用过 SilNest，或者和我合作过？欢迎留下几句评语。",
+        "tLeave": "留下评语",
+        "tNote": "表单会问你是否同意在这里显示；我批准以后才会出现。",
+        "tWait": "预览：表单链接还没设置（profile.json 里的 testimonials.form_url）。",
+        "tEmpty": "预览：还没有批准的评语。批准以后会显示在这里，带称呼和关系。",
+        "roles": {
+          "visitor": "访客",
+          "client": "客户",
+          "viewer": "观众",
+          "collaborator": "合作者"
+        },
+        "askHead": "可以问我",
+        "resumeHead": "简历",
+        "resumes": {
+          "en": "英文（通才版）",
+          "product": "英文（产品与交付版）",
+          "zh": "中文版"
+        },
+        "resumeSize": "PDF · {kb} KB",
+        "resumeNote": "每份一页。公开版不含电话号码，请发邮件联系我。"
+      },
+      "clock": {
+        "title": "世界时钟",
+        "head": "城市",
+        "albany": "奥尔巴尼",
+        "region": "纽约州奥尔巴尼 · 美东时间",
+        "you": "你的时间",
+        "today": "今天",
+        "yesterday": "昨天",
+        "tomorrow": "明天",
+        "same": "与奥尔巴尼时间相同",
+        "ahead": "比奥尔巴尼快 {h} 小时",
+        "behind": "比奥尔巴尼慢 {h} 小时",
+        "trueScale": "真实比例",
+        "trueNote": "轨道按今天到太阳的真实距离排开。光从太阳走到海王星要 {nep}，到地球要 {earth}。",
+        "evenNote": "轨道是等距排开的，好让八颗行星都放得下。",
+        "inner": "水星到火星，放大 {x} 倍",
+        "mapHead": "此刻的昼夜",
+        "mapAria": "此刻的昼夜世界地图，画出了陆地轮廓。太阳直射 {where}。{state}",
+        "states": {
+          "day": "奥尔巴尼现在是白天。",
+          "night": "奥尔巴尼现在是晚上。",
+          "dawn": "奥尔巴尼现在是黎明。",
+          "dusk": "奥尔巴尼现在是黄昏。"
+        },
+        "mapLabel": {
+          "day": "白天",
+          "night": "晚上",
+          "dawn": "黎明",
+          "dusk": "黄昏"
+        },
+        "mapFoot": "圆点是星空应用里的 {n} 座城市；阴影是黑夜和三段晨昏蒙影。陆地轮廓来自 Natural Earth（公有领域）。"
+      },
+      "calendar": {
+        "title": "日历",
+        "today": "今天",
+        "milestones": "里程碑",
+        "none": "这一天没有日程。",
+        "prev": "上个月",
+        "next": "下个月",
+        "week": [
+          "日",
+          "一",
+          "二",
+          "三",
+          "四",
+          "五",
+          "六"
+        ],
+        "items": [
+          {
+            "when": "{{site.since|ym}}",
+            "text": "{{site.domain}} 上线",
+            "app": "site"
+          },
+          {
+            "when": "{{sn.released}}",
+            "text": "SilNest {{sn.version}} 在 App Store 上架",
+            "app": "silnest"
+          },
+          {
+            "when": "{{storewright.month|ym}}",
+            "text": "Storewright {{storewright.release}}",
+            "app": "storewright"
+          },
+          {
+            "when": "{{day.date}}",
+            "text": "模拟门店的一天（合成数据）",
+            "app": "storewright"
+          }
+        ],
+        "phases": [
+          "新月",
+          "上弦月",
+          "满月",
+          "下弦月"
+        ],
+        "phaseShort": [
+          "新月",
+          "上弦",
+          "满月",
+          "下弦"
+        ],
+        "moonHead": "本月月相",
+        "moonItem": "{date}，{phase}，{time}",
+        "moonFoot": "月相按《天文算法》（1998 年第 2 版）的方法计算，时间为奥尔巴尼时间；每格画的是当天中午的月亮。",
+        "lunar": "农历"
+      },
+      "sky": {
+        "title": "星空",
+        "nav": "星空",
+        "sub": "你站在哪里，头顶就是什么样的星空。",
+        "search": "搜索城市，或输入纬度, 经度",
+        "searchAria": "城市或坐标",
+        "results": "地点",
+        "noResults": "没有找到这个地点。换个写法试试，或者输入纬度, 经度。",
+        "geo": "使用我的位置",
+        "geoNote": "只向浏览器请求一次，位置只留在本机浏览器里。",
+        "geoBusy": "正在向浏览器请求位置…",
+        "geoFail": "浏览器没有提供位置。",
+        "here": "我的位置",
+        "point": "地图上的一个点",
+        "zone": "时间为{zone}",
+        "now": "现在",
+        "tonight": "今晚",
+        "when": "时间",
+        "slider": "今晚的时间",
+        "date": "日期",
+        "red": "夜视模式（红光）",
+        "names": "星座名称",
+        "chart": "{place} {time} 的星空",
+        "hint": "把鼠标移到行星、亮星或月亮上（或用键盘选中），就能看到它在哪个方向。方向键可以在它们之间移动。",
+        "tonightHead": "今晚",
+        "sun": "太阳",
+        "sunsetRise": "日落 {set} · 日出 {rise}",
+        "polarNight": "极夜：太阳不会升起。",
+        "midnightSun": "极昼：太阳不会落下。",
+        "dark": "完全天黑",
+        "span": "{from} 到 {to}",
+        "twilight": "没有完全天黑，整夜都是暮光。",
+        "darkNone": "今晚不会天黑。",
+        "darkAll": "全天都是黑夜。",
+        "moon": "月亮",
+        "moonLine": "{phase} · 照亮 {pct}%",
+        "rises": "{time} 升起",
+        "sets": "{time} 落下",
+        "moonUp": "整夜都在天上",
+        "moonDown": "整夜都在地平线以下",
+        "next": "下次满月 {full} · 下次新月 {new}",
+        "planets": "行星",
+        "evening": "傍晚可见",
+        "morning": "黎明前可见",
+        "night": "大半夜都可见",
+        "notUp": "今晚太低或在白天",
+        "best": "{time} 最好，{dir}方，高度 {alt}°",
+        "mag": "亮度 {mag} 等",
+        "binoculars": "需要双筒望远镜",
+        "telescope": "需要天文望远镜",
+        "follow": "跟随时间旅行",
+        "thatNight": "{date}那天晚上",
+        "notUpThen": "那天晚上太低或在白天",
+        "darkNoneThen": "那天晚上不会天黑。",
+        "dateRange": "日期范围是 1900 到 2050 年，行星的计算公式在这些年份里才准确。",
+        "guessed": "按你的时区（{zone}）选了这个城市，可以在上面搜索换一个地方。",
+        "albanyBtn": "换回奥尔巴尼",
+        "save": "保存为图片",
+        "copy": "复制链接",
+        "copied": "链接已复制，打开就是这个地点、日期和时间的星空。",
+        "copyFail": "请复制这个链接：",
+        "saved": "已保存 {file}。",
+        "saveFail": "这个浏览器没能生成图片。",
+        "imageTitle": "{place}上空的星空",
+        "trails": "星轨（最近 3 小时）",
+        "more": "更多选项",
+        "grid": "地平坐标网格",
+        "facing": "面向",
+        "facingShort": [
+          "北",
+          "东",
+          "南",
+          "西"
+        ],
+        "facingLong": [
+          "面向北方",
+          "面向东方",
+          "面向南方",
+          "面向西方"
+        ],
+        "facingNote": "你面向的方向放在星图的下方。",
+        "faint": "能看到多暗的星",
+        "skies": [
+          "城市",
+          "郊区",
+          "乡下"
+        ],
+        "faintNote": "星图里现在有 {n} 颗星在地平线以上、亮到能看见。星图只画了 {total} 颗较亮的星；真正黑暗的夜空能看到几千颗。",
+        "ly": "距离约 {ly} 光年。",
+        "lyRange": "距离约 {lo} 到 {hi} 光年（很难测准）。",
+        "left": "你现在看到的这束光，大约在 {year} 年出发。",
+        "leftRange": "你现在看到的这束光，大约在 {from} 年到 {to} 年之间出发。",
+        "leftRangeBC": "你现在看到的这束光，大约在公元前 {from} 年到公元 {to} 年之间出发。",
+        "cnWithName": "传统星名{name}。{story}",
+        "scope": "望远镜里的样子（按公式计算）",
+        "scopeN": "北",
+        "scopeE": "东",
+        "moonNames": [
+          "木卫一",
+          "木卫二",
+          "木卫三",
+          "木卫四"
+        ],
+        "inFront": "{moon}（在木星前面）",
+        "behind": "{moon}（在木星背后）",
+        "eastWest": "从东到西：{list}。",
+        "rings": "光环向我们倾斜 {b}°，看到的是光环的{face}面。",
+        "faces": [
+          "北",
+          "南"
+        ],
+        "edgeOn": "光环几乎侧对着我们。",
+        "phase": "照亮 {pct}%，视直径 {d}″。",
+        "dayHead": "白昼长度",
+        "dayLen": "{date}：白天 {len}",
+        "dayAll": "{date}：太阳整天不落",
+        "dayNone": "{date}：太阳整天不升起",
+        "longer": "比{than}长 {d}",
+        "shorter": "比{than}短 {d}",
+        "sameAs": "和{than}差不多",
+        "thanYesterday": "昨天",
+        "thanBefore": "前一天",
+        "shortest": "最短：{date}（{len}）",
+        "longest": "最长：{date}（{len}）",
+        "polarFrom": "{date}起太阳不再升起",
+        "sunFrom": "{date}起太阳不再落下",
+        "monthTicks": [
+          "1月",
+          "4月",
+          "7月",
+          "10月"
+        ],
+        "hourTick": "{h} 小时",
+        "curveAria": "{place} {year} 年每天的白昼长度，标出了{date}",
+        "seasonsN": [
+          "春分",
+          "夏至",
+          "秋分",
+          "冬至"
+        ],
+        "seasonsS": [
+          "秋分",
+          "冬至",
+          "春分",
+          "夏至"
+        ],
+        "seasonIn": "距{event}还有 {n} 天（{date}）",
+        "seasonTomorrow": "明天就是{event}（{date}）",
+        "seasonToday": "今天是{event}",
+        "afterSolstice": "{trend} · {text}",
+        "longerNow": "白天开始变长",
+        "shorterNow": "白天开始变短",
+        "southern": "{text}（南半球）",
+        "plEvening": "天黑后可见，{pos}",
+        "plNight": "大半夜都可见，{pos}",
+        "plMorning": "天亮前可见，{pos}",
+        "plRises": "{time} 升起，{pos}",
+        "plHigh": "{time} 在{dir}方最高",
+        "plBest": "{time} 在{dir}方最好",
+        "plSun": "离太阳太近，看不到",
+        "plLow": "天黑后太低，看不到",
+        "plDown": "整夜都在地平线以下",
+        "plNoDark": "今晚天不会黑",
+        "withTool": "{text}（{tool}）",
+        "meteors": "流星雨",
+        "metBest": "{name}：极大约在 {date}。辐射点约 {time} 最好，在{where}。",
+        "metDown": "{name}：极大约在 {date}。今晚辐射点一直在地平线以下。",
+        "metMoon": "那时月亮照亮 {pct}% 且在天上，暗一些的流星会看不到。",
+        "high": "{dir}方高空",
+        "low": "{dir}方低空",
+        "inDir": "{dir}方",
+        "radiant": "{name}辐射点",
+        "radiantInfo": "{name}：极大约在 {date}，天顶每时出现率约 {zhr}。",
+        "showersHead": "流星雨",
+        "activeTag": "活动中",
+        "peakOn": "极大约在 {date}",
+        "peakWas": "极大约在 {date}（已过）",
+        "showerSub": "天顶每时出现率约 {zhr} · 辐射点在{where}",
+        "showersFoot": "天顶每时出现率是理想夜空、辐射点在头顶时每小时的流星数，实际看到的会少一些。极大日期取自国际流星组织（世界时），可能前后差一天。",
+        "eclipsesHead": "日食和月食",
+        "solarPart": "{region}可以看到偏食。",
+        "solarPath": {
+          "total": "全食带经过{path}。",
+          "annular": "环食带经过{path}。",
+          "hybrid": "中心带经过{path}，有的地方是全食，有的地方是环食。"
+        },
+        "lunarAll": "{place}能看到全过程，月亮一直在天上。",
+        "lunarPart": "{place}能看到 {from} 至 {to} 这一段，其余时间月亮在地平线以下。",
+        "lunarNone": "{place}看不到：那时月亮在地平线以下。",
+        "lunarTotal": "全食 {from} 至 {to}。",
+        "lunarMax": "食甚 {time}。",
+        "lunarFaint": "半影月食只会让月亮稍稍变暗。",
+        "lunarGraze": "月亮只擦过半影的边缘，几乎看不出。",
+        "eclipsesFoot": "时间为{zone}。数据来自美国国家航空航天局的日月食目录（弗雷德·埃斯佩纳克编）。某个城市能否看到日食，这里不作计算；列表到 2035 年为止。",
+        "eclipsesNone": "2035 年以后的日月食没有列出。",
+        "nextHead": "接下来 30 天",
+        "nextMoon": "月亮和{planet}相距约 {sep}°",
+        "nextPair": "{a}和{b}相距约 {sep}°",
+        "nextOpp": "{planet}冲日",
+        "nextOppSub": "和太阳正好相对：整夜可见，也是一年里最亮的时候",
+        "nextClosest": "约 {time} 最近，在{where}",
+        "nextBest": "约 {time} 最好，在{where}",
+        "nextShower": "{name}极大（约在这一天）",
+        "nextNone": "接下来 30 天没有近距离的天象：天黑后没有明亮的行星和月亮或另一颗行星相距 5° 以内。",
+        "nextFoot": "按{place}当地时间、从当地看算出（站的地方不同，月亮的位置会略有偏移）。",
+        "window": "{from} 至 {to}",
+        "ics": "下载一年的天象日历（.ics）",
+        "icsSaved": "已保存 {file}：接下来 12 个月的 {n} 个事件。时间用世界时写，日历会自动换成你的时区。",
+        "icsFail": "这个浏览器没能生成文件。",
+        "aim": "对准天空",
+        "aimHint": "举起手机对着天空，屏幕朝向你：星图会跟着手机转。不同手机的指南针误差较大，仅供参考。",
+        "aimOn": "正在跟随手机的指南针。",
+        "aimNone": "这台设备没有给出指南针读数。",
+        "aimDenied": "没有获得使用方向传感器的许可。",
+        "gameHead": "星座连线小游戏",
+        "gameIntro": "把星星连成星座的图形：先选一颗星，再选和它相连的另一颗。每局 30 秒。",
+        "gamePlay": "开始",
+        "gameNext": "换一个",
+        "gameHint": "提示",
+        "gameBoard": "一个星座的星星。用方向键在星星之间移动，按回车键选择。",
+        "gameStar": "第 {n} 颗星（共 {total} 颗）",
+        "gamePicked": "第 {n} 颗星（共 {total} 颗），已选中",
+        "gameStart": "要找出 {total} 条连线，限时 30 秒。",
+        "gameStatus": "已连 {n}/{total} 条 · 还剩 {s} 秒",
+        "gameHit": "连上了第 {n} 条（共 {total} 条）。",
+        "gameMiss": "这两颗星在这个图形里没有连线。",
+        "gameWin": "{s} 秒完成：{name}。",
+        "gameBest": "这个图形你的最好成绩：{s} 秒。",
+        "gameLose": "时间到：这是{name}。",
+        "gameHintSay": "试试发亮的那颗星。",
+        "metLight": "{name}：极大约在 {date}，但今晚天不会黑。",
+        "share": "分享"
+      },
+      "design": {
+        "title": "设计规范",
+        "nav": "设计规范",
+        "sub": "这个页面背后的规则，用页面自己的样式现场画出来。颜色和尺寸是从它的样式表里读出来的，所以总是一致。",
+        "colorHead": "颜色",
+        "colorWhy": "用近黑而不是纯黑，光晕才有地方慢慢淡出。浅色模式是单独设计的白色版本，不是把深色反过来。",
+        "swatches": {
+          "bg": "页面",
+          "bg2": "卡片",
+          "fg": "正文",
+          "fg2": "次要文字",
+          "fg3": "小字",
+          "indigo": "靛蓝：操作",
+          "violet": "紫色：光晕",
+          "teal": "青色：在线和完成"
+        },
+        "contrast": "在页面上 {ratio}:1",
+        "contrastNote": "正文至少 4.5:1，大字至少 3:1，深浅两种模式都一样；每次改动测试都会量一遍。",
+        "typeHead": "字体",
+        "typeWhy": "只用系统字体：不用下载，中文用系统自带的字体。数字等宽，时钟跳动时不会晃。",
+        "typeSamples": [
+          "时钟",
+          "标题",
+          "正文是 15 px。",
+          "小字，12 px"
+        ],
+        "shapeHead": "形状",
+        "shapeWhy": "卡片圆角 16 px，胶囊全圆，应用图标的圆角是边长的四分之一。胶囊用于可以按的东西，卡片用于要读的内容。",
+        "shapes": [
+          "卡片，16 px",
+          "胶囊",
+          "图标，25%"
+        ],
+        "cardHead": "卡片",
+        "cardWhy": "用 1 px 的渐变描边和左上角淡淡的光，而不是厚重的阴影；深色模式里完全没有阴影。",
+        "cardSample": "一张卡片",
+        "cardText": "渐变描边、淡淡的光、16 px 圆角。",
+        "buttonHead": "按钮",
+        "buttonWhy": "每张卡片最多一个靛蓝的主要按钮，其余都是低调的描边按钮。",
+        "primary": "主要",
+        "secondary": "次要",
+        "iconHead": "图标",
+        "iconWhy": "24 px 网格上的线条图标，描边 1.6 px，从靛蓝渐变到青色，和 README 里的应用图标是一家。",
+        "motionHead": "动效",
+        "motionWhy": "应用从你点的地方展开：从 96% 放大到原大并淡入，用时 200 毫秒。动效只用来说明东西从哪里来；一直在动的只有行星。",
+        "play": "播放",
+        "curve": "缓动曲线 cubic-bezier(.2, .8, .2, 1)：起步快，落地轻。",
+        "reduced": "打开“减弱动态效果”后什么都不滑也不转：行星停下，面板只是淡入淡出。"
+      },
+      "uses": {
+        "title": "我用的工具",
+        "nav": "我用的工具",
+        "sub": "我做项目时用的工具，按类别排列。",
+        "draft": "预览：这是草稿清单，还需要你确认（profile.json 的 pending 里有 uses）。"
+      },
+      "assets": {
+        "title": "素材",
+        "nav": "素材",
+        "sub": "作品的图标、截图和介绍，可以直接下载；还有在你的浏览器里画出来的壁纸。",
+        "icon": "图标",
+        "shots": "截图",
+        "oneLine": "一句话介绍",
+        "long": "长介绍",
+        "copy": "复制",
+        "copied": "已复制。",
+        "copyFail": "这个浏览器不让复制，请手动选中文字。",
+        "download": "下载",
+        "saved": "已保存 {file}。",
+        "saveFail": "这个浏览器没能生成文件。",
+        "px": "{w} × {h} 像素",
+        "swIcon": "这个页面上的图标，画成 {n} 像素的 PNG",
+        "links": "链接",
+        "wpHead": "壁纸",
+        "wpSub": "按你选的尺寸在浏览器里现画；不从任何地方下载东西。",
+        "todayHead": "今天的天空",
+        "todaySub": "八颗行星在今天的真实位置，月亮跟着地球：每天都不一样。",
+        "middle": "中间放",
+        "sun": "太阳",
+        "avatar": "头像",
+        "size": "尺寸",
+        "palettesHead": "项目配色",
+        "palettesSub": "每个项目自己的颜色：这个页面的靛蓝、紫和青；SilNest 的近黑和暖米色；Storewright 的米白配绿、蓝和橙。",
+        "project": "项目",
+        "projects": {
+          "dusk": "这个页面",
+          "silnest": "SilNest",
+          "storewright": "Storewright"
+        },
+        "device": "设备",
+        "devices": {
+          "desktop": "电脑",
+          "phone": "手机",
+          "tablet": "平板"
+        },
+        "dims": "{w} × {h}",
+        "previewAlt": "预览：{what}，{w} × {h}",
+        "swWorld": "Storewright 的 3D 视图：门店、停车场和周围的小镇。"
+      }
+    },
+    "controls": "页面控制",
+    "planets": {
+      "label": "行星：每颗打开一个应用",
+      "names": {
+        "mercury": "水星",
+        "venus": "金星",
+        "earth": "地球",
+        "mars": "火星",
+        "jupiter": "木星",
+        "saturn": "土星",
+        "uranus": "天王星",
+        "neptune": "海王星",
+        "moon": "月亮"
+      },
+      "aria": "{planet}：{app}",
+      "open": "按 Enter 打开",
+      "moon": "月亮：{phase} · 照亮 {pct}%",
+      "tonight": "今晚在{city}：{text}",
+      "closest": "今天离我们最近的行星：{planet}，{au} 天文单位，光要走约 {time}。",
+      "spin": "此刻你正随地球自转向东移动，约 {kmh} km/h（按{city}的纬度）；地球绕太阳的速度今天约 {orbit} km/h。",
+      "drag": "沿轨道拖动地球可以穿越时间，也可以按 ← →",
+      "dragBack": "松手后会回到现在"
+    },
+    "tt": {
+      "label": "时间旅行",
+      "badge": "时间旅行 · {time}",
+      "scale": "范围",
+      "day": "今天",
+      "dates": "日期",
+      "now": "回到现在",
+      "close": "关闭时间旅行",
+      "sliderDay": "奥尔巴尼今天的时间",
+      "sliderDates": "日期",
+      "ticksDay": [
+        "0:00",
+        "6:00",
+        "12:00",
+        "18:00",
+        "23:59"
+      ],
+      "ticksDates": [
+        "一年前",
+        "今天",
+        "一年后"
+      ],
+      "hint": "松手后会回到现在。",
+      "storeBy": "截至 {time} 拣货件数"
+    },
+    "keys": {
+      "title": "键盘快捷键",
+      "close": "关闭",
+      "rows": [
+        [
+          "⌘K · Ctrl K",
+          "搜索，或输入 > 使用命令"
+        ],
+        [
+          "/",
+          "搜索"
+        ],
+        [
+          "?",
+          "这张快捷键表"
+        ],
+        [
+          "I",
+          "关于本站"
+        ],
+        [
+          "N",
+          "今天"
+        ],
+        [
+          "C",
+          "快捷设置"
+        ],
+        [
+          "T",
+          "时间旅行"
+        ],
+        [
+          "Esc",
+          "关闭、返回或锁屏"
+        ],
+        [
+          "Enter · Space",
+          "解锁（在锁屏上）"
+        ],
+        [
+          "← →",
+          "翻动小组件；移动时间旅行滑杆"
+        ],
+        [
+          "Home · End",
+          "第一个或最后一个小组件；时间旅行滑杆的两端"
+        ],
+        [
+          "Page Up · Page Down",
+          "时间旅行前后一小时或一个月；Page Down 在锁屏上也会解锁"
+        ],
+        [
+          "↑ ↓",
+          "在搜索结果和命令列表里移动"
+        ],
+        [
+          "Tab",
+          "依次选中行星（由内到外，最后是月亮）；按 Enter 打开对应的应用"
+        ],
+        [
+          "← →（选中地球时）",
+          "一天一天地穿越时间；拖动地球转一圈就是一年"
+        ],
+        [
+          "← → · Space",
+          "在演示模式里翻页（⌘K，再输入 >演示）"
+        ]
+      ]
+    },
+    "cmd": {
+      "open": "打开{name}",
+      "dark": "深色模式",
+      "light": "浅色模式",
+      "auto": "外观：跟随系统",
+      "en": "English",
+      "zh": "中文",
+      "tt": "时间旅行",
+      "ttNow": "回到现在",
+      "sky": "{city}上空的星空",
+      "motionOn": "减弱动态效果：开",
+      "motionOff": "减弱动态效果：关",
+      "source": "在 GitHub 上查看源代码",
+      "gb": "留言簿",
+      "lock": "锁屏",
+      "keys": "键盘快捷键",
+      "none": "没有匹配“{q}”的命令",
+      "about": "关于本站",
+      "standby": "待机",
+      "wallpaper": "今天的壁纸",
+      "tour": "再看一遍导览",
+      "brief": "速览（一页）",
+      "present": "演示模式"
+    },
+    "gb": {
+      "head": "留言簿",
+      "intro": "用 GitHub 账号就能留言，留言保存在本站的 GitHub Discussions 里。",
+      "wait": "留言簿会在上线后开放。",
+      "load": "打开留言簿",
+      "note": "打开后会连接 giscus.app 和 GitHub。",
+      "loading": "正在加载留言簿…"
+    },
+    "tonightW": {
+      "title": "{city}今晚的天空",
+      "aria": "{city}今晚的天空：{summary}打开星空。",
+      "sunset": "日落 {time}",
+      "none": "天黑后没有明亮的行星",
+      "polar": "极夜",
+      "midnight": "极昼"
+    },
+    "dur": {
+      "s": "{s} 秒",
+      "ms": "{m} 分 {s} 秒",
+      "hm": "{h} 小时 {m} 分"
+    },
+    "dirs": [
+      "北",
+      "东北",
+      "东",
+      "东南",
+      "南",
+      "西南",
+      "西",
+      "西北"
+    ],
+    "lunar": {
+      "months": [
+        "正月",
+        "二月",
+        "三月",
+        "四月",
+        "五月",
+        "六月",
+        "七月",
+        "八月",
+        "九月",
+        "十月",
+        "冬月",
+        "腊月"
+      ],
+      "days": [
+        "初一",
+        "初二",
+        "初三",
+        "初四",
+        "初五",
+        "初六",
+        "初七",
+        "初八",
+        "初九",
+        "初十",
+        "十一",
+        "十二",
+        "十三",
+        "十四",
+        "十五",
+        "十六",
+        "十七",
+        "十八",
+        "十九",
+        "二十",
+        "廿一",
+        "廿二",
+        "廿三",
+        "廿四",
+        "廿五",
+        "廿六",
+        "廿七",
+        "廿八",
+        "廿九",
+        "三十"
+      ],
+      "leap": "闰{month}",
+      "date": "农历{month}{day}",
+      "terms": [
+        "春分",
+        "清明",
+        "谷雨",
+        "立夏",
+        "小满",
+        "芒种",
+        "夏至",
+        "小暑",
+        "大暑",
+        "立秋",
+        "处暑",
+        "白露",
+        "秋分",
+        "寒露",
+        "霜降",
+        "立冬",
+        "小雪",
+        "大雪",
+        "冬至",
+        "小寒",
+        "大寒",
+        "立春",
+        "雨水",
+        "惊蛰"
+      ],
+      "line": "{date} · {term}",
+      "next": "下一个节气：{term}，{date}（北京时间，还有 {n} 天）",
+      "nextTomorrow": "下一个节气：{term}，明天，{date}（北京时间）",
+      "nextToday": "下一个节气：{term}，今天 {time}（北京时间）"
+    },
+    "fest": {
+      "spring": "春节快乐"
+    },
+    "dayEvents": {
+      "seasons": [
+        "春分",
+        "夏至",
+        "秋分",
+        "冬至"
+      ],
+      "fest": {
+        "new-year": "元旦",
+        "spring-festival": "春节",
+        "mid-autumn": "中秋节"
+      }
+    },
+    "ics": {
+      "name": "天象日历：{from} 至 {to}",
+      "desc": "满月、新月、二分二至、流星雨极大和日月食，在 {site} 离线算出。时间用世界时写，日历软件会自动换成你的时区。",
+      "full": "满月",
+      "new": "新月",
+      "seasons": [
+        "春分",
+        "夏至",
+        "秋分",
+        "冬至"
+      ],
+      "shower": "{name}极大（约）",
+      "showerDesc": "理想条件下每小时约 {zhr} 颗（国际流星组织的天顶每时出现率）；辐射点在{where}。极大可能提前或推后一天。",
+      "solar": {
+        "total": "日全食",
+        "annular": "日环食",
+        "hybrid": "全环食",
+        "partial": "日偏食"
+      },
+      "solarDesc": "{region}可以看到偏食。{path}资料：美国国家航空航天局（弗雷德·埃斯佩纳克）。",
+      "solarPath": "中心带经过{path}。",
+      "lunar": {
+        "total": "月全食",
+        "partial": "月偏食",
+        "penumbral": "半影月食"
+      },
+      "lunarDesc": "月亮在地平线以上的地方都能看到。资料：美国国家航空航天局（弗雷德·埃斯佩纳克）。",
+      "lunarFaint": "半影月食只会让月亮稍稍变暗。",
+      "lunarGraze": "月亮只擦过半影的边缘，几乎看不出。"
+    },
+    "greet": {
+      "night": "你好",
+      "morning": "早上好",
+      "afternoon": "下午好",
+      "evening": "晚上好",
+      "you": "{greet} · 你那里是{time}，{rel}"
+    },
+    "siteNav": {
+      "head": "这个网站",
+      "about": "关于本站"
+    },
+    "console": {
+      "greet": "你好，我是叶璨源。这个页面只有一个文件，在你打开留言簿之前不连任何网络。它是怎么做的：{repo}",
+      "note": "想留言：{key} → Guestbook"
+    },
+    "standby": {
+      "label": "待机",
+      "hint": "动一下鼠标或按任意键就回来"
+    },
+    "tour": {
+      "step": "第 {n} 步，共 {total} 步",
+      "skip": "跳过",
+      "next": "下一步",
+      "done": "知道了",
+      "steps": [
+        {
+          "title": "解锁其余内容",
+          "text": "向右拖动它，或者点一下、按 Enter，就能打开所有应用。"
+        },
+        {
+          "title": "行星可以点",
+          "text": "每颗行星打开一个应用，指向它就知道是哪个。拖动地球可以穿越时间。"
+        },
+        {
+          "title": "什么都能搜",
+          "text": "按 {key} 可以搜应用、项目、技能和事实；输入 > 使用命令。"
+        }
+      ],
+      "live": "提示 {n}/{total}：{title}。{text}"
+    },
+    "previewBadge": "预览版：不要发布",
+    "about": {
+      "title": "关于本站",
+      "close": "关闭",
+      "intro": "一个 HTML 文件，由几份数据文件生成，所有内容都在你的浏览器里算出来。下面的数字来自生成页面时的测量和最近一次完整的测试。",
+      "numbersHead": "几个数字",
+      "size": "页面大小",
+      "sizeNote": "一个文件，图片也在里面",
+      "kb": "{n} KB",
+      "requests": "打开时的网络请求",
+      "requestsNote": "留言簿要等你点开以后才连接",
+      "checks": "自动检查",
+      "checksNote": "{date} 在无界面的 Chrome 里全部通过",
+      "built": "生成日期",
+      "builtNote": "由 pages/build.py 生成",
+      "astroHead": "和 NASA JPL 核对",
+      "astroIntro": "行星、太阳和月亮的位置都在这里用公开的公式算出，再和 NASA 的星历服务 JPL Horizons 对比。",
+      "astroCols": [
+        "项目",
+        "最大误差",
+        "允许范围"
+      ],
+      "astroRows": {
+        "planets": "行星绕太阳的位置（另外六颗）",
+        "jupiter": "木星的位置",
+        "saturn": "土星的位置",
+        "sun": "太阳的位置",
+        "moon": "月亮的位置",
+        "altaz": "在天空中的高度和方位：太阳和行星",
+        "altazMoon": "在天空中的高度和方位：月亮",
+        "riseSet": "升起和落下的时刻",
+        "phases": "新月和满月的时刻"
+      },
+      "units": {
+        "deg": "{v}°",
+        "min": "{v} 分钟",
+        "h": "{v} 小时"
+      },
+      "astroFoot": "参考值于 {fetched} 从 JPL Horizons 取得，共 {dates} 个日期，从 {from} 年到 {to} 年，天空取格林尼治、北京和悉尼。{n} 项检查中有 {passed} 项在允许范围内；运行 node scripts/check_astro.mjs 可以再核对一遍。",
+      "privacyHead": "隐私",
+      "privacy": [
+        "本站不设 cookie，也不统计访客。",
+        "你的设置（外观、语言、动态效果、视差、时钟、星空里的城市、待机、壁纸中间放什么）、星座游戏的最好成绩，以及你是否看过导览，都只存在这个浏览器的本地存储里。",
+        "“使用我的位置”只在你点了以后才问浏览器；这个位置只用来画星图，不会保存。",
+        "声音和手机的指南针都要你自己打开才会启动。",
+        "留言簿要等你点开以后才连接 giscus.app 和 GitHub。",
+        "内容安全策略（CSP）让浏览器自己拒绝其他一切网络请求。"
+      ],
+      "a11yHead": "无障碍",
+      "a11y": [
+        "所有功能都能用键盘操作：按 Tab 依次经过行星和每个控件，按 ? 查看全部快捷键。",
+        "打开“减弱动态效果”（系统设置或快捷设置）后，行星停下，所有动画都不再播放。",
+        "按钮、图片和时钟都有读屏软件能读出的名称；面板打开时焦点留在面板里，关闭后回到原处。",
+        "深色和浅色模式下文字对比度都至少 4.5:1；系统打开“增强对比度”时，线条和文字会更清楚。"
+      ],
+      "a11yFoot": "每次改动都在无界面的 Chrome 里自动检查：焦点框、Tab 顺序、减弱动态效果、名称和对比度。如果哪里不好用，请告诉我：{email}。",
+      "draftsHead": "设计是怎么一步步定下来的",
+      "draftsIntro": "这些都是设计稿，从没发布过；每一版都引出了下一版。",
+      "drafts": {
+        "phone": {
+          "title": "手机锁屏风格",
+          "text": "毛玻璃和鲜艳的渐变。对比了八种整页风格以后换掉了。"
+        },
+        "dusk": {
+          "title": "暗夜科技",
+          "text": "近黑的底色、柔和的光晕和 CY 字标。三颗行星用来报时，几乎看不出在动。"
+        },
+        "avatar": {
+          "title": "头像和八颗行星",
+          "text": "头像成了太阳，每颗行星都看得出在转。"
+        },
+        "sky": {
+          "title": "真实的天空",
+          "text": "行星从真实的位置出发，月亮跟着地球，星空应用能看任何城市今晚的天空。"
+        }
+      },
+      "draftAlt": "设计稿，{date}：{title}",
+      "moreHead": "关于本站的更多页面",
+      "source": "在 GitHub 上查看源代码",
+      "creditsHead": "致谢",
+      "credits": [
+        "陆地轮廓：Natural Earth（公有领域）"
+      ]
+    },
+    "briefLink": "速览",
+    "briefLinkAria": "速览：一页纯文字，全部要点",
+    "brief": {
+      "label": "速览",
+      "fun": "想看好玩的版本？",
+      "back": "回到主页",
+      "print": "打印",
+      "printHint": "按 {key} 打印，正好一页。",
+      "projectsHead": "三个项目",
+      "projects": {
+        "storewright": "Storewright：在浏览器里就能运行的杂货门店数字孪生。{{storewright.release}}，{{storewright.tests}} 个自动化测试。",
+        "silnest": "声藏 SilNest：我做的离线音乐播放器，{{sn.released|date_zh}}在 App Store 上架。",
+        "site": "{{site.domain}}：我的作品集网站，运行在我自己搭建的、基于 Git 的 CMS 上，内容由自己掌握。"
+      },
+      "demo": "在线演示",
+      "code": "代码",
+      "store": "App Store",
+      "visit": "网站",
+      "howHead": "我的工作方式",
+      "contactHead": "简历和联系方式",
+      "resume": "简历（PDF）",
+      "rows": {
+        "email": "邮箱",
+        "linkedin": "LinkedIn",
+        "github": "GitHub",
+        "site": "网站",
+        "city": "所在地"
+      },
+      "thisPage": "这一页：{url}"
+    },
+    "present": {
+      "label": "演示模式",
+      "slide": "第 {n} 页，共 {total} 页",
+      "slideNamed": "第 {n} 页，共 {total} 页：{title}",
+      "prev": "上一页",
+      "next": "下一页",
+      "exit": "退出演示模式",
+      "hint": "← → 翻页 · Esc 退出",
+      "langAria": "语言"
+    },
+    "work": {
+      "roleHead": "分工",
+      "numbersHead": "数字一览",
+      "span": "{from}至{to}",
+      "sw": {
+        "span": "第一次到最后一次提交",
+        "commits": "提交",
+        "tests": "单元测试",
+        "files": "测试文件",
+        "parts": {
+          "storewright": "Storewright",
+          "storex": "StoreX",
+          "storexChain": "StoreX Chain",
+          "libraries": "共用的程序库"
+        },
+        "foot": "在代码仓库里数出（提交 {head}，{date}）：Vitest 测试集里的每一个 it() 和 test()；端到端测试不算在内。"
+      },
+      "sn": {
+        "started": "开始开发",
+        "released": "上架 App Store",
+        "version": "版本",
+        "foot": "版本和上架日期来自 App Store 的公开信息；开始的月份是我的项目时间。"
+      }
+    },
+    "game": {
+      "head": "试一试：拣货路线",
+      "intro": "Storewright 小型门店里的六件商品。走到每个货架，再回到推车处，然后和 Storewright 的路线比一比。",
+      "how": "点一下货架或地面就会走过去，也可以用方向键。",
+      "boardAria": "门店地图。推车在右前方。方向键从一个停靠点走到下一个。",
+      "listHead": "拣货单",
+      "item": "{cat} · {where}",
+      "aisle": "{n} 号通道第 {b} 段",
+      "produce": "蔬果墙第 {b} 段",
+      "backWall": "后墙第 {b} 段",
+      "status": "已拣 {done}/{n} · 已走 {m} 米",
+      "statusBack": "都拣齐了：回到推车处 · 已走 {m} 米",
+      "picked": "拣到了：{cat}。",
+      "result": "你走了 {you} 米，Storewright 的路线是 {tsp} 米。",
+      "route": "Storewright 的路线：{tsp} 米。",
+      "same": "和 Storewright 的路线一样长。",
+      "better": "比 Storewright 的路线短 {d} 米。",
+      "worse": "比 Storewright 的路线长 {d} 米。",
+      "sshape": "按通道一条条走（常见做法）：{s} 米。",
+      "rule": "Storewright 的规则：每次先去最近的货架，再用 2-opt 把能缩短路程的一段反过来走（routeTsp，同一套代码，在这里运行）。",
+      "show": "显示它的路线",
+      "hide": "隐藏它的路线",
+      "again": "换一张单",
+      "cart": "推车",
+      "yours": "你的路线",
+      "algo": "Storewright 的路线",
+      "foot": "门店、货架和路线规则都来自 Storewright 的开源代码（提交 {commit}）；里面的一切都是合成的。"
+    },
+    "lab": {
+      "head": "如果……会怎样",
+      "intro": "改一改上面这一天的设置，用 Storewright 自己的仿真代码在你的浏览器里重跑一遍。",
+      "knobs": "这一天的设置",
+      "pickers": "在岗拣货员",
+      "pickersVal": "最忙的时段 {n} 人",
+      "pickersHint": "现在最忙的时段 {n} 人；其他有拣货的时段增减同样的人数，至少 1 人。",
+      "volume": "订单量",
+      "volumeVal": "平常的 {pct}%，约 {n} 单",
+      "volumeHint": "现在 100%：一天约 {n} 单。",
+      "peak": "高峰时段",
+      "peakVal": "高峰订单是平时的 {x} 倍",
+      "peakVal1": "高峰订单和平时一样多",
+      "peakHint": "现在 ×1。最忙的时段（{hours}）多分或少分全天的订单；全天的预期总量不变。",
+      "range": "{a}到 {b}",
+      "and": "和 ",
+      "run": "重跑",
+      "running": "正在运行…",
+      "notRun": "还没运行",
+      "ran": "模拟一天用了 {s} 秒。",
+      "failed": "这个浏览器里仿真没能运行。",
+      "tableCap": "这一天现在的结果和改动后的结果",
+      "now": "现在",
+      "yours": "改动后",
+      "onTime": "准时率（按时备好）",
+      "wait": "平均取货等待",
+      "announce": "改动后：按时备好 {onTime}，平均取货等待 {wait}。现在：{nowOnTime}，{nowWait}。",
+      "small": "数据是合成的。两列用同一个随机种子（当天日期），结果只说明这个模型，不代表真实门店。",
+      "code": "仿真用的是 Storewright 自己的代码（提交 {commit}），按 AGPL-3.0 许可。",
+      "source": "源代码 ↗"
+    }
+  },
+  "notes": [
+    {
+      "key": "silnest",
+      "app": "silnest",
+      "icon": "silnest",
+      "when": "{{sn.released}}",
+      "en": {
+        "title": "SilNest",
+        "body": "Version {{sn.version}} is on the App Store."
+      },
+      "zh": {
+        "title": "SilNest",
+        "body": "{{sn.version}} 版已在 App Store 上架。"
+      }
+    },
+    {
+      "key": "storewright",
+      "app": "storewright",
+      "icon": "storewright",
+      "when": "{{storewright.month|ym}}",
+      "en": {
+        "title": "Storewright",
+        "body": "{{storewright.release}} is out. {{storewright.tests}} tests passing."
+      },
+      "zh": {
+        "title": "Storewright",
+        "body": "{{storewright.release}} 已发布，{{storewright.tests}} 项测试通过。"
+      }
+    },
+    {
+      "key": "store-day",
+      "app": "storewright",
+      "icon": "sim",
+      "when": "{{day.date}}",
+      "en": {
+        "title": "Store day (sim)",
+        "body": "@day"
+      },
+      "zh": {
+        "title": "模拟门店的一天",
+        "body": "@day"
+      }
+    }
+  ],
+  "early": [
+    {
+      "repo": "BASIC",
+      "icon": "basic",
+      "en": {
+        "kind": "Course project (Java) · University at Albany (SUNY)",
+        "line": "A BASIC interpreter in Java: lexer, parser, interpreter."
+      },
+      "zh": {
+        "kind": "课程项目（Java）· 纽约州立大学奥尔巴尼分校",
+        "line": "用 Java 写的 BASIC 解释器"
+      }
+    },
+    {
+      "repo": "CPU",
+      "icon": "cpu",
+      "en": {
+        "kind": "Course project (Java) · University at Albany (SUNY)",
+        "line": "A CPU emulator in Java: ALU, processor, instruction cache."
+      },
+      "zh": {
+        "kind": "课程项目（Java）· 纽约州立大学奥尔巴尼分校",
+        "line": "用 Java 写的 CPU 模拟器"
+      }
+    },
+    {
+      "repo": "Memory",
+      "icon": "memory",
+      "en": {
+        "kind": "Course project (Java) · University at Albany (SUNY)",
+        "line": "An OS kernel and memory-management simulator in Java, with JUnit 5 tests. Covers the scheduler, memory manager and swap file."
+      },
+      "zh": {
+        "kind": "课程项目（Java）· 纽约州立大学奥尔巴尼分校",
+        "line": "用 Java 写的操作系统内核与内存管理模拟，带 JUnit 5 测试"
+      }
+    },
+    {
+      "repo": "WebDev",
+      "icon": "webdev",
+      "en": {
+        "kind": "Early personal project, no longer maintained",
+        "line": "A full-stack agile project-management web app (React, Express, MongoDB)."
+      },
+      "zh": {
+        "kind": "早期个人项目，已停止维护",
+        "line": "全栈敏捷项目管理网页应用（React、Express、MongoDB）"
+      }
+    },
+    {
+      "repo": "SpeedTest",
+      "icon": "speed",
+      "en": {
+        "kind": "Team course project · I built the speed-test algorithm",
+        "line": "Team project (app \"DriveSafe\"); I built the speed-test algorithm (Kalman filter and Haversine distance)."
+      },
+      "zh": {
+        "kind": "团队课程项目 · 我负责测速算法",
+        "line": "团队项目 DriveSafe，我负责测速算法（卡尔曼滤波 + Haversine 距离）"
+      }
+    }
+  ],
+  "skills": [
+    {
+      "en": "Languages",
+      "zh": "编程语言",
+      "items": [
+        "TypeScript",
+        "JavaScript",
+        "Swift",
+        "Kotlin",
+        "Python",
+        "SQL"
+      ]
+    },
+    {
+      "en": "Frameworks and tools",
+      "zh": "框架和工具",
+      "items": [
+        "React",
+        "three.js",
+        "Node.js",
+        "Fastify",
+        "PostgreSQL",
+        "Vite",
+        "Playwright",
+        "Docker"
+      ]
+    },
+    {
+      "en": "Coursework",
+      "zh": "课程作业",
+      "items": [
+        "Java"
+      ]
+    },
+    {
+      "en": "Earlier projects",
+      "zh": "早期项目",
+      "items": [
+        "Express",
+        "MongoDB"
+      ]
+    }
+  ],
+  "sheets": {
+    "silnest": {
+      "icon": "silnest",
+      "app": "silnest",
+      "links": [
+        {
+          "kind": "appstore",
+          "href": "{{silnest.store_url}}",
+          "host": "apps.apple.com"
+        }
+      ],
+      "en": {
+        "kicker": "Live on the App Store",
+        "title": "{{silnest.title}}",
+        "titleZh": "{{silnest.title_zh}}",
+        "desc": "An offline music player I built. Your music, offline.",
+        "stats": [
+          [
+            "{{sn.version}}",
+            "Version"
+          ],
+          [
+            "{{sn.released|date_short}}",
+            "Released"
+          ]
+        ]
+      },
+      "zh": {
+        "kicker": "已在 App Store 上架",
+        "title": "{{silnest.title}}",
+        "titleZh": "{{silnest.title_zh}}",
+        "desc": "我开发的离线音乐播放器：你的音乐，不联网也能听。",
+        "stats": [
+          [
+            "{{sn.version}}",
+            "版本"
+          ],
+          [
+            "{{sn.released|date_zh}}",
+            "发布日期"
+          ]
+        ]
+      }
+    },
+    "storewright": {
+      "icon": "storewright",
+      "app": "storewright",
+      "links": [
+        {
+          "kind": "demo",
+          "href": "{{storewright.demo}}",
+          "host": "{{storewright.demo|host}}"
+        },
+        {
+          "kind": "repo",
+          "href": "{{storewright.repo}}",
+          "host": "{{storewright.repo|host}}"
+        }
+      ],
+      "en": {
+        "kicker": "Digital twin · Open source",
+        "title": "Storewright",
+        "desc": "A grocery store digital twin that runs in your browser.",
+        "stats": [
+          [
+            "{{storewright.tests}}",
+            "Tests passing"
+          ],
+          [
+            "{{storewright.release}}",
+            "Release"
+          ],
+          [
+            "{{storewright.month}}",
+            "Shipped"
+          ]
+        ]
+      },
+      "zh": {
+        "kicker": "数字孪生 · 开源",
+        "title": "Storewright",
+        "desc": "在浏览器里就能运行的杂货门店数字孪生。",
+        "stats": [
+          [
+            "{{storewright.tests}}",
+            "项测试通过"
+          ],
+          [
+            "{{storewright.release}}",
+            "版本"
+          ],
+          [
+            "{{storewright.month|month_zh}}",
+            "发布"
+          ]
+        ]
+      }
+    },
+    "store-day": {
+      "icon": "sim",
+      "app": "storewright",
+      "links": [
+        {
+          "kind": "repo",
+          "href": "{{storewright.repo}}",
+          "host": "{{storewright.repo|host}}"
+        },
+        {
+          "kind": "demo",
+          "href": "{{storewright.demo}}",
+          "host": "{{storewright.demo|host}}"
+        }
+      ],
+      "en": {
+        "kicker": "Synthetic data",
+        "title": "A simulated store day",
+        "desc": "A day at a simulated grocery store, generated by Storewright's open-source simulator. Every number is synthetic; none comes from a real store.",
+        "stats": [
+          [
+            "@day:Orders fulfilled",
+            ""
+          ],
+          [
+            "@day:Avg pickup wait",
+            ""
+          ],
+          [
+            "@day:Ready on time",
+            ""
+          ]
+        ]
+      },
+      "zh": {
+        "kicker": "合成数据",
+        "title": "模拟门店的一天",
+        "desc": "由 Storewright 的开源模拟器生成的一天门店运营数据。所有数字都是合成的，不来自任何真实门店。",
+        "stats": [
+          [
+            "@day:Orders fulfilled",
+            ""
+          ],
+          [
+            "@day:Avg pickup wait",
+            ""
+          ],
+          [
+            "@day:Ready on time",
+            ""
+          ]
+        ]
+      }
+    },
+    "accuracy": {
+      "icon": "storewright",
+      "app": "storewright",
+      "links": [
+        {
+          "kind": "repo",
+          "href": "{{storewright.repo}}",
+          "host": "{{storewright.repo|host}}"
+        }
+      ],
+      "en": {
+        "kicker": "Storewright · part 3, StoreX Chain",
+        "title": "Duty assistant",
+        "desc": "Duty assistant (part 3, StoreX Chain): {{assistant.score}}% vs {{assistant.baseline}}% for keyword rules on a held-out {{assistant.set|count}}-question set.",
+        "stats": [
+          [
+            "{{assistant.score}}%",
+            "Duty assistant"
+          ],
+          [
+            "{{assistant.baseline}}%",
+            "Keyword rules"
+          ],
+          [
+            "{{assistant.set|count}}",
+            "Held-out questions"
+          ]
+        ]
+      },
+      "zh": {
+        "kicker": "Storewright · 第三部分 StoreX Chain",
+        "title": "值班助手",
+        "desc": "第三部分 StoreX Chain 的值班助手：留出的 {{assistant.set|count}} 道盲测题上 {{assistant.score}}%，关键词规则 {{assistant.baseline}}%。",
+        "stats": [
+          [
+            "{{assistant.score}}%",
+            "值班助手"
+          ],
+          [
+            "{{assistant.baseline}}%",
+            "关键词规则"
+          ],
+          [
+            "{{assistant.set|count}}",
+            "道盲测题"
+          ]
+        ]
+      }
+    },
+    "site": {
+      "icon": "site",
+      "app": "site",
+      "links": [
+        {
+          "kind": "site",
+          "href": "{{links.site}}",
+          "host": "{{site.domain}}"
+        }
+      ],
+      "en": {
+        "kicker": "Portfolio · My own CMS",
+        "title": "{{site.domain}}",
+        "desc": "My portfolio, on a Git-backed CMS I built to own my content. It also hosts SilNest's support and privacy pages.",
+        "stats": [
+          [
+            "{{site.since}}",
+            "Online since"
+          ]
+        ]
+      },
+      "zh": {
+        "kicker": "作品集 · 自建 CMS",
+        "title": "{{site.domain}}",
+        "desc": "我的作品集网站，运行在我自己搭建的、基于 Git 的 CMS 上，内容由自己掌握。SilNest 的支持页和隐私政策页也放在这里。",
+        "stats": [
+          [
+            "{{site.since|month_zh}}",
+            "上线时间"
+          ]
+        ]
+      }
+    },
+    "vocal": {
+      "icon": "vocal",
+      "app": "vocal",
+      "links": [],
+      "textStats": true,
+      "en": {
+        "kicker": "In progress",
+        "title": "AI Vocal",
+        "desc": "A personal, local voice and singing studio.",
+        "stats": [
+          [
+            "{{vocal.status}}",
+            "Status"
+          ],
+          [
+            "{{vocal.next}}",
+            "Next"
+          ]
+        ],
+        "note": "No public link yet."
+      },
+      "zh": {
+        "kicker": "进行中",
+        "title": "AI Vocal",
+        "desc": "一个在本地运行的个人人声与歌唱工作室。",
+        "stats": [
+          [
+            "第一首作品已完成",
+            "进展"
+          ],
+          [
+            "工作流程仍在完善中",
+            "下一步"
+          ]
+        ],
+        "note": "暂时还没有公开链接。"
+      }
+    },
+    "contact": {
+      "icon": "contact",
+      "app": "contact",
+      "links": [
+        {
+          "kind": "linkedin",
+          "href": "{{links.linkedin}}",
+          "host": "{{links.linkedin_short}}"
+        },
+        {
+          "kind": "email",
+          "href": "mailto:{{links.email}}",
+          "host": "{{links.email}}"
+        },
+        {
+          "kind": "site",
+          "href": "{{links.site}}",
+          "host": "{{site.domain}}"
+        }
+      ],
+      "en": {
+        "kicker": "{{city}} · Eastern Time",
+        "title": "Say hi",
+        "desc": "I'm based in {{city}}, on Eastern Time.",
+        "stats": [
+          [
+            "@time",
+            "Local time"
+          ]
+        ]
+      },
+      "zh": {
+        "kicker": "纽约州奥尔巴尼 · 美东时间",
+        "title": "打个招呼",
+        "desc": "我在纽约州奥尔巴尼，用的是美东时间。",
+        "stats": [
+          [
+            "@time",
+            "当地时间"
+          ]
+        ]
+      }
+    }
+  }
+}

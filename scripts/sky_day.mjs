@@ -1,0 +1,119 @@
+// Writes data/sky-day.json for the daily images (scripts/lockscreen.py):
+//   planets  where the eight planets really are at `at` (heliocentric longitudes, idea #79)
+//   moon     today's phase, for the Moon beside Earth (idea #80)
+//   tonight  tonight's sky over Albany, NY, for the "Tonight" widget (idea #83)
+//   chart    where the Moon, the planets and the brightest stars stand at chart.at
+//   sun      the Sun's altitude over Albany at `at`, for the colour of the glow behind the avatar (idea #97)
+// Pure computation (live/astro.mjs), no network. Same date → same file.
+//   node scripts/sky_day.mjs [--date YYYY-MM-DD] [--at ISO-time] [--out data/sky-day.json]
+// --at with a zone (Z or ±hh:mm) is that instant; without one it is Albany's wall clock, as
+// lockscreen.py --at reads it, so the result does not depend on the machine's own time zone
+// (idea #177). Like Python's zoneinfo there, a time in the hour skipped in March counts as
+// standard time (2:30 AM is 3:30 AM EDT) and one in the hour repeated in November is the first.
+// scripts/time_tests.mjs checks the DST changes, a leap day and the turn of the year.
+import { writeFileSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
+import * as A from '../live/astro.mjs';
+import { STAR_NAMES, SKY_DATA } from '../live/sky-data.mjs';
+
+const PLACE = { name: 'Albany, NY', lat: 42.6526, lon: -73.7562, tz: 'America/New_York' };
+const arg = (k) => { const i = process.argv.indexOf(`--${k}`); return i > 0 ? process.argv[i + 1] : null; };
+const out = arg('out') || fileURLToPath(new URL('../data/sky-day.json', import.meta.url));
+const stop = (msg) => { console.error(`sky_day: ${msg}`); process.exit(2); };
+
+/** UTC ms of a wall-clock time in Albany (Python zoneinfo's fold=0 at the DST changes). */
+function albanyTime(y, mo, d, hh = 0, mi = 0, ss = 0) {
+  const wall = Date.UTC(y, mo - 1, d, hh, mi, ss);
+  const wallOf = (t) => { const p = A.zonedParts(t, PLACE.tz); return Date.UTC(p.year, p.month - 1, p.day, p.hour, p.minute, p.second); };
+  const before = A.tzOffsetMin(wall - 86400000, PLACE.tz);       // the offsets a day either side
+  const after = A.tzOffsetMin(wall + 86400000, PLACE.tz);        // bracket any change that day
+  const hits = [...new Set([before, after])].map((o) => wall - o * 60000).filter((t) => wallOf(t) === wall);
+  return hits.length ? Math.min(...hits) : wall - before * 60000;
+}
+
+/** A real calendar date "YYYY-MM-DD" as [y, m, d], or null (2027-02-29 is not one). */
+function calendarDate(s) {
+  const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(s || '');
+  if (!m) return null;
+  const [y, mo, d] = m.slice(1).map(Number);
+  const t = new Date(Date.UTC(y, mo - 1, d));
+  return t.getUTCFullYear() === y && t.getUTCMonth() === mo - 1 && t.getUTCDate() === d ? [y, mo, d] : null;
+}
+
+function parseAt(s) {
+  if (/(?:Z|[+-]\d{2}:?\d{2})$/i.test(s)) {
+    const t = Date.parse(s);
+    return Number.isNaN(t) ? stop(`--at ${s} is not a time`) : t;
+  }
+  const m = /^(\d{4}-\d{2}-\d{2})(?:[T ](\d{2}):(\d{2})(?::(\d{2})(?:\.\d+)?)?)?$/.exec(s);
+  const ymd = m && calendarDate(m[1]);
+  if (!ymd || Number(m[2] ?? 0) > 23 || Number(m[3] ?? 0) > 59 || Number(m[4] ?? 0) > 59) stop(`--at ${s} is not a time (YYYY-MM-DDTHH:MM[:SS], Albany time unless it ends in Z or ±hh:mm)`);
+  return albanyTime(...ymd, Number(m[2] ?? 0), Number(m[3] ?? 0), Number(m[4] ?? 0));
+}
+
+let at = arg('at') ? parseAt(arg('at')) : Date.now();
+let day = A.zonedParts(at, PLACE.tz);
+if (arg('date')) {
+  const ymd = calendarDate(arg('date'));
+  if (!ymd) stop(`--date ${arg('date')} is not a calendar date (YYYY-MM-DD)`);
+  const [y, m, d] = ymd;
+  day = { year: y, month: m, day: d };
+  if (!arg('at')) at = A.zonedTime(y, m, d, 12, 0, PLACE.tz);
+}
+const evening = A.zonedTime(day.year, day.month, day.day, 18, 0, PLACE.tz);
+const fmt = (lang) => new Intl.DateTimeFormat(lang === 'zh' ? 'zh-CN' : 'en-US', { timeZone: PLACE.tz, hour: 'numeric', minute: '2-digit' });
+const fEn = fmt('en'), fZh = fmt('zh');
+const local = (ms) => (ms == null ? null : { ms: Math.round(ms), en: fEn.format(ms), zh: fZh.format(ms) });
+const dEn = new Intl.DateTimeFormat('en-US', { timeZone: PLACE.tz, month: 'short', day: 'numeric' });
+const dZh = new Intl.DateTimeFormat('zh-CN', { timeZone: PLACE.tz, month: 'long', day: 'numeric' });
+const localDay = (ms) => ({ ms: Math.round(ms), en: dEn.format(ms), zh: dZh.format(ms) });
+const r1 = (v) => (v == null ? null : +v.toFixed(1));
+
+const tn = A.tonight(evening, PLACE.lat, PLACE.lon, PLACE.tz);
+// chart time: 8 PM, or 45 minutes after civil dusk if that is later, on the quarter hour
+let chartAt = A.zonedTime(day.year, day.month, day.day, 20, 0, PLACE.tz);
+if (tn.civilDusk && tn.civilDusk + 45 * 60000 > chartAt) chartAt = Math.ceil((tn.civilDusk + 45 * 60000) / 900000) * 900000;
+const scene = A.skyScene(chartAt, PLACE.lat, PLACE.lon, SKY_DATA);
+const phase = A.moonPhase(at);
+const sunNow = A.observe('sun', at, PLACE.lat, PLACE.lon);
+
+const data = {
+  note: 'Generated by scripts/sky_day.mjs from live/astro.mjs. Do not edit.',
+  generatedAt: new Date().toISOString(),
+  at,
+  place: PLACE,
+  date: `${day.year}-${String(day.month).padStart(2, '0')}-${String(day.day).padStart(2, '0')}`,
+  planets: A.PLANETS.map((name) => ({ name, lon: +A.heliocentric(name, at).lon.toFixed(2) })),
+  sun: { alt: r1(sunNow.alt), az: r1(sunNow.az) },
+  moon: {
+    elong: +phase.elong.toFixed(2), illum: +phase.illum.toFixed(3), waxing: phase.waxing,
+    age: +phase.age.toFixed(1), key: phase.key, name: phase.phaseName,
+    pathUnit: A.moonPhasePath(0, 0, 1, phase.illum, phase.waxing),
+    nextFull: localDay(A.nextPhase(at, 180)), nextNew: localDay(A.nextPhase(at, 0)),
+  },
+  tonight: {
+    darkness: tn.darkness,
+    sunset: local(tn.sunset), civilDusk: local(tn.civilDusk), astroDusk: local(tn.astroDusk),
+    astroDawn: local(tn.astroDawn), sunrise: local(tn.sunrise),
+    moon: { key: tn.moon.key, name: tn.moon.phaseName, illum: +tn.moon.illum.toFixed(3), waxing: tn.moon.waxing,
+      rise: local(tn.moon.rise), set: local(tn.moon.set) },
+    planets: tn.planets.map((p) => ({
+      name: p.name, mag: p.mag, visible: p.visible, naked: p.naked, when: p.when,
+      best: local(p.best), bestAlt: p.bestAlt, bestAz: p.bestAz,
+      dir: p.bestAz == null ? null : { en: A.compass(p.bestAz, 'en'), zh: A.compass(p.bestAz, 'zh') },
+      rise: local(p.rise), set: local(p.set),
+    })),
+  },
+  chart: {
+    at: local(chartAt),
+    sunAlt: r1(scene.sun.alt),
+    moon: { alt: r1(scene.moon.alt), az: r1(scene.moon.az), illum: +scene.moon.illum.toFixed(3), waxing: scene.moon.waxing },
+    planets: scene.planets.map((p) => ({ name: p.name, alt: r1(p.alt), az: r1(p.az), mag: r1(p.mag) })),
+    stars: scene.stars.filter((s) => s.id && STAR_NAMES[s.id] && s.alt > 8 && s.mag < 1.6)
+      .sort((a, b) => a.mag - b.mag).slice(0, 8)
+      .map((s) => ({ id: s.id, name: STAR_NAMES[s.id], alt: r1(s.alt), az: r1(s.az), mag: s.mag })),
+  },
+};
+writeFileSync(out, `${JSON.stringify(data, null, 1)}\n`);
+console.log(`sky-day ${data.date}: Moon ${phase.phaseName.en} ${Math.round(phase.illum * 100)}%, `
+  + `sunset ${data.tonight.sunset?.en}, visible tonight: ${data.tonight.planets.filter((p) => p.visible && p.naked).map((p) => p.name).join(', ') || 'none'}`);

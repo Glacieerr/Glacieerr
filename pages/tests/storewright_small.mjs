@@ -1,0 +1,116 @@
+#!/usr/bin/env node
+// Writes pages/src/storewright-small.json, the data behind the Storewright pick game (idea #121):
+// Storewright's own small store (its "small" template), its walk network exactly as StoreModel
+// builds it (node coordinates and adjacency lists in their order, edge lengths in metres), which
+// category the synthetic catalog (seed 7, the store day's) put on each shelf, and the answers of
+// Storewright's own routeTsp and routeSShape for the game's first lists, so the page's copy of
+// the route rule can be checked against the original (pages/tests/test.mjs does).
+//
+//   node pages/tests/storewright_small.mjs --repo <a storewright checkout with its npm dependencies>
+//
+// Run it again when Storewright changes its layout, catalog or routing. It loads the checkout's
+// TypeScript through the checkout's own tsx, like scripts/store_day.mjs; nothing is installed.
+// The page itself never needs the checkout: the JSON is inlined by pages/build.py.
+import { execFileSync } from 'node:child_process';
+import { writeFileSync } from 'node:fs';
+import { createRequire } from 'node:module';
+import { join, resolve, dirname } from 'node:path';
+import { fileURLToPath, pathToFileURL } from 'node:url';
+import { parseArgs } from 'node:util';
+
+const { repo: repoArg } = parseArgs({ options: { repo: { type: 'string' } } }).values;
+if (!repoArg) { console.error('usage: node pages/tests/storewright_small.mjs --repo <storewright checkout>'); process.exit(1); }
+const repo = resolve(repoArg);
+const req = createRequire(join(repo, 'package.json'));
+const { register } = req('tsx/esm/api');
+register({ tsconfig: join(repo, 'tsconfig.json') });
+const load = (pkg) => import(pathToFileURL(req.resolve(pkg)).href);
+const [{ createTemplate, StoreModel }, { generateCatalog }] = await Promise.all(['@storewright/store-config', '@storewright/synth'].map(load));
+const { routeTsp, routeSShape } = await import(pathToFileURL(join(repo, 'packages/algorithms/src/routing.ts')).href);
+
+const TEMPLATE = 'small';
+const SEED = 7;
+const fresh = () => new StoreModel(createTemplate(TEMPLATE));
+const model = fresh();
+const cfg = model.config;
+const r2 = (v) => Math.round(v * 100) / 100;
+
+const cats = cfg.catalog.categories.map((c) => [c.id, c.name, c.nameZh]);
+const catIx = new Map(cats.map((c, i) => [c[0], i]));
+const runs = cfg.layout.runs.filter((r) => r.floorId === 'F1');
+const runIx = new Map(runs.map((r, i) => [r.id, i]));
+
+// the category each shelf face holds most items of (all levels together), from the catalog
+const count = new Map();
+for (const it of generateCatalog(model, { seed: SEED }).byId.values()) {
+  const loc = model.locations.get(it.locationIds[0]);
+  const key = `${loc.runId}|${loc.bay}|${loc.side}`;
+  const m = count.get(key) || new Map();
+  m.set(it.categoryId, (m.get(it.categoryId) || 0) + 1);
+  count.set(key, m);
+}
+const locs = [];
+const seen = new Set();
+for (const loc of model.locations.values()) {
+  const key = `${loc.runId}|${loc.bay}|${loc.side}`;
+  if (seen.has(key) || loc.floorId !== 'F1') continue;
+  seen.add(key);
+  const m = count.get(key);
+  if (!m) continue;
+  const order = runs[runIx.get(loc.runId)].categoryIds;
+  const best = [...m.entries()].sort((a, b) => b[1] - a[1] || order.indexOf(a[0]) - order.indexOf(b[0]))[0][0];
+  locs.push([runIx.get(loc.runId), loc.bay, loc.side, loc.nodeId, catIx.get(best)]);
+}
+
+// the game's lists: the same sampler as app.js (mulberry32, six shelves on different nodes)
+function mulberry32(a) {
+  return () => {
+    a |= 0; a = (a + 0x6d2b79f5) | 0;
+    let t = Math.imul(a ^ (a >>> 15), 1 | a);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+function pickList(seed, n = 6) {
+  const rng = mulberry32(seed);
+  const out = [];
+  const nodes = new Set();
+  while (out.length < n) {
+    const i = Math.floor(rng() * locs.length);
+    if (nodes.has(locs[i][3])) continue;
+    nodes.add(locs[i][3]);
+    out.push(i);
+  }
+  return out;
+}
+const vectors = [];
+for (const seed of [1, 2, 3, 4, 5, 6, 7, 8, 20261114, 20261225]) {
+  const list = pickList(seed);
+  const m = fresh();                       // a fresh model, like the page's fresh distance cache
+  const nodes = list.map((i) => locs[i][3]);
+  const tsp = routeTsp(m, nodes, m.cartDepotNode, m.stagingNode);
+  const nn = routeTsp(fresh(), nodes, m.cartDepotNode, m.stagingNode, 0);
+  const s = routeSShape(m, list.map((i) => { const l = locs[i]; return { node: l[3], runSequence: runs[l[0]].sequence, along: l[1] }; }), m.cartDepotNode, m.stagingNode);
+  if (tsp.distanceM > nn.distanceM + 1e-6) throw new Error(`seed ${seed}: 2-opt longer than nearest neighbour`);
+  vectors.push({ seed, locs: list, tsp: { order: tsp.order, m: tsp.distanceM }, nn: nn.distanceM, sshape: s.distanceM });
+}
+
+let commit = '';
+try { commit = execFileSync('git', ['-C', repo, 'rev-parse', '--short=7', 'HEAD'], { encoding: 'utf8' }).trim(); } catch { /* not a git checkout */ }
+const out = {
+  note: 'Generated by pages/tests/storewright_small.mjs from a Storewright checkout. Do not edit; run it again instead.',
+  source: { repo: 'Glacieerr/storewright', commit, template: TEMPLATE, catalogSeed: SEED },
+  nodes: model.nodes.map((n) => [n.x, n.y]),
+  adj: model.adjacency.map((list) => list.flatMap((e) => [e.to, e.w])),
+  depot: model.cartDepotNode,
+  staging: model.stagingNode,
+  runs: runs.map((r) => [r.id, r.kind, r.label, r.sequence, r.sides, r2(r.start.x), r2(r.start.y), r2(r.end.x), r2(r.end.y), r.categoryIds.map((c) => catIx.get(c))]),
+  floor: { x0: Math.min(...runs.map((r) => r.start.x)), x1: Math.max(...cfg.layout.corridors.filter((c) => c.floorId === 'F1').map((c) => Math.max(c.start.x, c.end.x))),
+    yFront: Math.min(...runs.map((r) => r.start.y)), yBack: Math.max(...runs.map((r) => r.end.y)) },
+  cats,
+  locs,
+  vectors,
+};
+const file = join(dirname(fileURLToPath(import.meta.url)), '..', 'src', 'storewright-small.json');
+writeFileSync(file, `${JSON.stringify(out)}\n`);
+console.log(`wrote ${file}: ${out.nodes.length} nodes, ${locs.length} shelves, ${vectors.length} checked lists (Storewright ${commit})`);
