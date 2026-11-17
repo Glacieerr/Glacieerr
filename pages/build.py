@@ -235,16 +235,16 @@ MOON_R = 1.9        # the Moon beside Earth (idea #80), lit as today's phase
 PLANET_APPS = (("mercury", "storewright"), ("venus", "silnest"), ("earth", "sky"), ("mars", "vocal"),
                ("jupiter", "how"), ("saturn", "clock"), ("uranus", "site"), ("neptune", "contact"),
                ("moon", "calendar"))
-# The guestbook (idea #85): giscus, loaded only after a click. Fill in repoId and categoryId
-# from https://giscus.app when the site goes live; while either is empty the page shows a
+# The guestbook (idea #85): giscus, loaded only after a click. repoId and categoryId come from
+# https://giscus.app (filled in at go-live, 2026-11-16); while either is empty the page shows a
 # placeholder and loads nothing. The two Dusk themes are written next to index.html.
 GISCUS = {
     "src": "https://giscus.app/client.js",
     "origin": "https://giscus.app",
     "repo": "Glacieerr/Glacieerr.github.io",
-    "repoId": "",
+    "repoId": "R_kgDOVxMqfg",
     "category": "Guestbook",
-    "categoryId": "",
+    "categoryId": "DIC_kwDOVxMqfs4DLTuA",
     "mapping": "specific",
     "term": "guestbook",
     "strict": "0",

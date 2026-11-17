@@ -1112,13 +1112,14 @@ export default async function (api) {
 
   // ---------------- #85 the guestbook
   await api.go('?lang=en#home/contact', 900);
-  const gbk = await api.eval(`({head: document.getElementById('gbHead').textContent, wait: (document.getElementById('gbWait') || {}).textContent, load: !!document.getElementById('gbLoad'), giscus: document.querySelectorAll('script[src*="giscus"], iframe[src*="giscus"]').length, cfg: JSON.parse(document.getElementById('data').textContent).giscus})`);
-  ok(gbk.head === 'Guestbook' && gbk.wait === 'The guestbook opens when the site goes live.' && !gbk.load && gbk.giscus === 0 && gbk.cfg.repo === 'Glacieerr/Glacieerr.github.io' && gbk.cfg.category === 'Guestbook'
-    && gbk.cfg.mapping === 'specific' && gbk.cfg.term === 'guestbook' && gbk.cfg.reactionsEnabled === '1' && gbk.cfg.repoId === '' && gbk.cfg.categoryId === ''
+  const gbk = await api.eval(`({head: document.getElementById('gbHead').textContent, wait: (document.getElementById('gbWait') || {}).textContent, load: (document.getElementById('gbLoad') || {}).textContent, note: (document.querySelector('#gbLoadRow .gb-note') || {}).textContent, frame: !!document.getElementById('gbFrame'), giscus: document.querySelectorAll('script[src*="giscus"], iframe[src*="giscus"]').length, cfg: JSON.parse(document.getElementById('data').textContent).giscus})`);
+  ok(gbk.head === 'Guestbook' && gbk.wait === undefined && gbk.load === 'Open the guestbook' && gbk.note === 'Opening it connects to giscus.app and GitHub.' && gbk.frame && gbk.giscus === 0
+    && gbk.cfg.repo === 'Glacieerr/Glacieerr.github.io' && gbk.cfg.category === 'Guestbook'
+    && gbk.cfg.mapping === 'specific' && gbk.cfg.term === 'guestbook' && gbk.cfg.reactionsEnabled === '1' && /^R_\w{8,}$/.test(gbk.cfg.repoId) && /^DIC_\w{12,}$/.test(gbk.cfg.categoryId)
     && gbk.cfg.themes.dark === 'https://glacieerr.github.io/giscus-dusk-dark.css' && gbk.cfg.themes.light === 'https://glacieerr.github.io/giscus-dusk-light.css',
-  'the guestbook: with its ids still empty it shows an honest placeholder and loads nothing; one config object (repo, Guestbook category, specific term, reactions, Dusk themes)', JSON.stringify(gbk));
+  'the guestbook: its ids are filled in (go-live, 2026-11-16), so it offers a button that says it will connect to giscus and loads nothing until the visitor clicks; one config object (repo, Guestbook category, specific term, reactions, Dusk themes)', JSON.stringify(gbk));
   await api.go('?lang=zh#home/contact', 900);
-  ok((await text('#gbWait')) === '留言簿会在上线后开放。' && (await text('#gbHead')) === '留言簿', 'the guestbook placeholder in Chinese');
+  ok((await text('#gbLoad')) === '打开留言簿' && (await text('#gbHead')) === '留言簿', 'the guestbook button in Chinese');
   ok(!api.requests.some((u) => /giscus|github\.com\/login|api\.github/i.test(u)), 'nothing has contacted giscus or GitHub');
   const here_ = fileURLToPath(new URL('.', import.meta.url));
   const gcss = ['dark', 'light'].map((m) => existsSync(`${here_}../dist/giscus-dusk-${m}.css`) ? readFileSync(`${here_}../dist/giscus-dusk-${m}.css`, 'utf8') : '');
@@ -1222,8 +1223,9 @@ export default async function (api) {
     await api.go(`?lang=en&appearance=${mode}&open=keys`, 800);
     c['.kr dd'] = (await contrastOf(api, '.kr dd') || {}).p05;
     await api.go(`?lang=en&appearance=${mode}#home/contact`, 800);
-    await api.eval(`document.getElementById('gbWait').scrollIntoView({block: 'center'})`);
-    c['#gbWait'] = (await contrastOf(api, '#gbWait') || {}).p05;
+    // the guestbook's line under its button (before go-live it was the #gbWait placeholder)
+    await api.eval(`document.querySelector('#gbLoadRow .gb-note').scrollIntoView({block: 'center'})`);
+    c['#gbLoadRow .gb-note'] = (await contrastOf(api, '#gbLoadRow .gb-note') || {}).p05;
     console.log('     contrast R3.2', mode, JSON.stringify(c));
     ok(Object.values(c).every((v) => v >= 4.5), `contrast of the new pieces on the ${mode} page (planet card, time travel, Tonight card, Sky app, shortcuts, guestbook) >= 4.5:1`, JSON.stringify(c));
   }
