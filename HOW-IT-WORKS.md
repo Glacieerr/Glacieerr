@@ -286,7 +286,7 @@ node scripts/project_numbers.mjs --repo ../storewright   # commits, tests, dates
 node scripts/sky_day.mjs                             # tonight's sky -> data/sky-day.json
 python3 scripts/lockscreen.py all --out out --pages dark,light
 python3 scripts/lockscreen.py templates --out live
-python3 scripts/make_readme.py                       # bold, below, portrait for phones; checks the images
+python3 scripts/make_readme.py                       # bold, below, portrait for phones, the live clock; checks the images
 python3 scripts/self_check.py --out out --online --dry-run   # the nightly check, opening no issue
 python3 scripts/link_check.py --dry-run              # the monthly link check
 node scripts/pages_tests.mjs --no-build              # the interactive page's checks

@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """Write README.md for the GitHub profile repo (Glacieerr/Glacieerr).
 
-  python3 scripts/make_readme.py                      # banner = the daily image (no server)
-  python3 scripts/make_readme.py --clock https://<project>.vercel.app/api/lockscreen
+  python3 scripts/make_readme.py                      # banner = the live clock at links.clock in data/profile.json
+  python3 scripts/make_readme.py --clock https://<project>.vercel.app/api/lockscreen   # another clock
+  python3 scripts/make_readme.py --no-clock           # banner = the daily image (no server)
   python3 scripts/make_readme.py --layout right --weight thin
   python3 scripts/make_readme.py --no-portrait        # no separate banner for phones
   python3 scripts/make_readme.py --video https://github.com/user-attachments/assets/<id>
@@ -20,7 +21,8 @@ Everything GitHub-specific in here was checked on github.com on 2026-11-12:
 - An image inside <summary> gets wrapped in a link by GitHub and stops toggling;
   wrapping it in <a name=...> keeps it a plain toggle.
 - A github.com/user-attachments video URL on a line of its own becomes a video player.
-Not yet checked live: the narrow-screen (max-width: 600px) <source> for the portrait banner.
+Checked on github.com on 2026-11-16, once the profile was public: the narrow-screen
+(max-width: 600px) <source> is kept too, so phones get the portrait banner.
 
 R3.3 adds: two milestone cards under the banner (#9), the "How I work" loop as a Mermaid chart
 (#37, the steps of pages/src/copy.json app.how.loop, read only), the project timeline (#111),
@@ -314,7 +316,8 @@ def banner_sources(a):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--clock", help="URL of the live banner function (api/lockscreen). Without it the banner is the daily image.")
+    ap.add_argument("--clock", help="URL of the live banner function (api/lockscreen); default: links.clock in data/profile.json")
+    ap.add_argument("--no-clock", action="store_true", help="use the daily image for the banner (no server), even if there is a clock")
     ap.add_argument("--layout", default="below", choices=["below", "right"])
     ap.add_argument("--weight", default="bold", choices=["bold", "thin"])
     ap.add_argument("--dark", default="dark", type=page_mode, help="art for dark pages (default dark)")
@@ -332,6 +335,8 @@ def main():
         F = json.load(f)
     today = dt.datetime.now(ZoneInfo(F["timezone"])).date()
     lk = F["links"]
+    # The live clock stays in the README however it is run again, unless --no-clock says otherwise.
+    a.clock = None if a.no_clock else (a.clock or lk.get("clock"))
     sw, sn = F["storewright"], F["silnest"]
     name = f'{F["name"]} ({F["name_zh"]})'
 

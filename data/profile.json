@@ -15,7 +15,8 @@
     "linkedin": "https://www.linkedin.com/in/canyuanye",
     "linkedin_short": "in/canyuanye",
     "email": "canyuanye@gmail.com",
-    "pages": "https://glacieerr.github.io/"
+    "pages": "https://glacieerr.github.io/",
+    "clock": "https://glacieerr-lockscreen.vercel.app/api/lockscreen"
   },
   "silnest": {
     "title": "SilNest",
