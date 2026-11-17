@@ -28,11 +28,9 @@ Hi, I'm Canyuan. I build software, creative tech and products: AI-native, and pr
 
 <p><picture><source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/Glacieerr/Glacieerr/output/divider-light.svg"><img src="https://raw.githubusercontent.com/Glacieerr/Glacieerr/output/divider-dark.svg" width="100%" height="2" alt=""></picture></p>
 
-### Storewright at a glance
+### Storewright in 90 seconds
 
-<!-- After uploading the demo video in GitHub's web editor, run make_readme.py --video <URL>. -->
-
-<a href="https://glacieerr.github.io/storewright/"><picture><source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/Glacieerr/Glacieerr/output/showcase-storewright-light.svg"><img src="https://raw.githubusercontent.com/Glacieerr/Glacieerr/output/showcase-storewright-dark.svg" width="680" height="440" alt="Storewright running in a browser: the 3D digital twin of a store on the left, two associate phones on the right. Opens the live demo."></picture></a>
+https://github.com/user-attachments/assets/949ca7df-c610-4c8d-856e-73e4058623bb
 
 A grocery store digital twin that runs in your browser. **[Open the live demo ↗](https://glacieerr.github.io/storewright/)** · [Read the README](https://github.com/Glacieerr/storewright#readme)
 

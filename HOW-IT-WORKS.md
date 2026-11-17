@@ -163,12 +163,14 @@ at the right: the row visibly goes on. The widgets stay 368 or 176 pixels wide f
 
 ## Storewright, before the fold
 
-Right after the introduction the README shows Storewright: a still of the running demo that
-opens the live demo, with links to the demo and to its README. Upload the short demo video in
-GitHub's web editor (drag it into the README; it must be under 10 MB), copy the
-`https://github.com/user-attachments/assets/...` address it gets, and run
-`make_readme.py --video <that address>`. The address then sits on a line of its own, which
-GitHub turns into a video player. The 3D store stays in the collapsed part.
+Right after the introduction the README shows Storewright: the 87-second demo video, with links
+to the live demo and to its README. The video was uploaded in GitHub's web editor (dragged in;
+it must be under 10 MB), and its `https://github.com/user-attachments/assets/...` address is
+`storewright.video` in `data/profile.json`, which `make_readme.py` uses by default. The address
+sits on a line of its own, which GitHub turns into a video player. `make_readme.py --no-video`
+shows a still of the running demo instead, which opens the live demo. A new upload stays private
+(logged-out visitors get a 404) until some text saved on github.com uses it; the Storewright
+release notes did that for this one. The 3D store stays in the collapsed part.
 
 ## The interactive version
 
@@ -286,7 +288,7 @@ node scripts/project_numbers.mjs --repo ../storewright   # commits, tests, dates
 node scripts/sky_day.mjs                             # tonight's sky -> data/sky-day.json
 python3 scripts/lockscreen.py all --out out --pages dark,light
 python3 scripts/lockscreen.py templates --out live
-python3 scripts/make_readme.py                       # bold, below, portrait for phones, the live clock; checks the images
+python3 scripts/make_readme.py                       # bold, below, portrait for phones, the live clock, the demo video; checks the images
 python3 scripts/self_check.py --out out --online --dry-run   # the nightly check, opening no issue
 python3 scripts/link_check.py --dry-run              # the monthly link check
 node scripts/pages_tests.mjs --no-build              # the interactive page's checks

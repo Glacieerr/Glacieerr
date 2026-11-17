@@ -6,7 +6,8 @@
   python3 scripts/make_readme.py --no-clock           # banner = the daily image (no server)
   python3 scripts/make_readme.py --layout right --weight thin
   python3 scripts/make_readme.py --no-portrait        # no separate banner for phones
-  python3 scripts/make_readme.py --video https://github.com/user-attachments/assets/<id>
+  python3 scripts/make_readme.py --video https://github.com/user-attachments/assets/<id>   # another video
+  python3 scripts/make_readme.py --no-video           # the still that opens the live demo, even if there is a video
 
 The art follows the visitor's GitHub theme: dark art on dark pages, light art on light pages
 (--dark and --light choose otherwise; the wallpaper names used before the Dusk Tech restyle
@@ -326,7 +327,8 @@ def main():
                     help="leave out the portrait banner that screens narrower than 600 px get")
     ap.add_argument("--no-dividers", action="store_true", help="leave out the thin gradient rules between sections")
     ap.add_argument("--weather", action="store_true", help="show Albany weather after the date (live banner only)")
-    ap.add_argument("--video", help="the github.com/user-attachments/assets/... URL after you upload the demo video")
+    ap.add_argument("--video", help="the github.com/user-attachments/assets/... URL of the demo video; default: storewright.video in data/profile.json")
+    ap.add_argument("--no-video", action="store_true", help="show the still that opens the live demo, even if there is a video")
     ap.add_argument("--out", default="out", help="where lockscreen.py wrote the images (checked if it exists)")
     ap.add_argument("--no-check", action="store_true", help="write the README even if the image check finds problems")
     a = ap.parse_args()
@@ -338,6 +340,8 @@ def main():
     # The live clock stays in the README however it is run again, unless --no-clock says otherwise.
     a.clock = None if a.no_clock else (a.clock or lk.get("clock"))
     sw, sn = F["storewright"], F["silnest"]
+    # The demo video stays in the README however it is run again, unless --no-video says otherwise.
+    a.video = None if a.no_video else (a.video or sw.get("video"))
     name = f'{F["name"]} ({F["name_zh"]})'
 
     # ---------- banner: a portrait one for phones first (the first matching <source> wins)
