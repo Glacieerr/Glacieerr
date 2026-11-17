@@ -2971,10 +2971,13 @@ export default async function (api) {
 
   const here = fileURLToPath(new URL('.', import.meta.url));
   const cur = readFileSync(`${here}../dist/index.html`, 'utf8');
+  // The two earlier designs are kept for comparison on the author's Mac only: pages/dist/ is not
+  // committed, so a fresh checkout (the workflows on GitHub) has neither file and skips that part.
+  const keeps = (file, words) => !existsSync(file) || (readFileSync(file, 'utf8') !== cur && readFileSync(file, 'utf8').includes(words));
   const r1 = `${here}../dist/index-r1.html`;
-  ok(existsSync(r1) && readFileSync(r1, 'utf8') !== cur && readFileSync(r1, 'utf8').includes('Swipe up to unlock'), 'dist/index-r1.html keeps the first design for comparison');
+  ok(keeps(r1, 'Swipe up to unlock'), 'dist/index-r1.html, where it is kept, keeps the first design for comparison');
   const i7 = `${here}../dist/index-ios7.html`;
-  ok(existsSync(i7) && readFileSync(i7, 'utf8') !== cur && readFileSync(i7, 'utf8').includes('slide to unlock') && Buffer.byteLength(cur) <= 1500000, 'dist/index-ios7.html keeps the iOS 7 restyle for comparison; the page stays within 1.5 MB');
+  ok(keeps(i7, 'slide to unlock') && Buffer.byteLength(cur) <= 1500000, 'dist/index-ios7.html, where it is kept, keeps the iOS 7 restyle for comparison; the page stays within 1.5 MB');
 
   const external = api.requests.filter((u) => !/^(file|data|blob):/.test(u) && u !== 'about:blank');
   ok(external.length === 0, 'no external requests', JSON.stringify(external.slice(0, 5)));

@@ -12,7 +12,7 @@
 
 The tests start Chrome with a fresh profile under $CHROME_PROFILE_ROOT (default: the system
 temp folder). dist/index-r1.html (the first design) and dist/index-ios7.html (the iOS 7
-restyle) are earlier versions, kept only for comparison.
+restyle) are earlier versions, kept only locally for comparison (pages/dist/ is not committed).
 
 Look: "Dusk Tech", following GitHub主页方案/dusk-spec.md. A near-black page (or its own white
 design in light mode) with a faint dot grid and soft indigo, violet and teal glows; the lock
