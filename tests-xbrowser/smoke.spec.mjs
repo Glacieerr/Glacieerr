@@ -13,12 +13,21 @@ import { expect, test } from '@playwright/test';
 const ORIGIN = 'http://127.0.0.1:4180';
 const SHOTS = fileURLToPath(new URL('./results/screens/', import.meta.url));
 
+// Pages in the middle of page.screenshot(). Before each screenshot, Playwright's WebKit adds
+// <style>body {}</style> to the page for a moment (to sync animations); the page's Content Security
+// Policy refuses it, as it should, and WebKit logs that refusal. Real visitors never see it, so
+// while a screenshot is being taken, and only then, that one message is not counted.
+const shooting = new WeakSet();
+const PLAYWRIGHT_STYLE = /^Refused to apply a stylesheet because its hash, its nonce, or 'unsafe-inline' does not appear in the style-src directive/;
+
 /** What goes wrong while a test runs: script errors, console errors, requests off the page. */
 function watch(page) {
   const problems = [];
   page.on('pageerror', (e) => problems.push(`script error: ${e.message}`));
   page.on('console', (m) => {
-    if (m.type() === 'error') problems.push(`console error: ${m.text()}`);
+    if (m.type() !== 'error') return;
+    if (shooting.has(page) && PLAYWRIGHT_STYLE.test(m.text())) return;
+    problems.push(`console error: ${m.text()}`);
   });
   page.on('request', (r) => {
     const url = r.url();
@@ -30,7 +39,12 @@ function watch(page) {
 async function shot(page, testInfo, name) {
   mkdirSync(SHOTS, { recursive: true });
   const path = join(SHOTS, `${process.platform}-${testInfo.project.name}-${name}.png`);
-  await page.screenshot({ path });
+  shooting.add(page);
+  try {
+    await page.screenshot({ path });
+  } finally {
+    shooting.delete(page);
+  }
   await testInfo.attach(name, { path, contentType: 'image/png' });
 }
 
@@ -88,11 +102,15 @@ test('the Sky app draws its chart and takes a date from the date field (a leap d
   const problems = watch(page);
   await page.goto('/?lang=en#sky');
   await expect(page.locator('#appView')).toHaveAttribute('data-app', 'sky');
-  const chart = page.locator('#skyChart svg').first();
-  await expect(chart).toBeVisible();
-  const box = await chart.boundingBox();
-  expect(box && box.width).toBeGreaterThan(100);
-  expect(box && box.height).toBeGreaterThan(100);
+  await expect(page.locator('#skyChart svg').first()).toBeVisible();
+  // Measured inside the page from the chart's box: the app redraws the <svg> itself, and on Linux
+  // WebKit Playwright's boundingBox() of that <svg> came back null (macOS and Windows were fine).
+  const size = await page.locator('#skyChart').evaluate((box) => {
+    const r = box.querySelector('svg')?.getBoundingClientRect();
+    return r ? { width: r.width, height: r.height } : null;
+  });
+  expect(size && size.width).toBeGreaterThan(100);
+  expect(size && size.height).toBeGreaterThan(100);
   const date = page.locator('#skyDate');
   await date.fill('2028-02-29');
   await date.dispatchEvent('change');                        // fill sends it too; twice does no harm
