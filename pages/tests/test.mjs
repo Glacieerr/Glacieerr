@@ -1121,6 +1121,22 @@ export default async function (api) {
   await api.go('?lang=zh#home/contact', 900);
   ok((await text('#gbLoad')) === '打开留言簿' && (await text('#gbHead')) === '留言簿', 'the guestbook button in Chinese');
   ok(!api.requests.some((u) => /giscus|github\.com\/login|api\.github/i.test(u)), 'nothing has contacted giscus or GitHub');
+  // The guestbook as if giscus had loaded, without loading it: a stand-in frame (no address) and
+  // the message giscus sends first. Found live on 2026-11-16: the "Loading" line stayed, and the
+  // frame ran 11 px past the card's right edge.
+  const gbLoaded = await api.eval(`(() => {
+    const box = document.getElementById('gbFrame'), row = document.getElementById('gbLoadRow');
+    window.dispatchEvent(new MessageEvent('message', { origin: 'https://example.com', data: { giscus: { resizeHeight: 300 } } }));
+    const keptForOthers = !row.hidden;
+    const f = document.createElement('iframe');
+    f.className = 'giscus-frame';
+    box.append(f);
+    window.dispatchEvent(new MessageEvent('message', { origin: 'https://giscus.app', data: { giscus: { resizeHeight: 300 } } }));
+    const card = document.querySelector('#guestbook .gb-card').getBoundingClientRect(), fr = box.getBoundingClientRect();
+    return { keptForOthers, hidden: row.hidden, inside: fr.width > 100 && fr.left >= card.left && fr.right <= card.right + 0.5, card: [Math.round(card.left), Math.round(card.right)], frame: [Math.round(fr.left), Math.round(fr.right)] };
+  })()`);
+  ok(gbLoaded.keptForOthers && gbLoaded.hidden && gbLoaded.inside,
+    'the guestbook once loaded: its "Loading" line goes when giscus first writes from its frame (a message from anywhere else changes nothing), and the frame stays inside its card', JSON.stringify(gbLoaded));
   const here_ = fileURLToPath(new URL('.', import.meta.url));
   const gcss = ['dark', 'light'].map((m) => existsSync(`${here_}../dist/giscus-dusk-${m}.css`) ? readFileSync(`${here_}../dist/giscus-dusk-${m}.css`, 'utf8') : '');
   ok(gcss.every((c) => /--color-fg-default/.test(c) && /--color-canvas-default/.test(c) && /--color-btn-primary-bg/.test(c)) && /transparent_dark/.test(gcss[0]) && /"light"/.test(gcss[1]),

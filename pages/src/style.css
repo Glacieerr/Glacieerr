@@ -1539,7 +1539,8 @@ body.earth-drag, body.earth-drag .pl-btns, body.earth-drag .pl-btn { cursor: gra
 /* #171 */
 .rn-sub { padding-bottom: 0; font-size: 13px; font-weight: 600; color: var(--fg); }
 /* the guestbook's own styles, here because the page's Content Security Policy keeps out giscus's inline <style> (#175) */
-.giscus, .giscus-frame { width: 100%; min-height: 150px; }
+.giscus { min-height: 150px; }    /* a plain block between .gb-frame's margins (100% wide plus margins ran past the card) */
+.giscus-frame { width: 100%; min-height: 150px; }
 .giscus-frame { border: none; color-scheme: light dark; }
 .giscus-frame--loading { opacity: 0; }
 

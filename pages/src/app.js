@@ -3686,6 +3686,13 @@
     const f = doc.querySelector('iframe.giscus-frame');
     if (f && f.contentWindow) f.contentWindow.postMessage({ giscus: { setConfig: cfg } }, D.giscus.origin);
   }
+  // giscus writes to this page from its frame as soon as it has loaded (its height, first of all):
+  // then the "Loading the guestbook…" line goes. Messages from anywhere else change nothing.
+  window.addEventListener('message', (e) => {
+    if (e.origin !== D.giscus.origin || !e.data || typeof e.data !== 'object' || !e.data.giscus) return;
+    const row = $('#gbLoadRow', A.body);
+    if (row && $('#gbFrame iframe', A.body)) row.hidden = true;
+  });
   let pendingFocus = null;
   function openGuestbook() {
     pendingFocus = 'guestbook';
