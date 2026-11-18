@@ -30,7 +30,11 @@ jobs:
   smoke:
     name: smoke (${{ matrix.os }})
     runs-on: ${{ matrix.os }}
-    timeout-minutes: 30
+    # 40, not 30, since 2026-11-18: Ubuntu's package mirror sent 90 kB/s that day, the browsers'
+    # system libraries (125 MB) took 23 minutes and the job came within 5 minutes of its limit.
+    # The two steps that download from package mirrors have limits of their own (4 and 30
+    # minutes), so a stuck download fails its step, by name, instead of the job being cancelled.
+    timeout-minutes: 40
     strategy:
       fail-fast: false
       matrix:
@@ -52,6 +56,7 @@ jobs:
 
       - name: Chinese fonts on Linux (macOS and Windows have their own)
         if: runner.os == 'Linux'
+        timeout-minutes: 4
         continue-on-error: true
         run: sudo apt-get update -qq && sudo apt-get install -y -qq fonts-noto-cjk
 
@@ -63,6 +68,9 @@ jobs:
           "$py" pages/build.py
 
       - name: Install Playwright and its three browsers (in CI only)
+        # under a minute on Linux and macOS, 3 to 4 on Windows. On Linux, --with-deps installs the
+        # browsers' system libraries with apt: 24 minutes on 2026-11-18
+        timeout-minutes: 30
         working-directory: tests-xbrowser
         run: |
           npm install --no-package-lock --no-audit --no-fund

@@ -41,9 +41,12 @@ jobs:
       - name: Check out the profile repo
         uses: actions/checkout@v7
 
-      # ---- the simulated store day (optional: on failure the widget keeps the last day)
+      # ---- the simulated store day (optional: on failure the widget keeps the last day). Its two
+      # downloads take seconds; each has a limit of its own (3 and 5 minutes, 2026-11-18), so one
+      # that hangs only fails, instead of running the job out of time and skipping that night.
       - name: Check out Storewright (default branch, full history for the project numbers)
         id: sw
+        timeout-minutes: 3
         continue-on-error: true
         uses: actions/checkout@v7
         with:
@@ -62,6 +65,7 @@ jobs:
       - name: Install the simulator's dependencies only
         id: deps
         if: steps.sw.outcome == 'success'
+        timeout-minutes: 5
         continue-on-error: true
         working-directory: storewright
         env:

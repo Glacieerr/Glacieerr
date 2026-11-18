@@ -68,6 +68,9 @@ jobs:
         run: python3 scripts/copy_check.py --repo-only
 
       - name: Fonts for the Chinese copy (the page shows both languages)
+        # usually 10 to 30 seconds, but 15 minutes on 2026-11-18 (a slow Ubuntu mirror). After 4
+        # minutes the step gives up and the checks go on, as they do when the install fails
+        timeout-minutes: 4
         continue-on-error: true
         run: sudo apt-get update -qq && sudo apt-get install -y -qq fonts-noto-cjk
 
@@ -142,26 +145,34 @@ jobs:
     # the timings behind performance and every audit that did not pass to the run's summary, and
     # flags a score under 90 there; the reports are kept for 14 days. Lighthouse's performance
     # numbers move from run to run on shared machines, so this job reports and never fails the run.
+    # Nor does it cancel the run (2026-11-18, as in the screenshots job): every step has a limit of
+    # its own, 15 of the job's 20 minutes in all, so a step out of time only fails.
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
     continue-on-error: true
     steps:
       - uses: actions/checkout@v7
+        timeout-minutes: 2
 
       - name: Set up Node 22
+        timeout-minutes: 2
         uses: actions/setup-node@v7
         with:
           node-version: 22
 
       - name: Build the page
+        timeout-minutes: 1
         run: python3 pages/build.py
 
       - name: Serve it on 127.0.0.1:4180, gzipped as on GitHub Pages
+        timeout-minutes: 1
         run: |
           node tests-xbrowser/serve.mjs > "${{ runner.temp }}/serve.log" 2>&1 &
           for i in $(seq 1 30); do curl -sf http://127.0.0.1:4180/ > /dev/null && break; sleep 1; done
 
       - name: Lighthouse as a phone and as a desktop
+        # about 45 seconds, npx fetching Lighthouse included
+        timeout-minutes: 6
         env:
           CHROME_PATH: /usr/bin/google-chrome
         run: |
@@ -175,10 +186,12 @@ jobs:
           done
 
       - name: The scores (in this run's summary)
+        timeout-minutes: 1
         run: node scripts/lighthouse_summary.mjs lighthouse/mobile.report.json lighthouse/desktop.report.json
 
       - name: Keep the reports
         if: always()
+        timeout-minutes: 2
         uses: actions/upload-artifact@v7
         with:
           name: lighthouse
