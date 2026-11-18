@@ -84,35 +84,50 @@ jobs:
     # first #present slide, Assets) in dark and light at desktop and phone width, at one frozen
     # moment, kept for 14 days to look at. The strict comparison with pages/tests/baseline/ runs
     # on a Mac (node pages/tests/cdp.mjs pages/tests/visual.mjs), where the baselines were drawn;
-    # Linux has other fonts. It never blocks publishing.
+    # Linux has other fonts. It never blocks publishing, and it never fails or cancels the run
+    # (2026-11-18): continue-on-error lets the job fail without failing the run, but a job that
+    # reaches its own time limit is cancelled, and that cancels the run. So every step has a
+    # shorter limit of its own (17 of the job's 20 minutes in all): a step out of time only fails.
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
     continue-on-error: true
     steps:
       - uses: actions/checkout@v7
+        timeout-minutes: 2
 
       - name: Set up Node 22
+        timeout-minutes: 2
         uses: actions/setup-node@v7
         with:
           node-version: 22
 
       - name: Fonts for the Chinese copy
+        # apt hung here for 15 minutes once (2026-11-18); without these fonts the pictures are
+        # still taken
+        timeout-minutes: 4
         continue-on-error: true
         run: sudo apt-get update -qq && sudo apt-get install -y -qq fonts-noto-cjk
 
       - name: Build the page
+        timeout-minutes: 1
         run: python3 pages/build.py
 
       - name: Photograph the main views
+        # about a minute; WATCHDOG ends the script at 4 minutes. Chrome's own messages (cdp.mjs)
+        # are kept with the pictures
+        timeout-minutes: 6
         env:
           CHROME: ${{ github.workspace }}/scripts/chrome-ci.sh
           CHROME_PROFILE_ROOT: ${{ runner.temp }}
+          CHROME_LOG: ${{ runner.temp }}/screenshots/chrome.log
+          WATCHDOG: "240000"
           MODE: shots
           OUT: ${{ runner.temp }}/screenshots
         run: node pages/tests/cdp.mjs pages/tests/visual.mjs
 
       - name: Keep the screenshots
         if: always()
+        timeout-minutes: 2
         uses: actions/upload-artifact@v7
         with:
           name: screenshots

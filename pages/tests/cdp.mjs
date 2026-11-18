@@ -1,9 +1,11 @@
 // Minimal Chrome DevTools Protocol driver for the page checks and screenshots.
 //   node pages/tests/cdp.mjs pages/tests/test.mjs     (the script default-exports async (api) => {...})
 // env: CHROME (binary), CHROME_PROFILE_ROOT (where throwaway profiles go; default: the temp folder),
-//      PAGE (URL of the built page; default: pages/dist/index.html as a file:// URL)
+//      PAGE (URL of the built page; default: pages/dist/index.html as a file:// URL),
+//      CHROME_START_MS (how long Chrome may take to start; default 30000),
+//      CHROME_LOG (where Chrome's own messages go; default: inside the profile, removed with it)
 import { spawn } from 'node:child_process';
-import { writeFileSync, mkdirSync, rmSync } from 'node:fs';
+import { writeFileSync, mkdirSync, rmSync, openSync, closeSync, readFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, dirname } from 'node:path';
 import { pathToFileURL, fileURLToPath } from 'node:url';
@@ -16,19 +18,41 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 const port = 9300 + Math.floor(Math.random() * 500);
 const profile = join(process.env.CHROME_PROFILE_ROOT || tmpdir(), `pages-run-${Date.now()}-${process.pid}`);
 mkdirSync(profile, { recursive: true });
+// Chrome's own messages (its stdout and stderr) go to a file, so a Chrome that does not start can
+// say why; pages.yml keeps the file with the screenshots
+const chromeLog = process.env.CHROME_LOG || join(profile, 'chrome.log');
+mkdirSync(dirname(chromeLog), { recursive: true });
+const logFd = openSync(chromeLog, 'w');
 const proc = spawn(CHROME, ['--headless=new', '--disable-gpu', '--hide-scrollbars', `--remote-debugging-port=${port}`,
   `--user-data-dir=${profile}`, '--no-first-run', '--no-default-browser-check', '--lang=en-US', 'about:blank'],
-{ stdio: 'ignore' });
+{ stdio: ['ignore', logFd, logFd] });
+closeSync(logFd);
+let gone = '';   // why Chrome is not running: it could not be started, or it stopped
+proc.on('error', (e) => { gone ||= e.message; });
+proc.on('exit', (code, signal) => { gone ||= `it exited (${signal || `code ${code}`})`; });
 
+// Chrome's first start on a fresh GitHub runner takes 8 to 11 s (the pages.yml logs, 2026-11-17
+// and 18). The 10 s this used to wait was too close: the screenshots job, which has no second
+// try, failed with "no chrome" on every push for a day. The wait ends early if Chrome stops.
+const START_MS = Number(process.env.CHROME_START_MS || 30000);
+const t0 = Date.now();
 let wsUrl;
-for (let i = 0; i < 100 && !wsUrl; i++) {
+while (!wsUrl && !gone && Date.now() - t0 < START_MS) {
   try {
-    const list = await (await fetch(`http://127.0.0.1:${port}/json/list`)).json();
+    const list = await (await fetch(`http://127.0.0.1:${port}/json/list`, { signal: AbortSignal.timeout(2000) })).json();
     wsUrl = list.find((t) => t.type === 'page')?.webSocketDebuggerUrl;
   } catch { /* not up yet */ }
   if (!wsUrl) await sleep(100);
 }
-if (!wsUrl) { console.error('no chrome'); proc.kill(); process.exit(1); }
+if (!wsUrl) {
+  let said = '';
+  try { said = readFileSync(chromeLog, 'utf8').trim().split('\n').slice(-30).join('\n'); } catch { /* no log */ }
+  console.error(`no chrome: ${gone || `no DevTools address after ${START_MS / 1000} s`} (${CHROME})`);
+  console.error(`Chrome's own messages (the last 30 lines of ${chromeLog}):\n${said || '(none)'}`);
+  proc.kill();
+  process.exit(1);
+}
+console.log(`cdp: Chrome ready in ${((Date.now() - t0) / 1000).toFixed(1)} s`);
 
 const ws = new WebSocket(wsUrl);
 await new Promise((r) => ws.addEventListener('open', r, { once: true }));
