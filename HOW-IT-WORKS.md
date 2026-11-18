@@ -10,6 +10,9 @@ I built this profile with Claude Code, the way I build everything: I decide what
 we'll know it works, Claude Code writes most of the code, and I review every change and accept it
 through tests and walkthroughs.
 
+The same story as an article, with why the clock is right and how the planets are checked against
+NASA/JPL: [A GitHub profile that watches the sky](docs/a-github-profile-that-watches-the-sky.md).
+
 ## Pieces
 
 | Piece | What it does |
