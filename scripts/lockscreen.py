@@ -15,7 +15,7 @@ original. Standard library only (Python 3.9+), so the daily GitHub Action instal
 
 Files it writes (page = dark | light, layout = below | right | portrait, weight = bold | thin):
   banner-<page>-<layout>-<weight>-<mode>.svg   the banner. mode daily: no clock, the date is the
-                                               hero (regenerated every night); static: frozen at
+                                               hero (regenerated every day); static: frozen at
                                                --at, for screenshots only
   w-<widget>-<page>.svg                        one widget: the card alone on a transparent canvas
   strip-<page>.svg                             every widget in one image
@@ -654,7 +654,7 @@ def sky_planet_line(pl, tn, tz):
 
 
 def w_sky(page, facts, sky, p="sk", bare=False):
-    """Tonight's sky over Albany, from data/sky-day.json (scripts/sky_day.mjs, every night):
+    """Tonight's sky over Albany, from data/sky-day.json (scripts/sky_day.mjs, every day):
     the Moon's phase, sunset and dark, up to three naked-eye planets with when and where, and a
     small dome of the sky at chart.at (north up, east on the left, as if held overhead)."""
     w, h = 368, 176
@@ -1310,7 +1310,7 @@ PORTRAIT = dict(centre=(300, 584), scale=1.15, lanes=[(44, -150), (None, 108), (
 
 def banner(page="dark", layout="below", weight="bold", mode="daily", now=None, stack_widgets=None,
            weather=None, facts=None, sky=None):
-    """mode: daily (date as the hero, regenerated every night), static (a fixed time, for
+    """mode: daily (date as the hero, regenerated every day), static (a fixed time, for
     screenshots), template (placeholders for the live-clock function)."""
     page = ALIASES.get(page, page)
     facts = facts or load("profile.json")
@@ -1443,7 +1443,7 @@ SHOWCASE_IMG = "storewright-showcase-960.jpg"  # its compressed copy for the fra
 
 def showcase_copy():
     """Refresh the compressed copy when the screenshot is newer (needs macOS sips; the copy is
-    committed, so the nightly job on Linux just uses it). Returns the file name to embed."""
+    committed, so the daily job on Linux just uses it). Returns the file name to embed."""
     src, dst = (os.path.join(ROOT, "assets", "src", n) for n in (SHOWCASE_SRC, SHOWCASE_IMG))
     stale = not os.path.exists(dst) or os.path.getmtime(dst) < os.path.getmtime(src)
     if stale and shutil.which("sips"):
@@ -1825,7 +1825,9 @@ def badge(page, key, facts):
     return standalone(w, h, label, defs, body), label, w
 
 
-FOOTER = "Images redrawn every night by GitHub Actions · last run {date}"
+# "every day", not "every night" (2026-11-18): the schedule says 05:17 UTC, but GitHub starts
+# scheduled runs late when it is busy; in the first days this one began about nine hours late
+FOOTER = "Images redrawn every day by GitHub Actions · last run {date}"
 
 
 def footer_size():
@@ -1835,12 +1837,12 @@ def footer_size():
 
 
 def footer(page, today):
-    """The small print at the bottom (idea #112): when the nightly job last drew these images.
-    The README is not rewritten every night, so the date has to be an image."""
+    """The small print at the bottom (idea #112): when the daily job last drew these images.
+    The README is not rewritten every day, so the date has to be an image."""
     m = MODES[page]
     text = FOOTER.format(date=f"{MONTHS[today.month - 1][:3]} {today.day}, {today.year}")
     w, h = footer_size()
-    label = f"The images on this page are redrawn every night by GitHub Actions; last run {when_long(today.isoformat())}."
+    label = f"The images on this page are redrawn every day by GitHub Actions; last run {when_long(today.isoformat())}."
     return standalone(w, h, label, "", T(1, 13, text, 12, m["fg2"], weight=500)), label, w
 
 

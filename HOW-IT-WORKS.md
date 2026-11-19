@@ -26,8 +26,8 @@ NASA/JPL: [A GitHub profile that watches the sky](docs/a-github-profile-that-wat
 | `scripts/sky_day.mjs` | Works out where the planets are, the Moon's phase and tonight's sky over Albany, offline, into `data/sky-day.json` |
 | `live/astro.mjs` | The astronomy behind it (also used by the live function and the interactive page) |
 | `scripts/make_readme.py` | Writes `README.md` |
-| `.github/workflows/daily.yml` | Every night: simulate the day, count Storewright's numbers, check the App Store, work out the sky, redraw, check the images, publish to the `output` branch |
-| `.github/workflows/monthly.yml` | Once a month: check every outside link, and keep the nightly schedule switched on |
+| `.github/workflows/daily.yml` | Every day (scheduled for 05:17 UTC, but GitHub starts scheduled runs late when it is busy; in the first days this one began about nine hours late): simulate the day, count Storewright's numbers, check the App Store, work out the sky, redraw, check the images, publish to the `output` branch |
+| `.github/workflows/monthly.yml` | Once a month: check every outside link, and keep the daily schedule switched on |
 | `.github/workflows/pages.yml` | On every change to the interactive page: build it and run all its checks in headless Chrome. The Glacieerr.github.io repository publishes it (see The interactive version) |
 | `scripts/collect_site.sh` | Gathers the built page and the files next to it into one folder, which Glacieerr.github.io publishes |
 | `scripts/self_check.py`, `link_check.py`, `keepalive.py`, `gh_issue.py`, `net.py` | The checks behind those workflows, and the issue they open when something breaks |
@@ -66,8 +66,8 @@ shows around them.
 | `skills-<page>.svg` | The skill map: one constellation per lane, a star per skill, brighter when more of my projects used it (the README lists the same map in words behind the fold) |
 | `timeline-<page>.svg` | When each project started (and ended), with today marked |
 | `badge-<linkedin\|site\|email\|guestbook>-<page>.svg` | The contact badges, drawn here rather than borrowed from a badge service |
-| `footer-<page>.svg` | "Images redrawn every night by GitHub Actions · last run <date>": an image, because the README itself is not rewritten every night |
-| `self-check.json`, `project-numbers.json`, `silnest-store.json`, `sky-day.json` | Published with the images: the last self-check, and the night's data |
+| `footer-<page>.svg` | "Images redrawn every day by GitHub Actions · last run <date>": an image, because the README itself is not rewritten every day |
+| `self-check.json`, `project-numbers.json`, `silnest-store.json`, `sky-day.json` | Published with the images: the last self-check, and the day's data |
 
 The wallpaper names used before this look, `midnight`, `orbit`, `blossom` and `aurora` (dark)
 and `lagoon` and `dawn` (light), still work in the scripts and in the function.
@@ -151,7 +151,7 @@ all passed:
 | Rise and set times | about 1 minute |
 | New and full Moon times | 0.2 hours |
 
-Fine for pictures, not for navigation. Every night `node scripts/sky_day.mjs` writes
+Fine for pictures, not for navigation. Every day `node scripts/sky_day.mjs` writes
 `data/sky-day.json` (the planets' longitudes, the Moon, tonight's sky over Albany and a small
 chart at nightfall) before the images are drawn.
 
@@ -205,7 +205,7 @@ Around it, everything is computed offline and checked against published tables:
   and Mars, a true-scale solar system, and Chinese star names in Chinese mode.
 - **The calendar:** every day's Moon (USNO), meteor shower peaks (IMO), NASA's eclipses to
   2035, solar terms and the Chinese lunar date (Hong Kong Observatory), the next 30 days of
-  events, and an .ics download that `scripts/sky_ics.mjs` also writes every night. In Chinese
+  events, and an .ics download that `scripts/sky_ics.mjs` also writes every day. In Chinese
   each solar term sits on its date in Beijing time, as Chinese calendars print it; in English
   the equinoxes and solstices keep their Albany dates, as American calendars do.
 - **Time:** time travel (the T key, or ">" in search) moves the clock, the store-day card, the
@@ -241,20 +241,20 @@ this repository's main branch, runs the same checks as `pages.yml` (the facts, t
 cases and every check of the page), gathers the files with `scripts/collect_site.sh` and
 publishes them with GitHub Pages. Nothing is published when a check fails, and no token is
 involved: the source is public, and a repository may publish its own Pages site. It runs by hand,
-on every push there and every night; a nightly run stops after a few seconds unless main has
+on every push there and once a day; a scheduled run stops after a few seconds unless main has
 moved, because the site keeps the commit it was built from in `deployed-from.txt`.
 
 ## Checks that run by themselves
 
-- **Every night** (`self_check.py`, before publishing): every image the README uses must be in
+- **Every day** (`self_check.py`, before publishing): every image the README uses must be in
   `out/`, parse as SVG, carry no script, load nothing from outside and stay within its size
   budget; otherwise nothing is published and yesterday's images stay up. It also fetches every
   image the README links (and the live banner, once the README uses it). A problem on two nights
   in a row opens an issue in this repository; a clean night closes it.
 - **Schedule** (`keepalive.py`, monthly, and `self_check.py`): GitHub turns off a public
   repository's scheduled workflows after 60 days without activity. Once a month the API is asked
-  to enable them again, and 50 days after the last commit the nightly check opens an issue as a
-  reminder. Whether the bot's nightly push already counts as activity is to be watched after go-live.
+  to enable them again, and 50 days after the last commit the daily check opens an issue as a
+  reminder. Whether the bot's daily push already counts as activity is to be watched after go-live.
 - **Every month** (`link_check.py`): every outside link in the README, this file and the
   interactive page; a broken one opens an issue. LinkedIn turns automated visitors away, so it is
   listed as a reminder to check by hand, never as a failure.
@@ -277,7 +277,9 @@ moved, because the site keeps the commit it was built from in `deployed-from.txt
 - **Speed** (the `lighthouse` job in `pages.yml`, reported, not failing): Lighthouse scores as a
   phone and as a desktop, in the run's summary. `pages/tests/perf.mjs` measures the numbers behind
   them on your own machine: first paint, when the clock shows the time, layout shift and blocking
-  time.
+  time. Its robots.txt audit fails there only because Lighthouse fetches the file through the open
+  page, which the page's own `connect-src 'none'` blocks (checked 2026-11-18); search engines fetch
+  it directly.
 - **When the README is written** (`make_readme.py`): every image needs a real alt text, one or
   two sentences that no other image repeats (only the dividers are decorative), and every image
   it links must be in `out/`.
@@ -292,7 +294,7 @@ node scripts/sky_day.mjs                             # tonight's sky -> data/sky
 python3 scripts/lockscreen.py all --out out --pages dark,light
 python3 scripts/lockscreen.py templates --out live
 python3 scripts/make_readme.py                       # bold, below, portrait for phones, the live clock, the demo video; checks the images
-python3 scripts/self_check.py --out out --online --dry-run   # the nightly check, opening no issue
+python3 scripts/self_check.py --out out --online --dry-run   # the daily check, opening no issue
 python3 scripts/link_check.py --dry-run              # the monthly link check
 node scripts/pages_tests.mjs --no-build              # the interactive page's checks
 bash scripts/collect_site.sh --dry-run               # the files Glacieerr.github.io publishes

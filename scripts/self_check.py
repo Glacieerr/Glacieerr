@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""The nightly self-check (idea #123): is every image in the README there and a real SVG?
+"""The daily self-check (idea #123): is every image in the README there and a real SVG?
 
 Run by .github/workflows/daily.yml after the images are drawn and before they are published.
 
@@ -185,15 +185,15 @@ def main():
 
     if a.issue:
         if (problems or notes) and streak >= 2:
-            body = ("The nightly self-check found this on two runs in a row:\n\n"
+            body = ("The daily self-check found this on two runs in a row:\n\n"
                     + "\n".join(f"- {p}" for p in problems + notes)
                     + "\n\nIt runs in `.github/workflows/daily.yml` (`scripts/self_check.py`). This issue closes itself "
-                      "when a night is clean again.")
+                      "when a run is clean again.")
             gh_issue.report(TITLE, body, dry_run=a.dry_run, repo=a.repo)
         elif problems or notes:
             print("first bad run: an issue opens if the next run finds a problem too")
         else:
-            gh_issue.resolve(TITLE, "The nightly self-check is clean again.", dry_run=a.dry_run, repo=a.repo)
+            gh_issue.resolve(TITLE, "The daily self-check is clean again.", dry_run=a.dry_run, repo=a.repo)
     return 1 if local else 0
 
 

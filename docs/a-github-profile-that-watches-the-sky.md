@@ -1,12 +1,12 @@
-> **中文摘要：** 这篇文章讲我的 GitHub 主页是怎么做的：README 顶部是一张 SVG 横幅，显示 Albany 的时间；头像周围的八大行星从它们今天的真实位置出发（用 NASA/JPL 公布的近似轨道根数计算，并和 JPL Horizons 星历核对过，行星误差在 0.15° 以内）；月亮跟在地球旁边，画的是今天的月相。时钟靠一个不让 GitHub 缓存的小函数和 SVG 自带的动画走准；小组件每晚由 GitHub Actions 重画。还有一个交互版：一个 HTML 文件，打开时不联网，可以看 172 个城市今晚的星空。最后一节如实写了 AI 做了什么、我做了什么。
+> **中文摘要：** 这篇文章讲我的 GitHub 主页是怎么做的：README 顶部是一张 SVG 横幅，显示 Albany 的时间；头像周围的八大行星从它们今天的真实位置出发（用 NASA/JPL 公布的近似轨道根数计算，并和 JPL Horizons 星历核对过，行星误差在 0.15° 以内）；月亮跟在地球旁边，画的是今天的月相。时钟靠一个不让 GitHub 缓存的小函数和 SVG 自带的动画走准；小组件每天由 GitHub Actions 重画。还有一个交互版：一个 HTML 文件，打开时不联网，可以看 172 个城市今晚的星空。最后一节如实写了 AI 做了什么、我做了什么。
 
 # A GitHub profile that watches the sky
 
-*How I built a README with a clock for Albany, NY, a small solar system that starts from the planets' real positions, and widgets that redraw themselves every night. And what the AI did, and what I did.*
+*How I built a README with a clock for Albany, NY, a small solar system that starts from the planets' real positions, and widgets that redraw themselves every day. And what the AI did, and what I did.*
 
 Most GitHub profiles are a list. I wanted mine to show something working the moment it opens. Open [github.com/Glacieerr](https://github.com/Glacieerr) and the README starts with a banner: the date and time in Albany, my name, and on the right my avatar as a sun, with eight planets on thin rings around it and the Moon beside Earth. Under the banner and two milestone cards, a row of eight widgets scrolls sideways, among them my app on the App Store, a simulated day in my open-source store twin, and tonight's sky over Albany. There is also an interactive version at [glacieerr.github.io](https://glacieerr.github.io/).
 
-The page isn't a screenshot. It is generated (three of the widgets frame real screenshots of my apps): Python draws the SVG, a scheduled GitHub Action redraws it every night, and a small serverless function draws the banner again with the current time whenever someone opens the page.
+The page isn't a screenshot. It is generated (three of the widgets frame real screenshots of my apps): Python draws the SVG, a scheduled GitHub Action redraws it every day, and a small serverless function draws the banner again with the current time whenever someone opens the page.
 
 ## Why the clock is right
 
@@ -32,7 +32,7 @@ time += `<text visibility="${k === 0 ? 'visible' : 'hidden'}">${q.hour}:${q.minu
 
 A small dot runs around the edge of my avatar once a minute, in step with Albany's seconds, like a second hand. Leave the page open for an hour and the clock is still right.
 
-There is also a fallback that needs no server: the nightly job draws a banner with the date as the headline instead of the time, because nothing would update a clock there, and one command (`make_readme.py --no-clock`) points the README at it.
+There is also a fallback that needs no server: the daily job draws a banner with the date as the headline instead of the time, because nothing would update a clock there, and one command (`make_readme.py --no-clock`) points the README at it.
 
 ## The planets start where they really are
 
@@ -97,9 +97,9 @@ Every image comes twice. A `<picture>` element picks by the visitor's GitHub the
 
 The light version is its own white design, with its own grays and softer glows, not the dark one inverted. On phones, a portrait banner comes first (`media="(max-width: 600px)"`), because a 1000-pixel banner shrunk to a phone makes the text tiny.
 
-## Every night
+## Every day
 
-A GitHub Action runs at 05:17 UTC (17 minutes past midnight in New York in winter). It:
+A GitHub Action is scheduled for 05:17 UTC (17 minutes past midnight in New York in winter). GitHub starts scheduled runs late when it is busy: in its first days this one began about nine hours late, between 9 and 10 in the morning in New York. It:
 
 1. runs one simulated day of [Storewright](https://github.com/Glacieerr/storewright), my open-source store twin, with the date as the random seed, so a given day always gives the same numbers for the same version of the simulator (all synthetic), and counts Storewright's commits and tests;
 2. reads SilNest's current version and release notes from Apple's public lookup API;
@@ -117,7 +117,7 @@ The art itself is drawn by a Python script that uses only the standard library; 
 I built this with Claude, in Claude Code. The split, honestly:
 
 - **I** chose the look, "Dusk Tech", after comparing eight full-page mocks, and turned down an earlier iOS-7-style version. I asked for my avatar at the center and for every planet to visibly orbit, which is what turned the clock-planets into a solar system. I read every idea on a long list and decided which to build, and I reviewed the previews and accepted each change through tests and walkthroughs before anything went live.
-- **Claude** wrote most of the code: the SVG drawing, the astronomy module, the live function, the nightly workflow, the interactive page, and the checks, including the comparison with JPL Horizons. It also proposed most of the ideas I chose from.
+- **Claude** wrote most of the code: the SVG drawing, the astronomy module, the live function, the daily workflow, the interactive page, and the checks, including the comparison with JPL Horizons. It also proposed most of the ideas I chose from.
 
 The checks matter most to me. I can't read every line of an orbital-mechanics module and vouch for it, but I can insist that it is compared against JPL's own numbers, and read the table.
 

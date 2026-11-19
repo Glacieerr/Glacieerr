@@ -28,7 +28,7 @@ Checked on github.com on 2026-11-16, once the profile was public: the narrow-scr
 R3.3 adds: two milestone cards under the banner (#9), the "How I work" loop as a Mermaid chart
 (#37, the steps of pages/src/copy.json app.how.loop, read only), the project timeline (#111),
 the skill map with its list in the fold (#110), "Ask me about" (#113), contact badges drawn by
-lockscreen.py (#109) with a guestbook link (#148), and the small print with the last nightly run
+lockscreen.py (#109) with a guestbook link (#148), and the small print with the last daily run
 and a link to HOW-IT-WORKS.md (#112, #40). Before writing, every image is checked (#164): it has
 a meaningful alt text of one or two sentences that no other image repeats (only the dividers are
 decorative), and every image it links on the output branch exists in out/ when out/ is there.
@@ -204,10 +204,10 @@ def contact_html(F, a):
 
 
 def footer_html(a):
-    """Ideas #112 and #40: the date of the last nightly run (an image, so it stays current) and
+    """Ideas #112 and #40: the date of the last daily run (an image, so it stays current) and
     the link to how this profile works."""
     w, h = L.footer_size()
-    alt = "The images on this page are redrawn every night by GitHub Actions; this line shows the date of the last run."
+    alt = "The images on this page are redrawn every day by GitHub Actions; this line shows the date of the last run."
     return (f'<p>{themed("footer", a.dark, a.light, w, h, alt)}<br>\n'
             f'<sub><a href="{HOW}">How this profile works →</a></sub></p>')
 
@@ -288,12 +288,12 @@ def widgets(F):
     return [
         ("w-silnest", 368, sn["store_url"], "App Store ↗", "SilNest (声藏): offline music player, live on the App Store. No ads, no account, data not collected."),
         ("w-storewright", 368, sw["demo"], "Live demo ↗", f'Storewright: a grocery store digital twin that runs in the browser. {sw["tests"]} tests passing.'),
-        ("w-store-day", 176, sw["repo"], "Simulator ↗", "Today's simulated store day, from Storewright's open-source simulator. Synthetic data, refreshed every night."),
+        ("w-store-day", 176, sw["repo"], "Simulator ↗", "Today's simulated store day, from Storewright's open-source simulator. Synthetic data, refreshed every day."),
         ("w-accuracy", 176, sw["repo"], "The eval ↗", assistant_alt(F["assistant"])),
         ("w-site", 368, lk["site"], "yecanyuan.com ↗", "yecanyuan.com: my portfolio, on a Git-backed CMS I built."),
         ("w-vocal", 176, None, "Personal project", "AI Vocal: a local voice and singing studio for my own content. First track finished."),
         ("w-sky", 368, lk["pages"].rstrip("/") + "/#sky", "Your city's sky ↗",
-         f"Tonight's sky over {F['city']}: the Moon's phase, sunset, and which planets are up. Worked out every night."),
+         f"Tonight's sky over {F['city']}: the Moon's phase, sunset, and which planets are up. Worked out every day."),
         ("w-contact", 176, lk["linkedin"], "LinkedIn ↗", f'{F["city"]}, Eastern Time. LinkedIn and website.'),
     ]
 
@@ -303,7 +303,7 @@ def hint_text(F, layout, live):
     return ("Scroll sideways for more widgets. " if layout == "below" else "") + (
         f"The clock is my local time in {F['city']}; the dot around my avatar ticks the seconds, "
         "and the planets set off from where they really are today." if live
-        else "The widgets refresh every night, and the planets set off from where they really are today.")
+        else "The widgets refresh every day, and the planets set off from where they really are today.")
 
 
 def banner_sources(a):
