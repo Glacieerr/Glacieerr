@@ -329,7 +329,9 @@ body[data-view="home"] .home-page, body[data-view="home"] .dock { opacity: 1; tr
 .w:focus-visible { outline-offset: 3px; }
 .w:active { transform: scale(.99); }
 .dots { display: flex; justify-content: center; margin-top: 6px; min-height: 22px; }
-.dot { width: 22px; height: 22px; display: grid; place-items: center; padding: 0; border: 0; background: none; cursor: pointer; }
+/* each dot is a 24 x 24 px button (WCAG 2.5.8, Lighthouse's touch-target check; they were 22 px
+   side by side until 2026-11-18); the -1px margins keep the row 22 px tall, so nothing below moves */
+.dot { width: 24px; height: 24px; margin: -1px 0; display: grid; place-items: center; padding: 0; border: 0; background: none; cursor: pointer; }
 .dot::before { content: ""; width: 6px; height: 6px; border-radius: 3px; background: var(--fg3); opacity: .45; transition: width .25s var(--ease), opacity .2s, background-color .2s; }
 .dot[aria-current="true"]::before { width: 16px; opacity: 1; background: var(--indigo); }
 

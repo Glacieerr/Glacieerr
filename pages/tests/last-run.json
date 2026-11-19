@@ -1,5 +1,5 @@
 {
-  "passed": 345,
+  "passed": 346,
   "failed": 0,
   "date": "2026-11-18",
   "note": "Written by pages/tests/test.mjs after a run with nothing failed; pages/build.py shows it in About this site."

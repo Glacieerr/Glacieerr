@@ -4062,10 +4062,16 @@
     TR.el.classList.toggle('below', below);
     TR.el.style.transform = `translate3d(${left.toFixed(1)}px, ${top.toFixed(1)}px, 0)`;
     TR.arrow.style.left = `${clamp(r.left + r.width / 2 - left, 18, bw - 18).toFixed(1)}px`;
+    // On a phone the bubble that points at Unlock covers the page dots just above it. While they
+    // are covered they are inert: nobody tabs to a hidden button or taps the edge of one, and
+    // they stop crowding Skip (WCAG 2.5.8, Lighthouse's touch-target check; 2026-11-18).
+    const d = E.dots.getBoundingClientRect();
+    E.dots.inert = !E.dots.hidden && d.bottom > top && d.top < top + bh && d.right > left && d.left < left + bw;
   }
   function endTour() {
     if (TR.i < 0) return;
     TR.i = -1;
+    E.dots.inert = false;
     TR.el.hidden = true;
     setText(TR.live, '');
     store.set('ls7-tour', 'done');

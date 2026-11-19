@@ -275,6 +275,51 @@ export default async function (api) {
   await api.go('?lang=en', 1200);
   s = await st();
   ok(s.dots === 5, 'mobile: one dot per page (5)', JSON.stringify(s));
+  // WCAG 2.2 2.5.8, as Lighthouse checks it on a phone (axe-core's target-size): every control
+  // is at least 24 x 24 px, or no other control comes within 12 px of its centre (a small one
+  // counts with a 12 px circle of its own). Until 2026-11-18 the page dots were 22 px squares
+  // side by side. The first-visit tour is checked too: its bubble covers the dots, which are
+  // inert while covered, so they do not crowd Skip.
+  const TARGETS = `(() => {
+    const roles = new Set(['button', 'link', 'checkbox', 'radio', 'tab', 'switch', 'menuitem', 'option', 'slider', 'spinbutton', 'textbox', 'combobox', 'searchbox']);
+    const implicit = (e) => { const t = e.localName; if (t === 'a') return e.hasAttribute('href') ? 'link' : ''; if (t === 'button' || t === 'summary') return 'button'; if (t === 'select') return 'combobox'; if (t === 'textarea') return 'textbox';
+      if (t === 'input') return e.type === 'hidden' ? '' : ({ checkbox: 'checkbox', radio: 'radio', range: 'slider', button: 'button', submit: 'button', reset: 'button', number: 'spinbutton', search: 'searchbox' })[e.type] || 'textbox'; return ''; };
+    const shown = (e) => { const r = e.getBoundingClientRect(); if (!r.width || !r.height) return false; for (let p = e; p; p = p.parentElement) { const cs = getComputedStyle(p); if (cs.display === 'none' || cs.visibility === 'hidden' || cs.opacity === '0') return false; } return true; };
+    const inText = (e) => { if (getComputedStyle(e).display !== 'inline' || !e.parentElement) return false; let t = ''; for (const n of e.parentElement.childNodes) if (n !== e) t += n.textContent || ''; return t.replace(/\\s+/g, '').length > 10; };
+    const all = [...document.querySelectorAll('body *')].filter((e) => e.namespaceURI !== 'http://www.w3.org/2000/svg' && roles.has((e.getAttribute('role') || implicit(e)).split(' ')[0])
+      && !e.disabled && !e.closest('[inert]') && !(e.hasAttribute('tabindex') && e.tabIndex < 0) && shown(e) && !inText(e));
+    const box = all.map((e) => e.getBoundingClientRect());
+    const mid = (r) => [r.left + r.width / 2, r.top + r.height / 2];
+    const big = (r) => r.width >= 23.95 && r.height >= 23.95;
+    const bad = [];
+    all.forEach((e, i) => {
+      if (big(box[i])) return;
+      const c = mid(box[i]);
+      const near = all.filter((o, j) => {
+        if (j === i || o.contains(e) || e.contains(o)) return false;
+        const r = box[j];
+        let d = Math.hypot(c[0] - Math.max(r.left, Math.min(c[0], r.right)), c[1] - Math.max(r.top, Math.min(c[1], r.bottom)));
+        if (!big(r)) d = Math.max(0, Math.min(d, Math.hypot(c[0] - mid(r)[0], c[1] - mid(r)[1]) - 12));
+        return Math.round(d * 10) / 10 * 2 + 0.05 < 24;
+      });
+      if (near.length) bad.push((e.getAttribute('aria-label') || e.textContent.trim()).slice(0, 30) + ' ' + Math.round(box[i].width) + 'x' + Math.round(box[i].height));
+    });
+    const t = document.getElementById('tour'), dr = document.getElementById('dots').getBoundingClientRect(), tr = t.getBoundingClientRect();
+    return { n: all.length, bad, tour: !t.hidden, inert: document.getElementById('dots').inert,
+      cover: !t.hidden && dr.bottom > tr.top && dr.top < tr.bottom && dr.right > tr.left && dr.left < tr.right };
+  })()`;
+  const tgt = [await api.eval(TARGETS)];
+  for (const lang of ['en', 'zh']) {
+    await api.go(`?lang=${lang}&tour=1`, 300);
+    for (let i = 0; i < 25 && await api.eval(`document.getElementById('tour').hidden`); i++) await sleep(200);
+    tgt.push(await api.eval(TARGETS));
+  }
+  await api.eval(`document.getElementById('tourSkip').click()`);
+  const tgtEnd = await api.eval(`[document.getElementById('tour').hidden, document.getElementById('dots').inert]`);
+  ok(tgt.every((t) => t.n >= 15 && !t.bad.length && t.inert === t.cover) && !tgt[0].tour && tgt.slice(1).every((t) => t.tour) && tgt.some((t) => t.cover)
+    && tgtEnd[0] === true && tgtEnd[1] === false,
+    'phone: every control on the lock screen is at least 24 x 24 px or has room around it (WCAG 2.5.8, as Lighthouse checks it), the first-visit tour included; the dots under its bubble are inert only while covered', JSON.stringify([tgt, tgtEnd]));
+  await api.go('?lang=en', 1200);
   const mt = await rect('#track');
   await api.touchSwipe(mt.x + 120, mt.y, mt.x - 140, mt.y, 10, 16);
   await sleep(1200);
