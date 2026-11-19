@@ -356,7 +356,7 @@
     "note": "The button stays hidden until url is set (the user creates the booking page)."
   },
   "testimonials": {
-    "form_url": "",
+    "form_url": "https://forms.gle/qrgLcggKhVHd6BAB8",
     "items": [],
     "note": "Only submissions the person agreed to publish and the user approved; never edited except typos with the author's OK."
   }

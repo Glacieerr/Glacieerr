@@ -226,9 +226,9 @@ FAQ, who did what, numbers read from the repositories, and the public resume PDF
 A Content Security Policy in the page (script and style hashes, written by the build) lets the
 browser refuse any outside connection except giscus after a click. Next to `index.html` the
 build writes `404.html`, `og-image.png`, `card.txt` (try `curl -sL glacieerr.github.io/card.txt`),
-`robots.txt`, `sitemap.xml` and the PDFs. `python3 pages/build.py --preview` also shows the
-features that are not configured yet (booking link, testimonials form) with labeled
-placeholders. Build with `python3 pages/build.py`; test with
+`robots.txt`, `sitemap.xml` and the PDFs. `python3 pages/build.py --preview` also shows labeled
+placeholders for what is not set up yet: the booking link, and the testimonials until I approve
+one. Build with `python3 pages/build.py`; test with
 `node pages/tests/cdp.mjs pages/tests/test.mjs`.
 
 The photos travel as WebP (`pages/src/webp/`, made by `python3 pages/build.py --webp` with

@@ -2397,23 +2397,32 @@ export default async function (api) {
   // the one way the page may name Android (the user's call, 2026-11-15)
   const pageSafe = (x) => !/\biOS\b(?! \d)/.test(x) && !/android/i.test(x.replaceAll('Android Studio', ''));
   const usesN = profile.uses.groups.reduce((a, g) => a + g.items.filter(pageSafe).length, 0);
+  // #161: the testimonial form was linked on 2026-11-18 (testimonials.form_url); the checks follow
+  // profile.json, so they hold before a form exists and once approved testimonials are added
+  const tmForm = (profile.testimonials || {}).form_url || '';
+  const tmItems = ((profile.testimonials || {}).items || []).length;
   await api.go('?lang=en#home/uses', 900);
   const u0 = await api.eval(`({view: document.body.dataset.view, app: document.getElementById('appLayer').hidden ? null : document.getElementById('appView').dataset.app, link: !!document.querySelector('.site-link[data-app="uses"]'),
     heads: [...document.querySelectorAll('#appBody .tv-head')].map((h) => h.textContent), chips: [...document.querySelectorAll('.uses-chips li')].map((li) => li.textContent), note: document.querySelectorAll('#appBody .preview-note').length})`);
   await api.go('?lang=en#home/contact', 900);
-  const c6 = await api.eval(`(() => { const r = document.querySelector('#appBody .ct-reply'); const sec = r && r.closest('.tv-sec');
-    return [!!document.getElementById('booking'), !!document.getElementById('testimonials'), r ? r.textContent : '', sec ? sec.querySelector('.tv-head').textContent : '', document.querySelectorAll('#appBody .preview-note').length]; })()`);
+  const c6 = await api.eval(`(() => { const r = document.querySelector('#appBody .ct-reply'); const sec = r && r.closest('.tv-sec'); const tl = document.querySelector('#testimonials .tm-row a.btn');
+    return [!!document.getElementById('booking'), !!document.getElementById('testimonials'), r ? r.textContent : '', sec ? sec.querySelector('.tv-head').textContent : '', document.querySelectorAll('#appBody .preview-note').length,
+      tl && [tl.getAttribute('href'), tl.target, tl.rel, tl.firstChild.textContent], document.querySelectorAll('#testimonials .tm').length]; })()`);
   await api.go('?lang=zh#home/contact', 900);
   const c6z = await api.eval(`(document.querySelector('#appBody .ct-reply') || {}).textContent || ''`);
+  const c6zt = await api.eval(`((document.querySelector('#testimonials .tm-row a.btn') || {}).firstChild || {}).textContent || ''`);
   await api.go('?lang=en#home/silnest', 900);
   const n6 = await api.eval(`[...document.querySelectorAll('#appBody .tv-head')].map((h) => h.textContent)`);
   ok(u0.view === 'home' && u0.app === 'uses' && u0.link && D.apps.includes('uses') && D.uses && D.uses.draft === false
     && u0.heads.join('|') === profile.uses.groups.map((g) => g.en).join('|') && u0.chips.length === usesN && ['Xcode', 'Android Studio', 'VS Code', 'Cursor'].every((x) => u0.chips.includes(x))
     && !u0.chips.some((x) => /android/i.test(x.replaceAll('Android Studio', ''))) && u0.note === 0
-    && !c6[0] && !c6[1] && c6[2] === profile.booking.reply_en && c6[3] === 'Say hi' && c6[4] === 0 && c6z === profile.booking.reply_zh
-    && !n6.includes("What's new") && D.booking && D.booking.button === false && D.booking.replyDraft === false && D.testimonials === null && D.releaseNotes === null && D.preview === false,
-  '#153 #160 #161 #171 confirmed on 2026-11-15, so shown: Uses (with Xcode, Android Studio, VS Code and Cursor) and how soon I reply, under "Say hi" (English and 中文); still not set up: no booking link, no testimonials or form, and SilNest 1.0 has no release notes',
-  JSON.stringify([u0, c6, c6z]));
+    && !c6[0] && c6[2] === profile.booking.reply_en && c6[3] === 'Say hi' && c6[4] === 0 && c6z === profile.booking.reply_zh
+    && (tmForm ? c6[1] && D.testimonials && D.testimonials.form === tmForm && D.testimonials.items.length === tmItems && c6[6] === tmItems
+      && c6[5] && c6[5][0] === tmForm && c6[5][1] === '_blank' && /noopener/.test(c6[5][2]) && c6[5][3] === 'Leave a testimonial' && c6zt === '留下评语'
+      : !c6[1] && D.testimonials === null)
+    && !n6.includes("What's new") && D.booking && D.booking.button === false && D.booking.replyDraft === false && D.releaseNotes === null && D.preview === false,
+  `#153 #160 #161 #171 confirmed on 2026-11-15, so shown: Uses (with Xcode, Android Studio, VS Code and Cursor) and how soon I reply, under "Say hi" (English and 中文); ${tmForm ? `the testimonial form is linked (testimonials.form_url): "Leave a testimonial" (留下评语) opens it in a new tab, and only approved testimonials are shown (${tmItems} so far)` : 'no testimonials or form yet'}; still not set up: no booking link, and SilNest 1.0 has no release notes`,
+  JSON.stringify([u0, c6, c6z, c6zt]));
   const tmp6 = mkdtempSync(join(tmpdir(), 'pages-batch2-'));
   const prevFile = join(tmp6, 'preview.html');
   execFileSync('python3', ['pages/build.py', '--preview', '--out', prevFile], { cwd: repo6, encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] });
@@ -2425,7 +2434,7 @@ export default async function (api) {
   await goFile(prevFile, '?lang=en#home/contact', 1100);
   const pv = await api.eval(`(() => { const b = document.getElementById('booking'); const t = document.getElementById('testimonials'); const badge = document.getElementById('previewBadge'); return {badge: badge.hidden ? null : badge.textContent,
     book: b && [b.querySelector('.btn').disabled, b.querySelector('.btn').textContent, (b.querySelector('.book-reply') || {}).textContent, [...b.querySelectorAll('.preview-note')].map((n) => n.textContent)],
-    tm: t && [t.querySelector('.tm-invite .tv-p').textContent, t.querySelector('.tm-row .btn').disabled, [...t.querySelectorAll('.preview-note')].map((n) => n.textContent), t.querySelectorAll('.tm').length],
+    tm: t && [t.querySelector('.tm-invite .tv-p').textContent, ((x) => x.tagName === 'A' ? x.getAttribute('href') : x.disabled)(t.querySelector('.tm-row .btn')), [...t.querySelectorAll('.preview-note')].map((n) => n.textContent), t.querySelectorAll('.tm').length],
     apps: JSON.parse(document.getElementById('data').textContent).apps}; })()`);
   await goFile(prevFile, '?lang=en#home/uses', 1000);
   const pu = await api.eval(`({app: document.getElementById('appView').dataset.app, heads: [...document.querySelectorAll('#appBody .tv-head')].map((h) => h.textContent), chips: document.querySelectorAll('.uses-chips li').length, draft: (document.querySelector('#appBody .preview-note') || {}).textContent || ''})`);
@@ -2437,11 +2446,13 @@ export default async function (api) {
   const pvReply = await api.eval(`[(document.querySelector('#appBody .ct-reply') || {}).textContent || '', [...document.querySelectorAll('#appBody .preview-note')].map((n) => n.textContent)]`);
   ok(pv.badge === 'Preview build: do not publish' && pv.book && pv.book[0] === true && pv.book[1] === 'Book a time' && pv.book[2] == null
     && pv.book[3].length === 1 && pv.book[3][0].includes('booking.url')
-    && pv.tm && pv.tm[0].startsWith('Used SilNest, or worked with me?') && pv.tm[1] === true && pv.tm[2].some((x) => x.includes('testimonials.form_url')) && pv.tm[3] === 0
+    && pv.tm && pv.tm[0].startsWith('Used SilNest, or worked with me?') && pv.tm[3] === tmItems
+    && (tmForm ? pv.tm[1] === tmForm && !pv.tm[2].some((x) => x.includes('testimonials.form_url')) : pv.tm[1] === true && pv.tm[2].some((x) => x.includes('testimonials.form_url')))
+    && pv.tm[2].some((x) => x.includes('no approved testimonials yet')) === (tmItems === 0)
     && pv.apps.includes('uses') && pu.app === 'uses' && pu.heads.join('|') === profile.uses.groups.map((g) => g.en).join('|') && pu.chips === usesN && pu.draft === ''
     && pvHow[0] === 5 && pvHow[1].length === 0 && pvReply[0] === profile.booking.reply_en && !pvReply[1].some((x) => /draft/.test(x))
     && pn.some((x) => x.includes('Version 1.0 has none')),
-  'pages/build.py --preview shows what is not set up yet, each labelled: the booking button (no link yet), the testimonial invite (no form yet) and where release notes will go; the page says it is a preview. What the user confirmed on 2026-11-15 carries no draft label there: Uses, how soon I reply, the change in five steps', JSON.stringify([pv, pu, pn, pvHow, pvReply]));
+  `pages/build.py --preview shows what is not set up yet, each labelled: the booking button (no link yet), ${tmForm ? 'where approved testimonials will go (the invite links to the form)' : 'the testimonial invite (no form yet)'} and where release notes will go; the page says it is a preview. What the user confirmed on 2026-11-15 carries no draft label there: Uses, how soon I reply, the change in five steps`, JSON.stringify([pv, pu, pn, pvHow, pvReply]));
   await goFile(notesFile, '?lang=en#home/silnest', 1000);
   const rn = await api.eval(`(() => { const s = [...document.querySelectorAll('#appBody .tv-sec')].find((x) => (x.querySelector('.tv-head') || {}).textContent === "What's new"); return s ? {sub: s.querySelector('.rn-sub').textContent, ps: [...s.querySelectorAll('.rn-p')].map((p) => p.textContent)} : null; })()`);
   ok(rn && rn.sub === 'Version 1.1 · December 1, 2026' && rn.ps.join('|') === 'Lyrics line up better - and faster.|A new sleep timer.' && !/[–—]/.test(readFileSync(notesFile, 'utf8')),
